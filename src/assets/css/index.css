@@ -3,6 +3,9 @@
     margin: 0;
     box-sizing: border-box;
 }
+div{
+    font-family:"Pretendard", sans-serif;
+}
 .wrap{
     height: 970px;
 }
@@ -54,6 +57,7 @@ header .headerTop .logo{
 
 /* 헤더 검색창 */
 header .headerTop .headerSearch{
+    position: relative;
 }
 header .headerTop .headerSearch input{
     width: 470px;
@@ -70,8 +74,11 @@ header .headerTop .headerSearch .searchBtn{
     border: none;
     background-color: transparent;
     cursor: pointer;
-    margin-left: -34px;
+    /* margin-left: -34px; */
     margin-top: 5px;
+    position: absolute;
+    top: 14%;
+    right: 15px;
 }
 
 /* 헤더 우측상단 버튼들 */
@@ -94,8 +101,6 @@ header .headerBottom{
     display: flex;
     height: 75px;
 }
-header .headerBottom li{
-}
 header .headerBottom li a{
     line-height: 75px;
     margin-left: 50px;
@@ -110,6 +115,94 @@ header .headerBottom li a:hover{
 
 /************** 푸터 **************/
 footer{
-    height: 450px;
-    background-color: yellowgreen;
+    /* height: 400px; */
+    background-color: #f8f8f8;
+}
+footer .footerInner{
+    width: 1400px;
+    /* height: 400px; */
+    margin: 0 auto;
+    padding:  50px 0;
+    /* background-color: hotpink; */
+}
+
+/* 푸터상단 */
+footer .footerInner .footerTop{
+    /* height: 250px; */
+    /* background-color: gold; */
+    display: flex;
+    justify-content: space-between;
+}
+/* 푸터상단-왼쪽 */
+footer .footerInner .footerTop .footerTopLeft{
+    width: 600px;
+    /* height: 250px; */
+    /* background-color: orange; */
+}
+footer .footerInner .footerTop .footerTopLeft .footerTopNav{
+    display: flex;
+    justify-content: space-between;
+}
+footer .footerInner .footerTop .footerTopLeft .footerTopNav li:first-child{
+    margin-left: 0;
+}
+footer .footerInner .footerTop .footerTopLeft .footerTopNav li a{
+    font-weight: bold;
+    font-size: 15px;
+}
+footer .footerInner .footerTop .footerTopLeft .footerTopAddress{
+    margin-top: 40px;
+}
+footer .footerInner .footerTop .footerTopLeft .footerTopAddress >div{
+    display: flex;
+    font-size: 14px;
+    margin: 10px 0;
+}
+footer .footerInner .footerTop .footerTopLeft .footerTopAddress >div p{
+    display: inline-block;
+}
+footer .footerInner .footerTop .footerTopLeft .footerTopAddress >div p:last-child::before{
+    content: "|";
+    margin: 0 5px;
+}
+footer .footerInner .footerTop .footerTopLeft .footerTopAddress >div p a{
+    text-decoration: underline;
+}
+
+
+/* 푸터상단-오른쪽 */
+footer .footerInner .footerTop .footerTopRight{
+    width: 220px;
+    /* height: 250px; */
+    /* background-color: orangered; */
+    text-align: right;
+}
+footer .footerInner .footerTop .footerTopRight p{
+    margin-bottom: 10px;
+}
+footer .footerInner .footerTop .footerTopRight p:nth-child(2){
+    font-size: 30px;
+    color: #00317a;
+    font-weight: bold;
+}
+footer .footerInner .footerTop .footerTopRight .footerBtnBox{
+    margin-top: 15px;
+}
+footer .footerInner .footerTop .footerTopRight .footerBtnBox a{
+    margin-left: 30px;
+}
+footer .footerInner .footerTop .footerTopRight .footerBtnBox a img{}
+
+/* 푸터하단 */
+footer .footerInner .footerBottom{
+    height: 55px;
+    /* background-color: teal; */
+    display: flex;
+    justify-content: left;
+}
+footer .footerInner .footerBottom p{
+    line-height: 50px;
+}
+footer .footerInner .footerBottom a{
+    margin-left: 20px;
 }
