@@ -4,8 +4,8 @@
             <!-- 헤더 -->
             <AppHeader/>
             <!-- 내용 -->
-            <div class="container">
-
+            <div class="ItemListContainer">
+                <div class="ItemListInner"></div>
             </div>
             <!-- 푸터 -->
             <AppFooter/>

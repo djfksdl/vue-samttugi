@@ -1,4 +1,10 @@
 
-.container{
+.ItemListContainer{
     height: 700px;
+    background-color: pink;
+}
+.ItemListInner{
+    width: 1400px;
+    height: ;
+    background-color: palegreen;
 }
