@@ -1,14 +1,14 @@
 .ItemAccountContainer{
-    height: 700px;
-    background-color: pink;
-    padding-top: 20px;
+    /* height: 700px; */
+    /* background-color: pink; */
+    padding: 20px 0;
 }
 
 .ItemAccountContainer .ItemAccountInner{
     width: 1440px;
     margin: 0 auto;
-    height: 900px;
-    background-color: skyblue;
+    /* height: 900px; */
+    /* background-color: skyblue; */
 }
 
 /* 경로 */
@@ -50,7 +50,7 @@
 .ItemAccountContainer .ItemAccountSection .ItemAccountRight{
     width: 570px;
     height: 600px;
-    background-color: slateblue;
+    /* background-color: slateblue; */
 }
 /* 텍스트-Top */
 .ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextTop p{
@@ -60,6 +60,7 @@
 .ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextTop p span{
     font-size: 34px;
 }
+
 /* 텍스트-Mid */
 .ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextMid {
     border-top: 1px solid #eee;
@@ -67,17 +68,79 @@
     margin: 25px 0;
     padding: 25px 0;
 }
+.ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextMid li{
+    display: flex;
+    margin-bottom: 20px;
+}
+.ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextMid li >span{
+    width: 90px;
+    color: #888;
+}
+.ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextMid li p >span:first-child{
+    font-weight: bold;
+}
+.ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextMid li p >span:nth-child(2){
+    color: #d3233a;
+}
+.ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextMid li .InputWrapper{
+    /* position: relative; */
+}
+.ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextMid li .countInput{
+    padding: 10px 0;
+    text-align: center;
+    position: relative; /* 부모 요소에 position: relative; 추가 */
+}
+.ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextMid li .countInput button{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextMid li .countInput button.minusBtn{
+    left: 0;
+}
+.ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextMid li .countInput button.plusBtn{
+    right: 0;
+}
+
+
 /* 텍스트-Bottom */
 .ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextBottom{}
 /* 총금액 */
 .ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextBottom .ItemAcocuntTextBottomPrice{
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
 }
-.ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextBottom .ItemAcocuntTextBottomPrice p{}
-.ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextBottom .ItemAcocuntTextBottomPrice p strong{
-    color: #;
+.ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextBottom .ItemAcocuntTextBottomPrice p{
+    display: flex;
+    align-items: center;
 }
-.ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextBottom .ItemAcocuntTextBottomPrice p span{}
+.ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextBottom .ItemAcocuntTextBottomPrice p strong{
+    color: #d3233a;
+    font-size: 32px;
+    margin-left: 10px;
+}
+.ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextBottom .ItemAcocuntTextBottomPrice p span{
+    color: #d3233a;
+}
 /* 버튼 */
-.ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextBottom .ItemAcocuntTextBottomBtn{}
+.ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextBottom .ItemAcocuntTextBottomBtn{
+    margin-top: 30px;
+    display: flex;
+    justify-content: end;
+}
+.ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextBottom .ItemAcocuntTextBottomBtn a{
+    font-weight: bold;
+    color: #d3233a;
+    border: 1px solid #d3233a;
+    border-radius: 5px;
+    display: block;
+    height: 60px;
+    width: 180px;
+    margin-left: 10px;
+    text-align: center;
+    line-height: 60px;
+}
+.ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextBottom .ItemAcocuntTextBottomBtn a:hover{
+    background-color: #d3233a;
+    color: #fff;
+}

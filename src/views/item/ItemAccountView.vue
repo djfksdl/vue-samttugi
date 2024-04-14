@@ -43,12 +43,20 @@
                                         <p>
                                             <span>3000</span>원
                                             <span>실온</span>
+                                            <br>
+                                            <br>
+                                            <span>동일 배송유형 상품 30,000원 이상 구매시 무료</span>
                                         </p>
-                                        <p>동일 배송유형 상품 30,000원 이상 구매시 무료</p>
+                                        
                                     </li>
                                     <li>
                                         <span>수량선택</span>
-                                        <input type="number">
+                                        <div class="InputWrapper">
+                                            <button type="button" class="minusBtn">-</button>
+                                            <input type="text" class="countInput" value="1">
+                                            <button type="button" class="plusBtn">+</button>
+
+                                        </div>
                                     </li>
                                 </ul>
                                 <!-- 텍스트-Bottom -->
