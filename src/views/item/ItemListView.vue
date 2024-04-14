@@ -30,19 +30,21 @@
                         <!-- 상품리스트나열 -->
                         <div class="ItemContentBoxes">
                             <div class="ItemContentBox">
-                                <!-- 상품 이미지 -->
-                                <div class="ItemContentImg">
-                                    <img src="@/assets/images/JinRamenSpicy.jpg">
-                                </div>
-                                <!-- 상품 텍스트 -->
-                                <div class="ItemContentText">
-                                    <p>진라면 매운맛 (120GX5)</p>
-                                    <p class="ItemPrice"><span>3580</span>원</p>
-                                    <div class="ItemStorageMethod">
-                                        <span>실온</span>
-                                        <span>BEST</span>
+                                <router-link to="/itemaccount">
+                                    <!-- 상품 이미지 -->
+                                    <div class="ItemContentImg">
+                                        <img src="@/assets/images/JinRamenSpicy.jpg">
                                     </div>
-                                </div>
+                                    <!-- 상품 텍스트 -->
+                                    <div class="ItemContentText">
+                                        <p>진라면 매운맛 (120GX5)</p>
+                                        <p class="ItemPrice"><span>3580</span>원</p>
+                                        <div class="ItemStorageMethod">
+                                            <span>실온</span>
+                                            <span>BEST</span>
+                                        </div>
+                                    </div>
+                                </router-link>
                             </div>
 
                             <div class="ItemContentBox">

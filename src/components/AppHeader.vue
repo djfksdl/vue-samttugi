@@ -29,7 +29,7 @@
                 </div>
                 <!-- 헤더 하단 -->
                 <ul class="headerBottom">
-                    <li><router-link to="">라면/컵누들/곤누들</router-link></li>
+                    <li><router-link to="/itemlist">라면/컵누들/곤누들</router-link></li>
                     <li><router-link to="">카레/짜장/간편렌지</router-link></li>
                     <li><router-link to="">소스/드레싱/양념/식초</router-link></li>
                     <li><router-link to="">캔/통조림/오일</router-link></li>
