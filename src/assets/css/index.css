@@ -20,7 +20,7 @@ a{
 /************** 헤더 **************/
 header{
     height: 170px;
-    position: sticky;
+    position: relative;
     top: 0;
     z-index: 99;
     background-color: #fff;

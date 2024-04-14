@@ -83,28 +83,37 @@
     color: #d3233a;
 }
 .ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextMid li .InputWrapper{
-    /* position: relative; */
+    position: relative;
 }
 .ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextMid li .countInput{
     padding: 10px 0;
     text-align: center;
-    position: relative; /* 부모 요소에 position: relative; 추가 */
+    width: 115px;
+    font-size: 18px;
+    outline: none;
+    border: 1px solid #ddd;
+    border-radius: 4px;
 }
-.ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextMid li .countInput button{
+.ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextMid li button{
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
 }
-.ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextMid li .countInput button.minusBtn{
+.ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextMid li  button.minusBtn{
     left: 0;
 }
-.ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextMid li .countInput button.plusBtn{
+.ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextMid li  button.plusBtn{
     right: 0;
 }
 
 
 /* 텍스트-Bottom */
-.ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextBottom{}
 /* 총금액 */
 .ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextBottom .ItemAcocuntTextBottomPrice{
     font-size: 20px;
@@ -122,6 +131,7 @@
 .ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextBottom .ItemAcocuntTextBottomPrice p span{
     color: #d3233a;
 }
+
 /* 버튼 */
 .ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextBottom .ItemAcocuntTextBottomBtn{
     margin-top: 30px;
