@@ -1,11 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import ItemListView from '@/views/item/ItemListVue.vue'
+import ItemListView from '@/views/item/ItemListView.vue'
+import itemAccountView from '@/views/item/ItemAccountView.vue'
 
 const routes = [
   {
     path: '/itemlist',
     name: 'ItemList',
     component: ItemListView
+  },
+  {
+    path: '/itemaccount',
+    name: 'itemAccount',
+    component: itemAccountView
   },
 
 ]
