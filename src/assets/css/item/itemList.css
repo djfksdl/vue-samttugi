@@ -9,17 +9,21 @@
     /* background-color: palegreen; */
 }
 /* 경로 */
-.ItemListContainer .channelSrc{}
 .ItemListContainer .channelSrc >a{
     color: #aaa;
     font-size: 14px;
+    margin-right: 5px;
 }
 .ItemListContainer .channelSrc >a:last-child{
     color: black;
 }
-.ItemListContainer .channelSrc >a:first-child::after{
+.ItemListContainer .channelSrc >a::after{
     content: ">";
     color: #aaa;
+    margin-left: 5px;
+}
+.ItemListContainer .channelSrc >a:last-child::after{
+    content: "";
 }
 /* 타이틀 */
 .ItemListContainer .ItemListInner >h2{

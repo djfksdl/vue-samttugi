@@ -3,6 +3,7 @@
         <div class="wrap">
             <!-- 헤더 -->
             <AppHeader/>
+
             <!-- 내용 -->
             <div class="ItemListContainer">
                 <div class="ItemListInner">
@@ -177,6 +178,7 @@
 
                 </div>
             </div>
+
             <!-- 푸터 -->
             <AppFooter/>
             
@@ -184,7 +186,7 @@
     </div>
 </template>
 <script>
-import '@/assets/css/item/item.css'
+import '@/assets/css/item/itemList.css'
 import AppHeader from '@/components/AppHeader.vue'
 import AppFooter from '@/components/AppFooter.vue'
 export default {

@@ -1,0 +1,83 @@
+.ItemAccountContainer{
+    height: 700px;
+    background-color: pink;
+    padding-top: 20px;
+}
+
+.ItemAccountContainer .ItemAccountInner{
+    width: 1440px;
+    margin: 0 auto;
+    height: 900px;
+    background-color: skyblue;
+}
+
+/* 경로 */
+.ItemAccountContainer .channelSrc >a{
+    color: #aaa;
+    font-size: 14px;
+    margin-right: 5px;
+}
+.ItemAccountContainer .channelSrc >a:last-child{
+    color: black;
+}
+.ItemAccountContainer .channelSrc >a::after{
+    content: ">";
+    color: #aaa;
+    margin-left: 5px;
+}
+.ItemAccountContainer .channelSrc >a:last-child::after{
+    content: "";
+}
+
+/* 상품내용 */
+.ItemAccountContainer .ItemAccountSection{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+/* 상품내용 - 왼쪽 */
+.ItemAccountContainer .ItemAccountSection .ItemAccountLeft{
+    width: 640px;
+    height: 600px;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 상품내용 - 오른쪽 */
+.ItemAccountContainer .ItemAccountSection .ItemAccountRight{
+    width: 570px;
+    height: 600px;
+    background-color: slateblue;
+}
+/* 텍스트-Top */
+.ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextTop p{
+    font-size: 28px;
+    font-weight: bold;
+}
+.ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextTop p span{
+    font-size: 34px;
+}
+/* 텍스트-Mid */
+.ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextMid {
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    margin: 25px 0;
+    padding: 25px 0;
+}
+/* 텍스트-Bottom */
+.ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextBottom{}
+/* 총금액 */
+.ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextBottom .ItemAcocuntTextBottomPrice{
+    font-size: 18px;
+    font-weight: bold;
+}
+.ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextBottom .ItemAcocuntTextBottomPrice p{}
+.ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextBottom .ItemAcocuntTextBottomPrice p strong{
+    color: #;
+}
+.ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextBottom .ItemAcocuntTextBottomPrice p span{}
+/* 버튼 */
+.ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextBottom .ItemAcocuntTextBottomBtn{}
