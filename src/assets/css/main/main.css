@@ -13,13 +13,31 @@
 
 
 
-/* 메인사진 */
-.slider-wrap img {
-    display: block;
-    height: 610px;
-    margin: 0 auto;
-    margin-bottom: 100px;
+/* 슬라이드 관련*/
+.wrapper {
+    margin-bottom: 135px;
 }
+
+.carousel__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel__slide {
+    padding: auto auto;
+}
+
+.carousel__prev,
+.carousel__next {
+    box-sizing: content-box;
+}
+
+.slideImg {
+    width: 1660px;
+    height: 560px;
+}
+
 
 
 

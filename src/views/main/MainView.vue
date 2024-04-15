@@ -5,15 +5,18 @@
                 <p>삼뚜기몰 WECLCOME</p>
             </div>
             <AppHeader />
-            <div class="slider-wrap">
-                <ul id="slider">
-                    <li>
-                        <img src="@/assets/images/main/1712294889869CdNid.jpg">
-                    </li>
-                </ul>
-                <div class="btns" id="next"></div>
-                <div class="btns" id="previous"></div>
-                <div id="counter"></div>
+            <div class="wrapper">
+                <Carousel :autoplay="2600" :wrap-around="true">
+                    <Slide v-for="slide in slides" :key="slide">
+                        <div class="carousel__item">
+                            <img class="slideImg" :src="slide" />
+                        </div>
+                    </Slide>
+                    <template #addons>
+                        <Navigation />
+                        <Pagination />
+                    </template>
+                </Carousel>
             </div>
             <div class="eventGroup">
                 <router-link to="">
@@ -41,9 +44,9 @@
                     <img src="@/assets/images/main/1711593325640XDNYd.png">
                     <p>굿즈</p>
                 </router-link>
-                
 
-                
+
+
                 <router-link to="">
                     <img src="@/assets/images/main/1711593225746xvZaA.png">
                     <p>초시원 매콤</p>
@@ -251,19 +254,33 @@
 
 <script>
 import '@/assets/css/main/main.css';
+import { defineComponent } from "vue";
+import { Carousel, Navigation, Pagination, Slide } from "vue3-carousel";
+import "vue3-carousel/dist/carousel.css";
+
+import slide01 from "@/assets/images/main/slide01.jpg";
+import slide02 from "@/assets/images/main/slide02.jpg";
+import slide03 from "@/assets/images/main/slide03.jpg";
+import slide04 from "@/assets/images/main/slide04.jpg";
 import AppHeader from '@/components/AppHeader.vue'
 import AppFooter from '@/components/AppFooter.vue'
-export default {
+export default defineComponent({
     name: "MainView",
     components: {
         AppHeader,
-        AppFooter
+        AppFooter,
+        Carousel,
+        Slide,
+        Pagination,
+        Navigation,
     },
     data() {
-        return {};
+        return {
+            slides: [slide01, slide02, slide03, slide04],
+        };
     },
     methods: {},
-};
+});
 </script>
 
 <style></style>
