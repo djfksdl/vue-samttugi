@@ -283,4 +283,10 @@ export default defineComponent({
 });
 </script>
 
-<style></style>
+<style>
+.carousel__prev,
+.carousel__next {
+    color: white;
+    opacity: 0.9;
+}
+</style>
