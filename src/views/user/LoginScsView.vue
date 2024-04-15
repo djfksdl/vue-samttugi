@@ -7,7 +7,7 @@
         <p id="now">삼뚜기의 모든 것을 지금부터 만나보세요</p>
         <img class="new" src="@/assets/images/new-product.png" alt="신상">
     
-      <router-link to="/main" id="startBtn">삼뚜기몰 시작하기</router-link>
+      <router-link to="/" id="startBtn">삼뚜기몰 시작하기</router-link>
     </div>
     <AppFooter />
     <!--//footer-->

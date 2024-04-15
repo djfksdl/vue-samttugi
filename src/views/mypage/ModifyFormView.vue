@@ -12,9 +12,9 @@
                     <h2>마이페이지</h2>
                     <ul class="mypageMenu">
                         <li>쇼핑정보</li>
-                        <li><router-link to="">주문배송조회</router-link></li>
+                        <li><router-link to="/mypage">주문배송조회</router-link></li>
                         <li>회원정보</li>
-                        <li><router-link to="">회원정보수정</router-link></li>
+                        <li><router-link to="/modify">회원정보수정</router-link></li>
                     </ul>
                 </div>
                 <div class="sidebottom">
