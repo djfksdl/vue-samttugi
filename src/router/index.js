@@ -8,8 +8,24 @@ import LoginScsView from '@/views/user/LoginScsView.vue'
 import ModifyFormView from '@/views/mypage/ModifyFormView.vue'
 import OrderView from '@/views/order/OrderView.vue'
 import CartView from '@/views/cart/CartView.vue'
+import MainView from '@/views/main/MainView.vue'
+import ManagerMainView from '@/views/manager/ManagerInsertView.vue'
+import ManagerInsertView from '@/views/manager/ManagerInsertView.vue'
 
 const routes = [
+  {
+    path: '/',
+    name: 'MainView',
+    component: MainView
+  },{
+    path: '/manager',
+    name: 'ManagerMainView',
+    component: ManagerMainView
+  },{
+    path: '/insertform',
+    name: 'ManagerInsertView',
+    component: ManagerInsertView
+  },
   {
     path: '/itemlist',
     name: 'ItemList',

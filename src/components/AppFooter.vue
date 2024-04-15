@@ -52,7 +52,7 @@
                 <!-- 푸처 하단 -->
                 <div class="footerBottom">
                     <p>Copyright 2020-2023 Ottogi Corp. All Rights Reserved.</p>
-                    <router-link to=""><img src="@/assets/images/icon_company.png"></router-link>
+                    <router-link to=""><img src="@/assets/images/icon_company.png" class="logo2"></router-link>
                     <router-link to=""><img src="@/assets/images/icon_okitchen.png"></router-link>
                 </div>
             </div>

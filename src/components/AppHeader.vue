@@ -5,7 +5,7 @@
                 <!-- 헤더 상단 -->
                 <div class="headerTop">
                     <!-- 로고 -->
-                    <router-link to=""><img src="@/assets/images/logo.png " class="logo"></router-link>
+                    <router-link to="/"><img src="@/assets/images/logo.png " class="logo"></router-link>
                     <!-- 헤더 검색창 -->
                     <div class="headerSearch">
                         <input type="text" placeholder="역시 라면은 삼뚜기 라면~🍜">
@@ -13,15 +13,15 @@
                     </div>
                     <!-- 헤더 우측상단 버튼들 -->
                     <div class="headerTopBtnBox">
-                        <router-link to="">
+                        <router-link to="/login">
                             <img src="@/assets/images/icon_login.svg">
                             <p>로그인</p>
                         </router-link>
-                        <router-link to="">
+                        <router-link to="/mypage">
                             <img src="@/assets/images/icon_my.svg">
                             <p>마이페이지</p>
                         </router-link>
-                        <router-link to="">
+                        <router-link to="/cart">
                             <img src="@/assets/images/icon_bag.svg">
                             <p>장바구니</p>
                         </router-link>

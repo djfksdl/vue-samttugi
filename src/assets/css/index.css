@@ -195,3 +195,6 @@ footer .footerInner .footerBottom p{
 footer .footerInner .footerBottom a{
     margin-left: 20px;
 }
+footer .footerInner .footerBottom a .logo2{
+    width: 50px;
+}
