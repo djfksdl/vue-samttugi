@@ -1,0 +1,77 @@
+
+.advImgBox {
+    display: flex;
+    justify-content: space-between;
+}
+.mbModifytxt {
+    color: #333;
+    font-size: 35px;
+    margin-bottom: 50px;
+    border-bottom: 1px solid #202020;
+    padding-bottom: 20px;
+   
+}
+
+.id-group,
+.form-blank {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    height: 55px;
+}
+
+.id-group label,
+.form-blank label {
+    width: 120px;
+    height: 26px;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.id-group span,
+.form-blank input,
+.form-blank textarea {
+    width: 300px;
+    height: 40px;
+    padding: 5px;
+    margin-left: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+}
+
+.postal {
+    width: 15%;
+    padding: 9px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+.postal:hover {
+    background-color: #e0e0e0;
+}
+
+.mdfBtn {
+    display: block;
+    width: 550px;
+    padding: 20px;
+    margin-top: 35px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 21px;
+    background-color: #D3233A;
+    cursor: pointer;
+}
+
+.mdfBtn:hover {
+    background-color: #c00;
+}
+.advImg {
+    width: 500px;
+    height: 500px;
+    background-color: #D3233A;
+}
