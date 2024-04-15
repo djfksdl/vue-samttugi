@@ -8,7 +8,7 @@
                     <div class="footerTopLeft">
                         <!-- 푸터 상단 메뉴 -->
                         <ul class="footerTopNav">
-                            <li><router-link to="">오뚜기몰 존재이유</router-link></li>
+                            <li><router-link to="">삼뚜기몰 존재이유</router-link></li>
                             <li><router-link to="">고객센터</router-link></li>
                             <li><router-link to="">이용약관</router-link></li>
                             <li><router-link to="">개인정보처리방침</router-link></li>

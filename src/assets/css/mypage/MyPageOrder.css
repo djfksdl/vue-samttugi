@@ -1,0 +1,83 @@
+
+.MpOrderContainer{
+    width: 1400px;
+   /* background-color: blueviolet;  */
+    display: flex;
+    justify-content: space-between;
+    padding: 25px 45px 25px 45px;
+    margin: 0 auto;
+}
+
+/* 왼쪽내용영역 */
+.MpOrderContainer .MpLeft .sidetop{
+    width: 200px;
+    height: 200px;
+    background-color: bisque;
+}
+.MpOrderContainer .MpLeft .sidebottom{
+    width: 150px;
+    height: 425px;
+    background-color: blue;
+    margin-top: 15px;
+    margin-left: 25px;
+}
+
+/* 오른쪽내용영역 */
+.MpOrderContainer .MpRight{
+    width: 1070px;
+    /* height: 650px; */
+    padding: 25px;
+    /* background-color: aquamarine; */
+}
+
+/* about 영역 */
+.MpOrderContainer .MpRight .MpRightAbout{
+    width: 1020px;
+    height: 550px;
+    margin-top: 20px;
+    /* background-color: chartreuse; */
+}
+
+/* 주문조회 */
+.MpOrderContainer .MpRightAbout .orderCheckBox{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #202020;
+}
+
+/* 날짜별 주문 목록 */
+.MpOrderContainer .MpRightAbout .orderListByDate{
+    width: 950PX;
+    /* background-color: #efefef; */
+    margin-top: 10px;
+    border-radius: 10PX;
+}
+.MpOrderContainer .MpRightAbout .orderListByDate .orderByDate{
+    border-bottom: 1px solid ddd;
+    /* background-color: greenyellow; */
+    margin-bottom: 20px;
+
+}
+.MpOrderContainer .MpRightAbout .orderListByDate .orderDay{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.MpOrderContainer .MpRightAbout .ordercomplete{
+    display: flex;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding: 15px;
+}
+.MpOrderContainer .MpRightAbout .ordercomplete .orderCompleteImg{
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-right: 20px;
+}
+.MpOrderContainer .MpRightAbout .ordercomplete .orderCompleteInfo{
+
+}
+
+
