@@ -38,7 +38,7 @@
             <div class="form-field">
                 <label class="address" for="address">주소</label>
                 <textarea class="addressbox" v-model="address"></textarea>
-                <button type="button" v-on:click="postalCode">우편번호</button>
+                <button type="button"  v-on:click="postalCode">우편번호</button>
             </div>
             <div class="form-field">
                 <label for="birthdate">생년월일</label>

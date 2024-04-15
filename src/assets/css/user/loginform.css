@@ -1,6 +1,4 @@
-body {
-    font-family: Arial, sans-serif;
-}
+
 
 .signupForm {
     width: 1400px;
@@ -8,7 +6,8 @@ body {
     padding: 20px;
 }
 
-.signupForm h2, h3 {
+.signupForm h2, 
+.signupForm h3 {
     color: #333;
 }
 
@@ -62,7 +61,7 @@ body {
 .form-field button:hover {
     background-color: #e0e0e0;
 }
-#gender {
+.form-field #gender {
     margin-right: 65px;
 }
 
