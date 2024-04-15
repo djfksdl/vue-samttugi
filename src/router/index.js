@@ -9,7 +9,7 @@ import ModifyFormView from '@/views/mypage/ModifyFormView.vue'
 import OrderView from '@/views/order/OrderView.vue'
 import CartView from '@/views/cart/CartView.vue'
 import MainView from '@/views/main/MainView.vue'
-import ManagerMainView from '@/views/manager/ManagerInsertView.vue'
+import ManagerMainView from '@/views/manager/ManagerMainView.vue'
 import ManagerInsertView from '@/views/manager/ManagerInsertView.vue'
 
 const routes = [

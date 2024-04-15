@@ -1,3 +1,190 @@
-*{
-    /* 지우면됨 */
+/* 헤더 */
+.topHeader {
+    height: 50px;
+    background-color: #d3233a;
+}
+
+.topHeader p {
+    color: white;
+    font-weight: bolder;
+    text-align: center;
+    padding-top: 13px;
+}
+
+
+
+/* 메인사진 */
+.slider-wrap img {
+    display: block;
+    height: 610px;
+    margin: 0 auto;
+    margin-bottom: 100px;
+}
+
+
+
+/* 메인아래 이벤트사진*/
+.eventGroup {
+    width: 1400px;
+    margin: 0 auto;
+    display: flex;
+}
+
+.eventGroup a {
+    margin-left: 40px;
+    margin-right: 50px;
+}
+
+.eventGroup img {
+    width: 110px;
+}
+
+.eventGroup p {
+    color: #333333;
+    font-size: 15px;
+    margin-top: 11px;
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+.eventGroup p:hover {
+    color: black;
+    font-weight: 800;
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+
+/* 새로움을 맛보세요 ? */
+.foodBoxGroup,
+.foodBoxGroup2,
+.foodBoxGroup3 {
+    width: 1420px;
+    margin: 0 auto;
+    /* border-bottom: 1px solid #eee; */
+}
+
+.foodBox {
+    width: 300px;
+    display: inline-block;
+    margin-right: 50px;
+}
+
+.foodBox h3 {
+    font-size: 32px;
+    margin-bottom: 40px;
+    display: inline-block;
+}
+
+.foodBox .food {
+    width: 270px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    display: block;
+}
+
+.foodBox .food:hover {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.foodBox .imgButBox {
+    display: flex;
+}
+
+.foodBox .cart {
+    width: 40px;
+    height: 40px;
+    background: url(../../images/main/icon_cart.svg);
+    cursor: pointer;
+    border: none;
+    margin-top: 210px;
+    margin-left: -35px;
+}
+
+
+.foodBox .foodEx {
+    padding: 5px 0px 5px 0px;
+    font-size: 16px;
+    color: #1D1D1B;
+    font-weight: bold;
+}
+
+.foodBox .foodName {
+    padding-bottom: 10px;
+    color: #888888;
+}
+
+.foodBox .foodPrice {
+    font-size: 26px;
+    color: #1D1D1B;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.attribute {
+    display: flex;
+}
+
+/* 냉장&냉동 */
+.storageCold {
+    border: 1px solid #afc8f2;
+    color: #0a309e;
+    font-size: 12px;
+    padding: 1px 6px 1px 6px;
+    border-radius: 4px;
+    margin-right: 5px;
+}
+
+/* 광고 */
+.firstAdBox {
+    margin: 70px auto 100px auto;
+    display: grid;
+    place-items: center;
+}
+
+.firstAdBox img:hover {
+    cursor: pointer;
+}
+
+
+/* 이런상품 어때요? */
+.foodBoxGroup2 {
+    border-bottom: 1px solid #eee;
+}
+
+
+/* 실온 */
+.storageWarm {
+    border: 1px solid #f2afaf;
+    color: #d3233a;
+    font-size: 12px;
+    padding: 1px 6px 1px 6px;
+
+    border-radius: 4px;
+    margin-right: 5px;
+    margin-bottom: 60px;
+}
+
+/* 원쁠원으로 만나요 */
+.foodBoxGroup3 {
+    margin-top: 100px;
+    margin-bottom: 150px;
+    border-bottom: 1px solid #eee;
+}
+
+.attribute img {
+    width: 34px;
+    height: 20px;
+}
+
+.foodBoxGroup3 .saleNum {
+    color: #d3233a;
+}
+
+.foodBoxGroup3 del {
+    padding-left: 10px;
+    font-weight: 400;
+    font-size: 15px;
+    color: #ccc;
 }
