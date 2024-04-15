@@ -24,8 +24,8 @@
                                     <option>떡볶이/핫도그/간식</option>
                                 </select>
                             </div>
-                            <div class="nameBox"><label for="name">제품명</label><input type="text" placeholder="제품명입력"
-                                    id="name"></div>
+                            <div class="nameBox"><label for="foodName">제품명</label><input type="text" placeholder="제품명입력"
+                                    id="foodName"></div>
                             <div class="explanBox"><label for="explan">상세정보</label><textarea placeholder="제품설명"
                                     id="explan"></textarea></div>
                             <div class="originBox"><label for="origin">원산지</label><input type="text"
