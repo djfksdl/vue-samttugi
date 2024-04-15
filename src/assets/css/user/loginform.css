@@ -1,0 +1,83 @@
+
+
+.signupForm {
+    width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.signupForm h2, 
+.signupForm h3 {
+    color: #333;
+}
+
+.signupForm h3 {
+    margin-top: 40px;
+}
+
+.signupForm hr {
+    margin: 20px 0;
+    border: 0;
+    border-top: 1px solid #ccc;
+}
+
+.signupForm .form-field {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+
+}
+
+.signupForm .form-field label {
+    width: 100px;
+}
+
+.signupForm .form-field input,
+.signupForm .form-field textarea {
+    width: 300px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.signupForm .form-field button {
+    width: 110px;
+    margin-left: 10px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+.radioGender{
+    margin-bottom: 12px;
+}
+.form-field input[type="radio"] {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.form-field button:hover {
+    background-color: #e0e0e0;
+}
+.form-field #gender {
+    margin-right: 65px;
+}
+
+.submitForm {
+    display: block;
+    width: 100px;
+    padding: 10px;
+    margin-top: 50px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 17px;
+    background-color: #D3233A;
+    cursor: pointer;
+}
+
+.submitForm:hover {
+    background-color: #c00;
+}

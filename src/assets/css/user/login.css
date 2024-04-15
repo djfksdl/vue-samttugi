@@ -1,3 +1,79 @@
-*{
-    /* 지우면됨 */
+.login-container {
+    /* font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center; */
+    
+}
+
+.main-container {
+    width: 1400px;
+    margin: 0 auto;
+    text-align: center;
+    /* height: 500px; */
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.main-container .container {
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+    margin-left: 90px;
+}
+  
+
+.main-container .loginLogo{
+    height: 40px;
+}
+.main-container .logoTitle {
+    color: #D3233A;
+  
+    font-size: 30px;
+    font-weight: bold;
+}
+.main-container .login-form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 400px;
+    margin: 20px auto;
+}
+.login-form input {
+    width: 450px;
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    
+}
+.login-form .loginBtn {
+    width: 450px;
+    padding: 21px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    margin-top: 40px;
+    cursor: pointer;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #D3233A;
+}
+.login-form .signupBtn {
+    border: 1px solid #D3233A;
+    color: #D3233A;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+    width: 450px;
+    height: 60px;
+    padding-top: 10px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 34px;
 }
