@@ -197,7 +197,7 @@ del {
 }
 
 
-.managerInsert .foodExplanInsert #name, #explan, #origin,#price,#infor,#sale ,select {
+.managerInsert .foodExplanInsert #foodName, #explan, #origin,#price,#infor,#sale ,select {
     width: 350px;
     padding: 5px;
     font-size: 15px;
@@ -225,7 +225,7 @@ del {
     width: 45px;
 }
 
-#name,
+#foodName,
 #origin,
 #sale {
     margin-left: 40px;
