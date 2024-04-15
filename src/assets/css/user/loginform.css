@@ -61,7 +61,7 @@
 .form-field button:hover {
     background-color: #e0e0e0;
 }
-.form-field #gender {
+.radioGender #gender {
     margin-right: 65px;
 }
 
