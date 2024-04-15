@@ -9,8 +9,18 @@
                 <!-- 왼쪽내용영역 -->
                 <div class="MpLeft">
                     <!--nav-->
-                    <div class="sidetop">nav</div>
-                    <div class="sidebottom">bener</div>
+                    <div class="sidetop">
+                        <h2>마이페이지</h2>
+                        <ul class="mypageMenu">
+                            <li>쇼핑정보</li>
+                            <li><router-link to="">주문배송조회</router-link></li>
+                            <li>회원정보</li>
+                            <li><router-link to="">회원정보수정</router-link></li>
+                        </ul>
+                    </div>
+                    <div class="sidebottom">
+                        <img src="@/assets/images/mypage_banner2.png" alt="">
+                    </div>
                 </div>
                 <!-- 오른쪽내용영역 -->
                 <div class="MpRight">

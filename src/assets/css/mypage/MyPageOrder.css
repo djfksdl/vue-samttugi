@@ -3,30 +3,53 @@
     width: 1400px;
    /* background-color: blueviolet;  */
     display: flex;
-    justify-content: space-between;
-    padding: 25px 45px 25px 45px;
-    margin: 0 auto;
+    /* justify-content: space-between; */
+    padding: 25px 0 ;
+    margin: 30px auto 0;
 }
 
 /* 왼쪽내용영역 */
 .MpOrderContainer .MpLeft .sidetop{
     width: 200px;
     height: 200px;
-    background-color: bisque;
+    /* background-color: bisque; */
 }
+.MpOrderContainer .MpLeft .sidetop h2{
+    margin-bottom: 15px;
+}
+.MpOrderContainer .MpLeft .sidetop .mypageMenu{}
+.MpOrderContainer .MpLeft .sidetop .mypageMenu li{
+    margin: 10px 0;
+}
+.MpOrderContainer .MpLeft .sidetop .mypageMenu li:first-child,
+.MpOrderContainer .MpLeft .sidetop .mypageMenu li:nth-child(3){
+    font-weight: bold;
+}
+.MpOrderContainer .MpLeft .sidetop .mypageMenu li a{
+    font-size: 15px;
+    color: #555;
+}
+/* 베너 */
 .MpOrderContainer .MpLeft .sidebottom{
     width: 150px;
-    height: 425px;
+    height: 480px;
     background-color: blue;
-    margin-top: 15px;
-    margin-left: 25px;
+    /* margin-top: 15px; */
+    /* margin-left: 25px; */
+    overflow: hidden;
+    /* object-fit: contain; */
+}
+.MpOrderContainer .MpLeft .sidebottom img{
+    width: 150px;
+
 }
 
 /* 오른쪽내용영역 */
 .MpOrderContainer .MpRight{
     width: 1070px;
+    margin-left: 50px;
     /* height: 650px; */
-    padding: 25px;
+    /* padding: 25px; */
     /* background-color: aquamarine; */
 }
 
@@ -34,7 +57,7 @@
 .MpOrderContainer .MpRight .MpRightAbout{
     width: 1020px;
     height: 550px;
-    margin-top: 20px;
+    /* margin-top: 20px; */
     /* background-color: chartreuse; */
 }
 
@@ -42,7 +65,11 @@
 .MpOrderContainer .MpRightAbout .orderCheckBox{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     border-bottom: 1px solid #202020;
+}
+.MpOrderContainer .MpRightAbout .orderCheckBox h1{
+    margin-bottom: 20px;
 }
 
 /* 날짜별 주문 목록 */
@@ -53,14 +80,19 @@
     border-radius: 10PX;
 }
 .MpOrderContainer .MpRightAbout .orderListByDate .orderByDate{
-    border-bottom: 1px solid ddd;
+    border-bottom: 1px solid #ddd;
     /* background-color: greenyellow; */
     margin-bottom: 20px;
+
+}
+.MpOrderContainer .MpRightAbout .orderListByDate .orderByDate:last-child{
+    border-bottom:none;
 
 }
 .MpOrderContainer .MpRightAbout .orderListByDate .orderDay{
     font-size: 20px;
     font-weight: bold;
+    margin-bottom: 5px;
 }
 
 .MpOrderContainer .MpRightAbout .ordercomplete{

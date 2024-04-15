@@ -6,6 +6,8 @@ import LoginView from '@/views/user/LoginView.vue'
 import LoginFormView from '@/views/user/LoginFormView.vue'
 import LoginScsView from '@/views/user/LoginScsView.vue'
 import ModifyFormView from '@/views/mypage/ModifyFormView.vue'
+import OrderView from '@/views/order/OrderView.vue'
+import CartView from '@/views/cart/CartView.vue'
 
 const routes = [
   {
@@ -42,6 +44,16 @@ const routes = [
     path: '/modify',
     name: 'ModifyFormView',
     component: ModifyFormView
+  },
+  {
+    path: '/cart',
+    name: 'CartView',
+    component: CartView
+  },
+  {
+    path: '/order',
+    name: 'OrderView',
+    component: OrderView
   },
 
 ]
