@@ -45,8 +45,6 @@
                     <p>굿즈</p>
                 </router-link>
 
-
-
                 <router-link to="">
                     <img src="@/assets/images/main/1711593225746xvZaA.png">
                     <p>초시원 매콤</p>
@@ -57,7 +55,7 @@
             <div class="foodBoxGroup">
                 <div class="foodBox">
 
-                    <h3>새로움을 맛보세요</h3>
+                    <h3>삼뚜기몰에서 만나요</h3>
 
                     <router-link to="">
                         <div class="imgButBox">

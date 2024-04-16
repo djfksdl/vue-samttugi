@@ -28,12 +28,8 @@
                     </div>
                 </div>
                 <!-- 헤더 하단 -->
-                <ul class="headerBottom">
-                    <li><router-link to="/itemlist">라면/컵누들/곤누들</router-link></li>
-                    <li><router-link to="">카레/짜장/간편렌지</router-link></li>
-                    <li><router-link to="">소스/드레싱/양념/식초</router-link></li>
-                    <li><router-link to="">캔/통조림/오일</router-link></li>
-                    <li><router-link to="">떡볶이/핫도그/간식</router-link></li>
+                <ul class="headerBottom" >
+                    <li v-for="(categoryVo, i) in categoryList" v-bind:key="i"><router-link to="/itemlist">{{ categoryVo.mcName }}</router-link></li>
                 </ul>
             </div>
         </header>
@@ -46,7 +42,9 @@ export default {
     name: "AppHeader",
     components: {},
     data() {
-        return {};
+        return {
+            categoryList:[]
+        };
     },
     methods: {
         getCategory(){
@@ -55,11 +53,10 @@ export default {
                 method: 'get', // put, post, delete 
                 url: `${this.$store.state.apiBaseUrl}/api/navcategory`,
                 headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
-                // params: guestbookVo, //get방식 파라미터로 값이 전달
-                // data: guestbookVo, //put, post, delete 방식 자동으로 JSON으로 변환 전달
                 responseType: 'json' //수신타입
             }).then(response => {
-                console.log(response); //수신데이타
+                console.log(response.data.apiData); //수신데이타
+                this.categoryList = response.data.apiData;
             }).catch(error => {
                 console.log(error);
             });
