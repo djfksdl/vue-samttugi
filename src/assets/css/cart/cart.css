@@ -62,6 +62,7 @@ input[type="checkbox"] {
 }
 .aSide .selectBox .inputBox span {
     font-weight: bold;
+    margin-left: 5px;
 }
 .aSide .selectBox .seldelBtn {
     color: #777;
@@ -164,4 +165,5 @@ input[type="checkbox"] {
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     border: none;
+    cursor: pointer;
 }

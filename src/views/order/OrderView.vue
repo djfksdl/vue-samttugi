@@ -91,12 +91,12 @@
                         <p>결제수단 선택</p>
     
                         <div class="pay-icon">
-                            <div class="pay-select">신용카드</div>
-                            <div class="pay-select kakao"></div>
-                            <div class="pay-select naver"></div>
-                            <div class="pay-select payco"></div>
-                            <div class="pay-select">가상계좌</div>
-                            <div class="pay-select">실시간계좌이체</div>
+                            <div class="pay-select credit" v-on:click="btnActive">신용카드</div>
+                            <div class="pay-select kakao" v-on:click="btnActive"></div>
+                            <div class="pay-select naver" v-on:click="btnActive"></div>
+                            <div class="pay-select payco" v-on:click="btnActive"></div>
+                            <div class="pay-select acount" v-on:click="btnActive">가상계좌</div>
+                            <div class="pay-select live" v-on:click="btnActive">실시간계좌이체</div>
                         </div>
                         <b>· 최초 결제 금액 100원 이상일 때 승인 처리가 가능해요.</b>
                     </div>
@@ -105,20 +105,20 @@
                 <div class="agreement">
                     <div class="sub-title"></div>
                     <div>
-                        <input type="checkbox" name="" id="">
-                        <label class="all-select" for="">전체동의</label>
+                        <input v-on:click="allAgree" type="checkbox" name="" id="all-agree">
+                        <label class="all-select" for="all-agree">전체동의</label>
                     </div>
                     <div>
-                        <input type="checkbox" name="" id="">
-                        <label for=""><b>(필수) </b>위 내용을 확인하였으며 결제에 동의합니다.</label>
+                        <input type="checkbox" name="checkBox" id="pay-agree">
+                        <label for="pay-agree"><b>(필수) </b>위 내용을 확인하였으며 결제에 동의합니다.</label>
                     </div>
                     <div>
-                        <input type="checkbox" name="" id="">
-                        <label for=""><b>(필수) </b>이용약관 동의</label>
+                        <input type="checkbox" name="checkBox" id="use-agree">
+                        <label for="use-agree"><b>(필수) </b>이용약관 동의</label>
                     </div>
                     <div>
-                        <input type="checkbox" name="" id="">
-                        <label for=""><b>(필수) </b>개인정보 수집, 이용에 관한 동의</label>
+                        <input type="checkbox" name="checkBox" id="private-agree">
+                        <label for="private-agree"><b>(필수) </b>개인정보 수집, 이용에 관한 동의</label>
                     </div>
                 </div>
     
@@ -141,14 +141,6 @@
                     <div>
                         <p>총 배송비</p>
                         <p><b>00</b>원</p>
-                    </div>
-                    <div>
-                        <p>쿠폰 할인</p>
-                        <p><b>-0</b>원</p>
-                    </div>
-                    <div>
-                        <p>마일리지 사용</p>
-                        <p><b>-0</b>원</p>
                     </div>
                     <div class="final-charge">
                         <b>최종 결제금액</b>
@@ -189,7 +181,36 @@ export default {
     data() {
         return {};
     },
-    methods: {},
+    methods: {
+        btnActive(event) {
+
+            console.log(event.target);
+
+            document.querySelector('.credit').style.border = '1px solid #dfdede';
+            document.querySelector('.credit').style.color = '#2c2c2c';
+            document.querySelector('.kakao').style.border = '1px solid #dfdede';
+            document.querySelector('.naver').style.border = '1px solid #dfdede';
+            document.querySelector('.payco').style.border = '1px solid #dfdede';
+            document.querySelector('.acount').style.border = '1px solid #dfdede';
+            document.querySelector('.acount').style.color = '#2c2c2c';
+            document.querySelector('.live').style.border = '1px solid #dfdede';
+            document.querySelector('.live').style.color = '#2c2c2c';
+
+            event.target.style.border = "1px solid #e0123e";
+            event.target.style.color = "#e0123e";
+        },
+        allAgree() {
+            if(document.querySelector('#all-agree').checked == true) {
+                for(let i=0; i<3; i++) {
+                    document.getElementsByName("checkBox")[i].checked=true;
+                }
+            } else {
+                for(let i=0; i<3; i++) {
+                    document.getElementsByName("checkBox")[i].checked=false;
+                }
+            }
+        },
+    },
     created(){}
 };
 </script>
