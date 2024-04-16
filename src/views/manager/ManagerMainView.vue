@@ -27,7 +27,6 @@
                         <div class="foodExplan">
                             <p class="foodName2">맛있는 새우볶음밥 225g</p>
                             <p class="foodEx2">속이 꽉~찬!! 통살새우~!!</p>
-                            <p>원산지  대한민국</p>
                             <p class="foodPrice">2,980<span>원</span></p>
                             <p >배송정보 3,000<span>원</span></p>
                             <div class="attribute">
@@ -41,8 +40,8 @@
                             <img src="@/assets/images/main/새우볶음밥.png">
                         </div>
                         <div class="foodExplan">
+                            <p class="foodName2">맛있는 새우볶음밥 225g</p>
                             <p class="foodEx">속이 꽉~찬!! 통살새우~!!</p>
-                            <p class="foodName">맛있는 새우볶음밥 225g</p>
                             <p class="foodPrice">2,980<span>원</span></p>
                             <div class="attribute">
                                 <span class="storageCold">냉장&냉동</span>
@@ -50,39 +49,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="foodList">
-                        <div class="foodImg">
-                            <img src="@/assets/images/main/새우볶음밥.png">
-                        </div>
-                        <div class="foodExplan">
-                            <p class="foodEx">속이 꽉~찬!! 통살새우~!!</p>
-                            <p class="foodName">맛있는 새우볶음밥 225g</p>
-                            <p class="foodPrice">2,980<span>원</span></p>
-                            <div class="attribute">
-                                <span class="storageCold">냉장&냉동</span>
-                                <img src="@/assets/images/main/icon_new.png">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="foodList">
-                        <div class="foodImg">
-                            <img src="@/assets/images/main/새우볶음밥.png">
-                        </div>
-                        <div class="foodExplan">
-                            <p class="foodEx">속이 꽉~찬!! 통살새우~!!</p>
-                            <p class="foodName">맛있는 새우볶음밥 225g</p>
-                            <p class="foodPrice">2,980<span>원</span></p>
-                            <div class="attribute">
-                                <span class="storageCold">냉장&냉동</span>
-                                <img src="@/assets/images/main/icon_new.png">
-                            </div>
-                        </div>
-                    </div>
+                  
                 </div>
 
 
             </div>
-            <AppFooter/>
         </div>
 
     </div>
@@ -91,12 +62,10 @@
 <script>
 import '@/assets/css/manager/manager.css';
 import AppManagerHeader from '@/components/AppManagerHeader.vue';
-import AppFooter from '@/components/AppFooter.vue'
 export default {
     name: "ManagerMainView",
     components: {
-        AppManagerHeader,
-        AppFooter
+        AppManagerHeader
     },
     data() {
         return {};

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="managerHeader">
         <header>
             <div class="headerInner">
                 <!-- 헤더 상단 -->
