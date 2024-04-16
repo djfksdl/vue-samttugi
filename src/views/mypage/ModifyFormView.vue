@@ -30,7 +30,7 @@
                     <form v-on:submit.prevent="modifyMember" method="put">
                         <div class="id-group">
                             <label class="id" for="id">아이디</label>
-                            <span id="id">DS</span>
+                            <span id="fixid">DS</span>
                         </div>
                         <div class="form-blank">
                             <label for="password">비밀번호*</label>
@@ -44,26 +44,17 @@
                             <label for="email">이메일*</label>
                             <input type="email" id="email" v-model="email" required>
                         </div>
-
-                        <div class="form-blank">
-                            <label for="birthdate">생년월일</label>
-                            <input type="date" id="birthdate" v-model="birthdate">
-                        </div>
                         <div class="form-blank">
                             <label class="address" for="address">주소</label>
                             <textarea class="addressbox" v-model="address"></textarea>
                             <button type="button" class="postal" v-on:click="postalCode">주소검색</button>
                         </div>
-                        <div class="form-blank">
-                            <label class="address" for="address">배송지</label>
-                            <textarea class="addressbox" v-model="address"></textarea>
-                            <button type="button" class="postal" v-on:click="postalCode">우편번호</button>
-                        </div>
+                    
                         <button type="submit" class="mdfBtn" v-on:click="updateInfo">회원정보수정</button>
                     </form>
-                    <div class="advImg">
+                    <img class="advImg" src="@/assets/images/goodsbanner.png" alt="굿즈홍보배너">
 
-                    </div>
+                    
                 </div>
             </div>
 
