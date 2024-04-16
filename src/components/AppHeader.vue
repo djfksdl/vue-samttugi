@@ -29,7 +29,7 @@
                 </div>
                 <!-- 헤더 하단 -->
                 <ul class="headerBottom" >
-                    <li v-for="(categoryVo, i) in categoryList" v-bind:key="i"><router-link v-bind:to="`/itemlist/${categoryVo.mcNo}`">{{ categoryVo.mcName }}</router-link></li>
+                    <li v-for="(categoryVo, i) in categoryList" v-bind:key="i"><router-link v-bind:to="`/itemlist/${categoryVo.mcNo}`" v-on:click="handleCategoryClick(categoryVo.mcNo)" >{{ categoryVo.mcName }}</router-link></li>
                 </ul>
             </div>
         </header>
@@ -55,13 +55,14 @@ export default {
                 headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
                 responseType: 'json' //수신타입
             }).then(response => {
-                console.log(response.data.apiData); //수신데이타
+                // console.log(response.data.apiData); //수신데이타
                 this.categoryList = response.data.apiData;
             }).catch(error => {
                 console.log(error);
             });
-
-
+        },
+        handleCategoryClick(categoryNo) {
+            this.$emit('category-click', categoryNo);
         }
     },
     created(){
