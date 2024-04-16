@@ -55,7 +55,7 @@
             <div class="foodBoxGroup">
                 <div class="foodBox">
 
-                    <h3>오뚜기몰에서 만나요</h3>
+                    <h3>삼뚜기몰에서 만나요</h3>
 
                     <router-link to="">
                         <div class="imgButBox">
