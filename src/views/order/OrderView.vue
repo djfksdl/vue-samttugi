@@ -127,7 +127,7 @@
                     <li>· 주문 취소 시 결제하신 수단으로만 환불됩니다.</li>
                 </ul>
     
-                <button class="orderBtn" type="submit">00원 주문하기</button>
+                <button class="orderBtn" type="submit">3,000원 주문하기</button>
     
             </div><!-- //aSide -->
     
@@ -140,11 +140,11 @@
                     </div>
                     <div>
                         <p>총 배송비</p>
-                        <p><b>00</b>원</p>
+                        <p><b>3,000</b>원</p>
                     </div>
                     <div class="final-charge">
                         <b>최종 결제금액</b>
-                        <b>0,000원</b>
+                        <b>3,000원</b>
                     </div>
                     <div class="delivery-text">
                         <ul>
@@ -156,7 +156,7 @@
                     </div>
                 </div><!-- //b-top -->
     
-                <button class="orderBtn" type="submit">00원 주문하기</button>
+                <button class="orderBtn" type="submit">3,000원 주문하기</button>
     
             </div><!-- //bSid -->
         </div><!-- //inner -->
