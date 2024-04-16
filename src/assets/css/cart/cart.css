@@ -90,6 +90,7 @@ input[type="checkbox"] {
 .aSide .productBox .PnMBtn span:not(:nth-child(2)) {
     font-size: 23px;
     padding: 0 10px 5px 10px;
+    cursor: pointer;
 }
 .aSide .productBox .p-charge {
     font-size: 21px;
