@@ -36,9 +36,9 @@
                     <img src="" alt="">
                     <p>진비빔면 용기 132G</p>
                     <div class="PnMBtn">
-                        <span class="minus">-</span>
-                        <span>1</span>
-                        <span class="plus">+</span>
+                        <span class="minus" v-on:click="pNM">-</span>
+                        <span class="p-num">{{this.pNum}}</span>
+                        <span class="plus" v-on:click="pNP">+</span>
                     </div>
                     <b class="p-charge">00원</b>
                     <p class="p-delBtn">X</p>
@@ -93,9 +93,22 @@ export default {
         AppFooter
     },
     data() {
-        return {};
+        return {
+            pNum: "1",
+        };
     },
-    methods: {},
+    methods: {
+        pNP() {
+            if(this.pNum > 0) {
+                this.pNum++;
+            }
+        },
+        pNM() {
+            if(this.pNum > 1 ) {
+                this.pNum--;
+            }
+        },
+    },
     created(){}
 };
 </script>
