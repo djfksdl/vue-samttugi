@@ -52,70 +52,27 @@
 
 
             </div>
-            <div class="foodBoxGroup" >
+            <div class="foodBoxGroup">
                 <div class="foodBox">
                     <h3>삼뚜기몰에서 만나요</h3>
 
+                    <div v-for="(productVo,i) in productList" v-bind:key="i">
+                        <router-link to="" >
+                            <div class="imgButBox">
+                                <img v-bind:src="`${this.$store.state.apiBaseUrl}/upload/${productVo.saveName}`">
+                                <button type="button" class="cart"></button>
+                            </div>
+                            <p class="foodEx">{{ productVo.detail }}</p>
+                            <p class="foodName">{{ productVo.productName }}</p>
+                            <p class="foodPrice">{{ productVo.price }}<span>원</span></p>
+                            <div class="attribute">
+                                <span class="storageCold">냉장&냉동</span>
+                                <img src="@/assets/images/main/icon_new.png">
+                            </div>
+                        </router-link>
+                    </div>
+                </div>
 
-                    <router-link to="">
-                        <div class="imgButBox">
-                            <img class="food" src="@/assets/images/main/새우볶음밥.png">
-                            <button type="button" class="cart"></button>
-                        </div>
-                        <p class="foodEx">속이 꽉~찬!! 통살새우~!!</p>
-                        <p class="foodName">맛있는 새우볶음밥 225g</p>
-                        <p class="foodPrice">2,980<span>원</span></p>
-                        <div class="attribute">
-                            <span class="storageCold">냉장&냉동</span>
-                            <img src="@/assets/images/main/icon_new.png">
-                        </div>
-                    </router-link>
-                </div>
-                <div class="foodBox">
-                    <router-link to="">
-                        <div class="imgButBox">
-                            <img class="food" src="@/assets/images/main/새우볶음밥.png">
-                            <button type="button" class="cart"></button>
-                        </div>
-                        <p class="foodEx">속이 꽉~찬!! 통살새우~!!</p>
-                        <p class="foodName">맛있는 새우볶음밥 225g</p>
-                        <p class="foodPrice">2,980<span>원</span></p>
-                        <div class="attribute">
-                            <span class="storageCold">냉장&냉동</span>
-                            <img src="@/assets/images/main/icon_new.png">
-                        </div>
-                    </router-link>
-                </div>
-                <div class="foodBox">
-                    <router-link to="">
-                        <div class="imgButBox">
-                            <img class="food" src="@/assets/images/main/새우볶음밥.png">
-                            <button type="button" class="cart"></button>
-                        </div>
-                        <p class="foodEx">속이 꽉~찬!! 통살새우~!!</p>
-                        <p class="foodName">맛있는 새우볶음밥 225g</p>
-                        <p class="foodPrice">2,980<span>원</span></p>
-                        <div class="attribute">
-                            <span class="storageCold">냉장&냉동</span>
-                            <img src="@/assets/images/main/icon_new.png">
-                        </div>
-                    </router-link>
-                </div>
-                <div class="foodBox">
-                    <router-link to="">
-                        <div class="imgButBox">
-                            <img class="food" src="@/assets/images/main/새우볶음밥.png">
-                            <button type="button" class="cart"></button>
-                        </div>
-                        <p class="foodEx">속이 꽉~찬!! 통살새우~!!</p>
-                        <p class="foodName">맛있는 새우볶음밥 225g</p>
-                        <p class="foodPrice">2,980<span>원</span></p>
-                        <div class="attribute">
-                            <span class="storageCold">냉장&냉동</span>
-                            <img src="@/assets/images/main/icon_new.png">
-                        </div>
-                    </router-link>
-                </div>
             </div>
 
 
@@ -261,8 +218,9 @@ import slide01 from "@/assets/images/main/slide01.jpg";
 import slide02 from "@/assets/images/main/slide02.jpg";
 import slide03 from "@/assets/images/main/slide03.jpg";
 import slide04 from "@/assets/images/main/slide04.jpg";
-import AppHeader from '@/components/AppHeader.vue'
-import AppFooter from '@/components/AppFooter.vue'
+import AppHeader from '@/components/AppHeader.vue';
+import AppFooter from '@/components/AppFooter.vue';
+
 export default defineComponent({
     name: "MainView",
     components: {
@@ -276,6 +234,7 @@ export default defineComponent({
     data() {
         return {
             slides: [slide01, slide02, slide03, slide04],
+            productList:[]
         };
     },
     methods: {
@@ -286,18 +245,21 @@ export default defineComponent({
                 method: 'get', // put, post, delete 
                 url: `${this.$store.state.apiBaseUrl}/api/samttugiList`,
                 headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
-                // params: guestbookVo, //get방식 파라미터로 값이 전달
-                // data: guestbookVo, //put, post, delete 방식 자동으로 JSON으로 변환 전달
                 responseType: 'json' //수신타입
             }).then(response => {
                 console.log(response); //수신데이타
-            }).catch(error => {
+                this.productList = response.data.apiData;
+                console.log(this.productList.saveName);
+                }).catch(error => {
                 console.log(error);
             });
 
         }
 
     },
+    created() {
+        this.getsamttugiList();
+    }
 });
 </script>
 
