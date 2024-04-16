@@ -19,13 +19,9 @@
 
                             <div class="selectBoxGroup">
                                 <div class="bigCategoryBox"><label for="bigCategory">대분류</label> <br>
-                                    <select name="bigCategory" id="bigCategory">
-                                        <option disabled value="" selected>대분류선택</option>
-                                        <option>라면/컵누들/곤누들</option>
-                                        <option>카레/짜장/간편렌지</option>
-                                        <option>소스/드레싱/양념/식초</option>
-                                        <option>캔/통조림/오일</option>
-                                        <option>떡볶이/핫도그/간식</option>
+                                    <select  name="bigCategory" id="bigCategory" >
+                                        <option disabled selected>대분류선택</option>
+                                        <option v-for="(bigCategoryVo,i) in bigCategoryList" v-bind:key="i">{{ bigCategoryVo.mcName }}</option>
                                     </select>
                                 </div>
 
@@ -34,9 +30,7 @@
                                 <div class="miniCategory"><label for="miniCategory">소분류</label><br>
                                     <select name="ramen" id="miniCategory">
                                         <option disabled value="" selected>소분류선택</option>
-                                        <option>봉지라면</option>
-                                        <option>컵라면</option>
-                                        <option>잡채</option>
+                                        <option v-for="(miniCategoryVo,i) in miniCategoryList" v-bind:key="i" >{{ miniCategoryVo.scName }}</option>
                                     </select>
                                 </div>
                             </div>
@@ -93,15 +87,59 @@
 <script>
 import '@/assets/css/manager/manager.css';
 import AppManagerHeader from '@/components/AppManagerHeader.vue';
+
+import axios from 'axios';
+
 export default {
     name: "ManagerInsertView",
     components: {
         AppManagerHeader
     },
     data() {
-        return {};
+        return {
+            bigCategoryList:[],
+            miniCategoryList:[]
+        };
     },
-    methods: {},
+    methods: {
+        getBigCategory() {
+            console.log("데이터가져오기");
+
+            axios({
+                method: 'get', // put, post, delete 
+                url: `${this.$store.state.apiBaseUrl}/api/bigCategory`,
+                headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
+                responseType: 'json' //수신타입
+            }).then(response => {
+                this.bigCategoryList = response.data.apiData;
+                }).catch(error => {
+                console.log(error);
+            });
+
+        },
+        getMiniCategory(){
+            console.log("데이터가져오기");
+
+            axios({
+                method: 'get', // put, post, delete 
+                url: `${this.$store.state.apiBaseUrl}/api/miniCategory`,
+                headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
+                responseType: 'json' //수신타입
+            }).then(response => {
+                console.log(response); //수신데이타
+                this.miniCategoryList = response.data.apiData;
+                }).catch(error => {
+                console.log(error);
+            });
+        },
+    },
+    created() {
+        this.getBigCategory();
+        this.getMiniCategory();
+    },
+    computed:{
+
+    }
 };
 </script>
 

@@ -249,7 +249,6 @@ export default defineComponent({
             }).then(response => {
                 console.log(response); //수신데이타
                 this.productList = response.data.apiData;
-                console.log(this.productList.saveName);
                 }).catch(error => {
                 console.log(error);
             });
