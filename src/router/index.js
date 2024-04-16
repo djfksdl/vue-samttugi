@@ -27,7 +27,7 @@ const routes = [
     component: ManagerInsertView
   },
   {
-    path: '/itemlist',
+    path: '/itemlist/:no',
     name: 'ItemList',
     component: ItemListView
   },

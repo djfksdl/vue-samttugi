@@ -9,7 +9,7 @@
                 <div class="ItemListInner">
                     <!-- 경로 -->
                     <div class="channelSrc">
-                        <router-link to="">홈</router-link>
+                        <router-link to="/">홈</router-link>
                         <router-link to="">라면/컵누들/곤누들</router-link>
                     </div>
                     <!-- 타이틀 -->
@@ -28,7 +28,7 @@
                             <li><router-link to="">사리면</router-link></li>
                         </ul>
                         <!-- 상품리스트나열 -->
-                        <div class="ItemContentBoxes">
+                        <div class="ItemContentBoxes" >
                             <div class="ItemContentBox">
                                 <router-link to="/itemaccount">
                                     <!-- 상품 이미지 -->
@@ -46,134 +46,7 @@
                                     </div>
                                 </router-link>
                             </div>
-
-                            <div class="ItemContentBox">
-                                <!-- 상품 이미지 -->
-                                <div class="ItemContentImg">
-                                    <img src="@/assets/images/JinRamenSpicy.jpg">
-                                </div>
-                                <!-- 상품 텍스트 -->
-                                <div class="ItemContentText">
-                                    <p>진라면 매운맛 (120GX5)</p>
-                                    <p class="ItemPrice"><span>3580</span>원</p>
-                                    <div class="ItemStorageMethod">
-                                        <span>실온</span>
-                                        <span>BEST</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="ItemContentBox">
-                                <!-- 상품 이미지 -->
-                                <div class="ItemContentImg">
-                                    <img src="@/assets/images/JinRamenSpicy.jpg">
-                                </div>
-                                <!-- 상품 텍스트 -->
-                                <div class="ItemContentText">
-                                    <p>진라면 매운맛 (120GX5)</p>
-                                    <p class="ItemPrice"><span>3580</span>원</p>
-                                    <div class="ItemStorageMethod">
-                                        <span>실온</span>
-                                        <span>BEST</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="ItemContentBox">
-                                <!-- 상품 이미지 -->
-                                <div class="ItemContentImg">
-                                    <img src="@/assets/images/JinRamenSpicy.jpg">
-                                </div>
-                                <!-- 상품 텍스트 -->
-                                <div class="ItemContentText">
-                                    <p>진라면 매운맛 (120GX5)</p>
-                                    <p class="ItemPrice"><span>3580</span>원</p>
-                                    <div class="ItemStorageMethod">
-                                        <span>실온</span>
-                                        <span>BEST</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="ItemContentBox">
-                                <!-- 상품 이미지 -->
-                                <div class="ItemContentImg">
-                                    <img src="@/assets/images/JinRamenSpicy.jpg">
-                                </div>
-                                <!-- 상품 텍스트 -->
-                                <div class="ItemContentText">
-                                    <p>진라면 매운맛 (120GX5)</p>
-                                    <p class="ItemPrice"><span>3580</span>원</p>
-                                    <div class="ItemStorageMethod">
-                                        <span>실온</span>
-                                        <span>BEST</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="ItemContentBox">
-                                <!-- 상품 이미지 -->
-                                <div class="ItemContentImg">
-                                    <img src="@/assets/images/JinRamenSpicy.jpg">
-                                </div>
-                                <!-- 상품 텍스트 -->
-                                <div class="ItemContentText">
-                                    <p>진라면 매운맛 (120GX5)</p>
-                                    <p class="ItemPrice"><span>3580</span>원</p>
-                                    <div class="ItemStorageMethod">
-                                        <span>실온</span>
-                                        <span>BEST</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="ItemContentBox">
-                                <!-- 상품 이미지 -->
-                                <div class="ItemContentImg">
-                                    <img src="@/assets/images/JinRamenSpicy.jpg">
-                                </div>
-                                <!-- 상품 텍스트 -->
-                                <div class="ItemContentText">
-                                    <p>진라면 매운맛 (120GX5)</p>
-                                    <p class="ItemPrice"><span>3580</span>원</p>
-                                    <div class="ItemStorageMethod">
-                                        <span>실온</span>
-                                        <span>BEST</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="ItemContentBox">
-                                <!-- 상품 이미지 -->
-                                <div class="ItemContentImg">
-                                    <img src="@/assets/images/JinRamenSpicy.jpg">
-                                </div>
-                                <!-- 상품 텍스트 -->
-                                <div class="ItemContentText">
-                                    <p>진라면 매운맛 (120GX5)</p>
-                                    <p class="ItemPrice"><span>3580</span>원</p>
-                                    <div class="ItemStorageMethod">
-                                        <span>실온</span>
-                                        <span>BEST</span>
-                                    </div>
-                                </div>
-                            </div>
                             
-                            <div class="ItemContentBox">
-                                <!-- 상품 이미지 -->
-                                <div class="ItemContentImg">
-                                    <img src="@/assets/images/JinRamenSpicy.jpg">
-                                </div>
-                                <!-- 상품 텍스트 -->
-                                <div class="ItemContentText">
-                                    <p>진라면 매운맛 (120GX5)</p>
-                                    <p class="ItemPrice"><span>3580</span>원</p>
-                                    <div class="ItemStorageMethod">
-                                        <span>실온</span>
-                                        <span>BEST</span>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
 
                     </div>
@@ -188,6 +61,7 @@
     </div>
 </template>
 <script>
+import axios from 'axios';
 import '@/assets/css/item/itemList.css'
 import AppHeader from '@/components/AppHeader.vue'
 import AppFooter from '@/components/AppFooter.vue'
@@ -198,10 +72,33 @@ export default {
         AppFooter
     },
     data() {
-        return {};
+        return {
+        };
     },
-    methods: {},
-    created(){}
+    methods: {
+        getItemList(no){
+            no= this.$route.params.no;
+            console.log(no);
+
+            axios({
+                method: 'get', // put, post, delete 
+                url: `${this.$store.state.apiBaseUrl}/api/itemlist`,
+                headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
+                params: {no:no}, //get방식 파라미터로 값이 전달
+                // data: guestbookVo, //put, post, delete 방식 자동으로 JSON으로 변환 전달
+                responseType: 'json' //수신타입
+            }).then(response => {
+                console.log(response.data.apiData); //수신데이타
+                
+            }).catch(error => {
+                console.log(error);
+            });
+
+        }
+    },
+    created(){
+        this.getItemList();
+    }
 };
 </script>
 <style></style>
