@@ -40,13 +40,35 @@
     </div>
 </template>
 <script>
+import axios from 'axios';
 export default {
+    
     name: "AppHeader",
     components: {},
     data() {
         return {};
     },
-    methods: {},
-    created(){}
+    methods: {
+        getCategory(){
+            console.log("카테고리 불러오기");
+            axios({
+                method: 'get', // put, post, delete 
+                url: `${this.$store.state.apiBaseUrl}/api/navcategory`,
+                headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
+                // params: guestbookVo, //get방식 파라미터로 값이 전달
+                // data: guestbookVo, //put, post, delete 방식 자동으로 JSON으로 변환 전달
+                responseType: 'json' //수신타입
+            }).then(response => {
+                console.log(response); //수신데이타
+            }).catch(error => {
+                console.log(error);
+            });
+
+
+        }
+    },
+    created(){
+        this.getCategory();
+    }
  };
 </script>
