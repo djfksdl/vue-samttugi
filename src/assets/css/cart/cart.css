@@ -1,3 +1,167 @@
-*{
-    /* 지우면됨 */
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-sizing: border-box;
+}
+body {
+    color: #2c2c2c;
+}
+.inner {
+    width: 1400px;
+    margin: 0 auto;
+    position: relative;
+}
+.location {
+    margin: 15px 0;
+}
+.location ul {
+    display: flex;
+}
+.location ul li:first-child {
+    color: #ccc;
+}
+.location ul li:first-child::after {
+    content: '>';
+    color: #ccc;
+    display: inline-block;
+    margin: 0 10px;
+}
+.title {
+    margin: 30px 0;
+}
+
+/* --------------------- aSide ----------------- */
+.aSide {
+    width: 930px;
+}
+.aSide .countBox {
+    width: 250px;
+    height: 45px;
+    text-align: center;
+    line-height: 45px;
+    background: #e0123e;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 5px;
+}
+.aSide .selectBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px 0;
+}
+.aSide .selectBox .inputBox {
+    display: flex;
+    align-items: center;
+}
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: #e0123e;
+}
+.aSide .selectBox .inputBox span {
+    font-weight: bold;
+}
+.aSide .selectBox .seldelBtn {
+    color: #777;
+}
+.aSide .productBox {
+    height: 120px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.aSide .productBox img {
+    width: 120px;
+    height: 120px;
+}
+.aSide .productBox .PnMBtn {
+    width: 110px;
+    height: 38px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #555;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+.aSide .productBox .PnMBtn span:not(:nth-child(2)) {
+    font-size: 23px;
+    padding: 0 10px 5px 10px;
+}
+.aSide .productBox .p-charge {
+    font-size: 21px;
+}
+.aSide .productBox .p-delBtn {
+    width: 25px;
+    height: 20px;
+    color: #666;
+}
+.aSide .order-charge {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    padding: 30px 0;
+    margin: 40px 0 200px;
+    background: #fff;
+    border: 1px solid #f7dcdc;
+    border-radius: 5px;
+}
+/* -------------- bSide ---------------------- */
+.bSide {
+    width: 410px;
+    border-radius: 5px;
+    position: fixed;
+    top: 250px;
+    right: 130px;
+    background: #fff;
+}
+.bSide .b-top {
+    border: 1px solid #ccc;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    padding: 30px;
+}
+.bSide .b-top h2 {
+    font-size: 28px;
+    margin-bottom: 35px;
+}
+.bSide .b-top div {
+    display: flex;
+    justify-content: space-between;
+    letter-spacing: -0.7px;
+    margin: 20px 0;
+    font-size: 17px;
+}
+.bSide .b-top div p:last-child {
+    font-size: 19px;
+}
+.bSide .b-top .final-charge {
+    padding: 40px 0;
+    border-top: 1px solid #ccc;
+    font-size: 19px;
+    line-height: 20px;
+}
+.bSide .b-top .final-charge b:last-child {
+    font-size: 35px;
+}
+.bSide .delivery-text ul {
+    font-size: 14px;
+    color: #aaa;
+    letter-spacing: -1.5px;
+}
+.bSide .delivery-text ul li {
+    line-height: 25px;
+}
+.orderBtn {
+    width: 410px;
+    height: 70px;
+    background: #e0123e;
+    color: #fff;
+    font-weight: bold;
+    font-size: 19px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border: none;
 }
