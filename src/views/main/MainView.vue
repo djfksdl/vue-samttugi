@@ -52,7 +52,7 @@
 
 
             </div>
-            <div class="foodBoxGroup">
+            <div class="foodBoxGroup" >
                 <div class="foodBox">
                     <h3>삼뚜기몰에서 만나요</h3>
 
