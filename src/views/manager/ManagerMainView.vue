@@ -43,6 +43,7 @@
                             <p class="foodName2">맛있는 새우볶음밥 225g</p>
                             <p class="foodEx">속이 꽉~찬!! 통살새우~!!</p>
                             <p class="foodPrice">2,980<span>원</span></p>
+                            <p >배송정보 3,000<span>원</span></p>
                             <div class="attribute">
                                 <span class="storageCold">냉장&냉동</span>
                                 <img src="@/assets/images/main/icon_new.png">
