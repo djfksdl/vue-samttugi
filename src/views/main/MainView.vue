@@ -255,6 +255,7 @@ import '@/assets/css/main/main.css';
 import { defineComponent } from "vue";
 import { Carousel, Navigation, Pagination, Slide } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
+import axios from 'axios';
 
 import slide01 from "@/assets/images/main/slide01.jpg";
 import slide02 from "@/assets/images/main/slide02.jpg";
@@ -277,7 +278,26 @@ export default defineComponent({
             slides: [slide01, slide02, slide03, slide04],
         };
     },
-    methods: {},
+    methods: {
+        getsamttugiList() {
+            console.log("데이터가져오기");
+
+            axios({
+                method: 'get', // put, post, delete 
+                url: `${this.$store.state.apiBaseUrl}/api/samttugiList`,
+                headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
+                // params: guestbookVo, //get방식 파라미터로 값이 전달
+                // data: guestbookVo, //put, post, delete 방식 자동으로 JSON으로 변환 전달
+                responseType: 'json' //수신타입
+            }).then(response => {
+                console.log(response); //수신데이타
+            }).catch(error => {
+                console.log(error);
+            });
+
+        }
+
+    },
 });
 </script>
 
