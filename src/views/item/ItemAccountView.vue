@@ -82,6 +82,19 @@
 
             <!-- 푸터 -->
             <AppFooter/>
+
+
+        </div>
+        <!-- ======== 모달창 ======== -->
+        <div class="ItemAccountModal" v-bind:class="{'modal-on': isMaodal}">
+            <div class="ItemAccountModal-content">
+                <div>
+                    <p>선택하신 상품을 결제하시겠습니까?</p>
+                    <buttom>계속 쇼핑하기</buttom>
+                    <buttom>결제하기</buttom>
+                </div>
+            </div>
+
         </div>
     </div>
  </template>
@@ -127,7 +140,7 @@ export default {
                 console.log(error);
             });
         },
-         //장바구니 버튼 눌렀을때 
+         //장바구니 버튼 눌렀을때 -> 모달창에서 구매하기 버튼 눌렀을때!
          goCart(){
             console.log("장바구니로 고")
             console.log(this.goCartVo)
@@ -145,6 +158,11 @@ export default {
             }).catch(error => {
                 console.log(error);
             });
+        },
+        //장바구니 버튼 눌렀을때 모달창 띄우기
+        modalOpen(){
+            // this.isMaodal= true
+            document.querySelector('.ItemAccountModal').style.display = "block"
         },
 
         //수량 플러스버튼

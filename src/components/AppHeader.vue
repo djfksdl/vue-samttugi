@@ -15,6 +15,8 @@
                     <div class="headerTopBtnBox">
                         <router-link to="/login">
                             <img src="@/assets/images/icon_login.svg">
+                            <!-- <p v-if="this.$store.state.authUser.userNo != null">로그아웃</p> -->
+                            <!-- <p v-if="this.$store.state.authUser.userNo == null">로그인</p> -->
                             <p>로그인</p>
                         </router-link>
                         <router-link to="/mypage">
@@ -25,6 +27,14 @@
                             <img src="@/assets/images/icon_bag.svg">
                             <p>장바구니</p>
                         </router-link>
+                        <!-- <router-link v-if="this.$store.state.authUser.userNo !== null" to="/cart">
+                            <img src="@/assets/images/icon_bag.svg">
+                            <p>장바구니</p>
+                        </router-link>
+                        <router-link v-else v-on:click="showLoginAlert">
+                            <img src="@/assets/images/icon_bag.svg">
+                            <p>장바구니</p>
+                        </router-link> -->
                     </div>
                 </div>
                 <!-- 헤더 하단 -->
@@ -61,9 +71,14 @@ export default {
                 console.log(error);
             });
         },
-        handleCategoryClick(categoryNo) {
-            this.$emit('category-click', categoryNo);
-        }
+        //장바구니 로그인안했을때 막아놓기
+        // showLoginAlert(){
+        //     console.log("로그인안했을때 장바구니 이동못함")
+        //     window.alert("로그인 후 이용할 수 있습니다.");
+        // }
+        // handleCategoryClick(categoryNo) {
+        //     this.$emit('category-click', categoryNo);
+        // }
     },
     created(){
         this.getCategory();
