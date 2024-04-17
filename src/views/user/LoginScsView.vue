@@ -2,7 +2,8 @@
   <AppHeader />
   <!-- //header -->
   <div class="success-container">
-    <span id="name">{{this.$store.state.authUser.userName}}님,</span>
+
+    <span id="name">{{ $route.query.name }}님,</span>
     <span id="welcome"> 환영합니다!</span>
     <p id="now">삼뚜기의 모든 것을 지금부터 만나보세요</p>
     <img class="new" src="@/assets/images/new-product.png" alt="신상">
@@ -25,15 +26,37 @@ export default {
     AppHeader
   },
   data() {
-    return {
-      
-    };
-  },
-  methods: {
-   
-  },
-  created() { 
-    
-  }
-};
+    /* return {
+      usersVo: {
+        userName: ""
+      } */
+
+    }
+  
+  /* methods: {
+    getName() {
+      console.log("연결확인");
+      console.log(this.usersVo);
+      axios({
+        method: "get",
+        url: "http://localhost:9009/api/user/loginsuccess",
+       
+        responseType: "json"
+      }).then(response => {
+        console.log(response.data);
+
+        this.usersVo = response.data;
+      }).catch(error => {
+        console.log(error);
+      });
+    }
+
+  }, */
+
+
+/* created() {
+  //this.getName()
+
+}; */
+}
 </script>

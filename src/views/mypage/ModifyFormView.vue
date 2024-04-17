@@ -30,23 +30,23 @@
                     <form v-on:submit.prevent="modifyMember" method="put">
                         <div class="id-group">
                             <label class="id" for="id">아이디</label>
-                            <span id="fixid">DS</span>
+                            <span id="fixid">{{ usersVo.id }}</span>
                         </div>
                         <div class="form-blank">
                             <label for="password">비밀번호*</label>
-                            <input type="password" id="password" v-model="password" required>
+                            <input type="password" id="password" v-model="usersVo.password" required>
                         </div>
                         <div class="form-blank">
                             <label for="confirmPassword">비밀번호 확인*</label>
-                            <input type="password" id="confirmPassword" v-model="confirmPassword" required>
+                            <input type="password" id="confirmPassword" v-model="usersVo.password" required>
                         </div>
                         <div class="form-blank">
                             <label for="email">이메일*</label>
-                            <input type="email" id="email" v-model="email" required>
+                            <input type="email" id="email" v-model="usersVo.email" required>
                         </div>
                         <div class="form-blank">
                             <label class="address" for="address">주소</label>
-                            <textarea class="addressbox" v-model="address"></textarea>
+                            <textarea class="addressbox" v-model="usersVo.address"></textarea>
                             <button type="button" class="postal" v-on:click="postalCode">주소검색</button>
                         </div>
                     
@@ -67,6 +67,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import "@/assets/css/mypage/MyPageOrder.css"
 import "@/assets/css/mypage/modifyform.css"
 import AppFooter from '@/components/AppFooter.vue';
@@ -78,9 +79,44 @@ export default {
         AppHeader
     },
     data() {
-        return {};
+        return {
+            usersVo:{
+                id:'',
+                password: '',
+                email: '',
+                address: ''
+            }
+        };
     },
-    methods: {},
-    created() { }
+    methods: {
+        modifyform() {
+            console.log("modifyForm");
+            console.log(this.usersVo);
+            //서버로 전송
+            axios({
+                method: 'get', // put, post, delete  //불러오는것은 GET //저장은 POST
+                url: 'http://localhost:9009/api/user/modify', //''따옴표 문법도 중요
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8"
+                    , "Authorization": "Bearer " + this.$store.state.token
+                },
+                //params: guestbookVo, //get방식 파라미터로 값이 전달 @ModelAttribute
+                data: this.usersVo.userNo, //put, post, delete 방식 자동으로 JSON으로 변환 전달 @RequestBody
+
+                responseType: 'json' //수신타입
+            }).then(response => {
+                console.log(response.data.apiData); //수신데이타
+                
+                this.usersVo = response.data.apiData;
+
+            }).catch(error => {
+                console.log(error);
+            });
+
+        },
+    },
+    created() {
+        this.modifyform();
+     }
 };
 </script>

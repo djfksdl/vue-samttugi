@@ -16,7 +16,7 @@
                         <input type="text" placeholder="아이디" v-model="usersVo.id">
                         <input type="password" placeholder="비밀번호" v-model="usersVo.password">
                         <button type="submit" class="loginBtn">로그인</button>
-                        <router-link to="/loginform" class="signupBtn">회원가입</router-link>
+                        <router-link to="/loginform" class="signupBtn" v-on:click.prevent="logoutAndsignup">회원가입</router-link>
                     </form>
                 </div>
                 <!-- //login-form -->
@@ -78,7 +78,7 @@ export default {
                     console.log(token);
                     console.log(authUser.userName);
 
-                    this.$router.push("/loginsuccess");
+                    this.$router.push("/");
                 } else {
                     console.log(response.data.message);
                     alert("아이디 패스워드를 확인하세요.");
@@ -87,9 +87,15 @@ export default {
             }).catch(error => {
                 console.log(error);
             });
-        }
+        },
         
         /* login */
+
+        logoutAndsignup(){
+            console.log("로그아웃");
+            this.$store.commit("setAuthUser", null);
+            this.$store.commit("setToken", null);
+        }
     },
     created() { 
        
