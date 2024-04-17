@@ -10,10 +10,10 @@
                 <div class="managerTitle">
                     <div class="title01" >
                         <router-link to="">전체</router-link>
-                        <router-link to="" v-for="(categoryVo, i) in categoryList" v-bind:key="i">{{ categoryVo.mcName }}</router-link>
+                        <router-link to="" v-for="(categoryVo, i) in categoryList" v-bind:key="i"  @click="handleClick(categoryVo.mcNo)"> {{ categoryVo.mcName }}</router-link>
                     </div>
                     <div class="title02">
-                        <p>전체<span>{{totalProductCount}}</span>개
+                        <p>전체<span>{{productList.length}}</span>개
                         </p>
                     </div>
                 </div>
@@ -57,7 +57,6 @@ export default {
         return {
             categoryList: [],
             productList:[],
-            totalProductCount:0
         };
     },
     methods: {
@@ -65,7 +64,7 @@ export default {
             return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
         },
         getManagerCategory() {
-            console.log("데이터가져오기");
+            console.log("카테고리 메뉴 가져오기");
 
             axios({
                 method: 'get', // put, post, delete 
@@ -81,7 +80,7 @@ export default {
 
         },
         getsamttugiList() {
-            console.log("데이터가져오기");
+            console.log("관리자 전체리스트");
             axios({
                 method: 'get', // put, post, delete 
                 url: `${this.$store.state.apiBaseUrl}/api/manager`,
@@ -94,10 +93,29 @@ export default {
                 console.log(error);
             });
 
+        },
+        handleClick(i){
+            console.log("대분류 번호"+i);
+            axios({
+                method: 'get', // put, post, delete 
+                url: `${this.$store.state.apiBaseUrl}/api/getCategoryList`,
+                headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
+                params: {mcNo:i}, //get방식 파라미터로 값이 전달
+                // data: guestbookVo, //put, post, delete 방식 자동으로 JSON으로 변환 전달
+                responseType: 'json' //수신타입
+            }).then(response => {
+                console.log(response.data.apiData); //수신데이타
+                this.productList = response.data.apiData;
+
+                
+            }).catch(error => {
+                console.log(error);
+            });
+
+
         }
     },
     created() {
-        this.totalProductCount = this.productList.length;
         this.getManagerCategory();
         this.getsamttugiList();
     }

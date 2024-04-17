@@ -82,7 +82,6 @@
 
 .foodBox {
     width: 300px;
-    display: inline-block;
     margin-right: 50px;
 }
 
@@ -94,6 +93,26 @@
     display: inline-block;
 }
 
+.foodBoxUnder {
+    display: flex;
+    border: 1px solid black;
+}
+
+
+
+.foodBox .imgButBox img {
+    width: 270px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.foodBox .imgButBox img:hover {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+
+/* 이건 사진 넣으면 지워도됨 */
 .foodBox .food {
     width: 270px;
     margin-bottom: 10px;
@@ -101,7 +120,8 @@
     display: block;
 }
 
-.foodBox .food:hover {
+/* 요것두 */
+.foodBox .food img:hover {
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
 }

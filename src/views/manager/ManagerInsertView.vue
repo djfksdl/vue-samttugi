@@ -11,7 +11,7 @@
                     <div class="insertGroup">
                         <div class="fileGroup">
                             <div class="foodPhotoFile">
-                                <img :src="previewImage" style="max-width: 300px; height: 340px;">
+                                <img :src="previewImage">
                             </div>
                             <input type="file" name="photo" id="profile" style="width: auto;"
                                 @change="handleImagePreview">

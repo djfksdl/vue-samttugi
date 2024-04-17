@@ -56,19 +56,21 @@
                 <div class="foodBox">
                     <h3>삼뚜기몰에서 만나요</h3>
 
-                    <div v-for="(productVo, i) in productList" v-bind:key="i">
+                    <div v-for="(productVo, i) in productList" v-bind:key="i" class="foodBoxUnder">
                         <router-link to="">
-                            <div class="imgButBox">
-                                <img v-bind:src="`${this.$store.state.apiBaseUrl}/upload/${productVo.saveName}`">
-                                <button type="button" class="cart"></button>
-                            </div>
-                            <p class="foodEx">{{ productVo.detail }}</p>
-                            <p class="foodName">{{ productVo.productName }}</p>
-                            <p class="foodPrice">{{ numberWithCommas(productVo.price) }}<span>원</span></p>
-                            <div class="attribute">
-                                <span class="storageCold" v-if="productVo.storage==1">냉동&보관</span>
-                                <span class="storageWarm" v-if="productVo.storage==2">실온</span>
-                                <img v-if="productVo.best==1" src="@/assets/images/main/Best.png">
+                            <div class="foodBoxUnder2">
+                                <div class="imgButBox">
+                                    <img v-bind:src="`${this.$store.state.apiBaseUrl}/upload/${productVo.saveName}`">
+                                    <button type="button" class="cart"></button>
+                                </div>
+                                <p class="foodEx">{{ productVo.detail }}</p>
+                                <p class="foodName">{{ productVo.productName }}</p>
+                                <p class="foodPrice">{{ numberWithCommas(productVo.price) }}<span>원</span></p>
+                                <div class="attribute">
+                                    <span class="storageCold" v-if="productVo.storage == 1">냉동&보관</span>
+                                    <span class="storageWarm" v-if="productVo.storage == 2">실온</span>
+                                    <img v-if="productVo.best == 1" src="@/assets/images/main/Best.png">
+                                </div>
                             </div>
                         </router-link>
                     </div>
@@ -94,9 +96,9 @@
                             <p class="foodName">{{ productVo.productName }}</p>
                             <p class="foodPrice">{{ numberWithCommas(productVo.price) }}<span>원</span></p>
                             <div class="attribute">
-                                <span class="storageCold" v-if="productVo.storage==1">냉동&보관</span>
-                                <span class="storageWarm" v-if="productVo.storage==2">실온</span>
-                                <img v-if="productVo.best==1" src="@/assets/images/main/Best.png">
+                                <span class="storageCold" v-if="productVo.storage == 1">냉동&보관</span>
+                                <span class="storageWarm" v-if="productVo.storage == 2">실온</span>
+                                <img v-if="productVo.best == 1" src="@/assets/images/main/Best.png">
                             </div>
                         </router-link>
                     </div>
@@ -125,6 +127,7 @@
                 </div>
 
             </div>
+
 
 
             <AppFooter />

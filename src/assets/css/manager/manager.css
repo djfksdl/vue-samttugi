@@ -186,12 +186,16 @@ del {
 
 .managerInsert .foodPhotoFile {
     border: 1px solid #888888;
-    width: 312px;
+    width: 300px;
     height: 350px;
     background: url(../../images/thumb_ing.gif);
     background-repeat: no-repeat;
     background-position: 10px;
     margin-bottom: 20px;
+}
+
+.managerInsert .foodPhotoFile img{
+    width: 312px;
 }
 
 
