@@ -81,6 +81,10 @@
 }
 .ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextMid li p >span:nth-child(2){
     color: #d3233a;
+    border: 1px solid #d3233a;
+    border-radius: 5px;
+    font-size: 13px;
+    padding: 1px 3px;
 }
 .ItemAccountContainer .ItemAccountSection .ItemAccountRight .ItemAcocuntTextMid li .InputWrapper{
     position: relative;

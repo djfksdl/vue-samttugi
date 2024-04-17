@@ -32,7 +32,7 @@ const routes = [
     component: ItemListView
   },
   {
-    path: '/itemaccount',
+    path: '/itemaccount/:no',
     name: 'ItemAccount',
     component: ItemAccountView
   },
