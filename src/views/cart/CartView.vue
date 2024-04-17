@@ -19,7 +19,7 @@
             <div class="aSide">
                 <div class="countBox">
                     <span>일반배송</span>
-                    <span class="count">0</span>
+                    <span class="count"></span>
                 </div>
 
                 <div class="selectBox">
@@ -35,7 +35,7 @@
                     <input checked="checked" type="checkbox" name="" id="">
                     <img src="" alt="">
                     <p>{{ dbcartVo.productName }}</p>
-                    <div class="PnMBtn" v-on:click="calculate">
+                    <div class="PnMBtn" v-on:click="cCountUpdate(dbcartVo.productNo, dbcartVo.cCount)">
                         <span class="minus" v-on:click="dbcartVo.cCount -= 1">-</span>
                         <span class="p-num">{{ dbcartVo.cCount }}</span>
                         <span class="plus" v-on:click="dbcartVo.cCount += 1">+</span>
@@ -53,7 +53,7 @@
                     <h2>상품금액</h2>
                     <div>
                         <p>총 상품금액</p>
-                        <p><b>00</b>원</p>
+                        <p><b>{{ this.oderPrice }}</b>원</p>
                     </div>
                     <div>
                         <p>총 배송비</p>
@@ -61,7 +61,7 @@
                     </div>
                     <div class="final-charge">
                         <b>결제예상금액</b>
-                        <b>3,000원</b>
+                        <b>{{ this.oderPrice + 3000 }}원</b>
                     </div>
                     <div class="delivery-text">
                         <ul>
@@ -72,7 +72,8 @@
                         </ul>
                     </div>
                 </div>
-                <button class="orderBtn" type="submit">3,000원 주문하기</button>
+                <button v-on:click="goToOrderForm" class="orderBtn" type="submit">{{ this.oderPrice + 3000 }}원
+                    주문하기</button>
             </div><!-- //bSid -->
         </div><!-- //inner -->
 
@@ -107,7 +108,7 @@ export default {
         };
     },
     methods: {
-        // 장바구니 상품 수량 + -
+        // 장바구니 불러오기
         getCartList() {
             console.log("장바구니 불러오기");
 
@@ -130,24 +131,26 @@ export default {
                 console.log(error);
             });
         },
+        // 주문금액 계산
         calculate() {
             let oderPrice = 0;
             for (let i = 0; i < this.cList.length; i++) {
-                oderPrice += this.cList[i].price;
+                oderPrice += (this.cList[i].price*this.cList[i].cCount);
             }
             this.oderPrice = oderPrice;
         },
-        cartDelete(productNo){
+        // 장바구니 삭제
+        cartDelete(productNo) {
             console.log("장바구니 상품 삭제");
 
             console.log(productNo);
 
             axios({
                 method: 'delete', // put, post, delete
-                url: 'http://localhost:9009/api/cart/delete',
+                url: 'http://localhost:9009/api/cart/list',
                 headers: { "Content-Type": "application/json" }, //전송타입
                 //params: guestbookVo, //get방식 파라미터로 값이 전달
-                data: {productNo: productNo}, //put, post, delete 방식 자동으로 JSON으로 변환 전달
+                data: { productNo: productNo }, //put, post, delete 방식 자동으로 JSON으로 변환 전달
                 responseType: 'json' //수신타입
             }).then(response => {
                 console.log(response); //수신데이타
@@ -157,6 +160,28 @@ export default {
             }).catch(error => {
                 console.log(error);
             });
+        },
+        cCountUpdate(productNo, cCount) {
+            console.log("수량변경");
+            console.log(productNo);
+            console.log(cCount);
+
+            axios({
+                method: 'post', // put, post, delete
+                url: 'http://localhost:9009/api/cart/list',
+                headers: { "Content-Type": "application/json" }, //전송타입
+                //params: guestbookVo, //get방식 파라미터로 값이 전달
+                data: { productNo: productNo, cCount: cCount }, //put, post, delete 방식 자동으로 JSON으로 변환 전달
+                responseType: 'json' //수신타입
+            }).then(response => {
+                console.log(response); //수신데이타
+
+                this.getCartList();
+
+            }).catch(error => {
+                console.log(error);
+            });
+
         },
     },
     created() {
