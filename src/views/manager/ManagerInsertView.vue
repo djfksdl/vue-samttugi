@@ -7,7 +7,7 @@
                     <p>관리자 > 상품추가</p>
                     <h3>상품등록</h3>
                 </div>
-                <form v-on:submit.prevent="addProduct" class="managerInsert2">
+                <form v-on:submit.prevent="uploadFile" class="managerInsert2" enctype="multipart/form-data">
                     <div class="insertGroup">
                         <div class="fileGroup">
                             <div class="foodPhotoFile">
@@ -38,8 +38,8 @@
                                     <label for="miniCategory">소분류</label><br>
                                     <select id="miniCategory" @change="handleMiniCategoryChange">
                                         <option disabled value="" selected>소분류선택</option>
-                                        <option v-for="(miniCategoryVo, i) in miniCategoryList" v-bind:key="i">{{
-                    miniCategoryVo.scName }}</option>
+                                        <option v-for="(miniCategoryVo, i) in miniCategoryList" v-bind:key="i">
+                                            {{ miniCategoryVo.scName }}</option>
                                     </select>
 
                                 </div>
@@ -67,10 +67,10 @@
                                     <p>보관방법</p>
                                 </div>
                                 <div><label for="downzero"><span class="storageCold">냉장&냉동</span></label><input
-                                        type="radio" name="storeage" id="downzero" checked="checked" value=""
+                                        type="radio" name="storeage" id="downzero"  value="1"
                                         v-model="productVo.storeage">
                                     <label for="upzero"><span class="storageWarm">실온</span> </label><input type="radio"
-                                        name="storeage" id="upzero" v-model="productVo.storeage" value="">
+                                        name="storeage" id="upzero" value="2" v-model="productVo.storeage">
                                 </div>
                             </div>
 
@@ -78,9 +78,10 @@
                             <div class="Best">
                                 <span class="bestChoice"><label>best선택</label></span>
                                 <div><span><label for="o"><img src="../../assets/images/main/Best.png"></label>
-                                        <input type="radio" name="best" id="o" v-model="productVo.best" value=""></span>
+                                        <input type="radio" name="best" id="o" v-model.number="productVo.best"
+                                            ></span>
                                     <span><label for="x">선택안함 </label><input type="radio" name="best" id="x"
-                                            checked="checked" v-model="productVo.best" value=""></span>
+                                           v-model="productVo.best" ></span>
                                 </div>
                             </div>
 
@@ -90,7 +91,7 @@
                     </div>
 
                 </form>
-                <form v-on:submit.prevent="addProduct">
+                <form v-on:submit.prevent="uploadFile" enctype="multipart/form-data">
                     <button type="submit">추가</button>
                 </form>
             </div>
@@ -113,7 +114,6 @@ export default {
     },
     data() {
         return {
-            selected: '',
             selectedCategory: '',
             bigCategoryList: [],
             miniCategoryList: [],
@@ -124,9 +124,8 @@ export default {
                 price: '',
                 storeage: '',
                 detail: '',
-                best: ''
+                best: '',
             },
-            saveName: '',
             photo: '',
             previewImage: '',
 
@@ -134,6 +133,8 @@ export default {
     },
     methods: {
 
+
+        // 대분류
         handleBigCategoryChange(event) {
             this.selectedCategory = event.target.value;
 
@@ -146,7 +147,7 @@ export default {
             console.log(this.productVo.mcNo);
 
         },
-
+        // 소분류
         handleMiniCategoryChange(event) {
             this.selectedCategory = event.target.value;
 
@@ -157,7 +158,7 @@ export default {
             console.log(this.productVo.scNo);
         },
 
-
+        // 대분류카테고리
         getBigCategory() {
             console.log("데이터가져오기");
             axios({
@@ -174,7 +175,7 @@ export default {
 
         },
 
-
+        // 소분류카테고리
         getMiniCategory() {
             console.log("데이터가져오기");
 
@@ -193,11 +194,11 @@ export default {
             });
         },
 
-        // 이미지 선택 시 미리보기 기능
+        // 이미지선택시 미리보기
         handleImagePreview(event) {
 
             // 선택한 파일
-            const file = event.target.files[0];
+            const photo = event.target.files[0];
 
             // FileReader 객체를 사용하여 이미지를 읽음
             const reader = new FileReader();
@@ -209,36 +210,54 @@ export default {
             };
 
             // 파일을 읽음
-            if (file) {
-                reader.readAsDataURL(file);
+            if (photo) {
+                reader.readAsDataURL(photo);
             }
 
             this.photo = event.target.value;
+
+            this.productVo.saveName=this.previewImage;
+        },
+
+
+        // 등록
+
+        uploadFile() {
+            console.log("파일업로드");
+            console.log(this.productVo);
+
+            //서버전송용 전용 박스
+            let formData = new FormData();
+
+            formData.append("file", this.photo); 
+            formData.append("productName", this.productVo.productName);
+            formData.append("scNo", this.productVo.scNo);
+            formData.append("mcNo",this.productVo.mcNo);
+            formData.append("detail",this.productVo.detail);
+            formData.append("price",this.productVo.price)
+            formData.append("storeage",this.productVo.storeage);
+            formData.append("best",this.productVo.best);
+
+
+            axios({
+                method: 'post', // put, post, delete 
+                url: `${this.$store.state.apiBaseUrl}/api/insert`,
+                headers: { "Content-Type": "multipart/form-data" }, 
+                // params: guestbookVo, //get방식 파라미터로 값이 전달
+                data: formData, //put, post, delete 방식 자동으로 JSON으로 변환 전달
+                responseType: 'json' //수신타입
+            }).then(response => {
+                console.log(response); //수신데이타
+                console.log(response.data.apiData);
+
+
+                
+
+            }).catch(error => {
+                console.log(error);
+            });
+
         }
-
-        // addProduct() {
-        //     console.log("등록 버튼");
-
-        //     //데이터 넣기
-        //     axios({
-        //         method: 'post', // put, post, delete 
-        //         url: `${this.$store.state.apiBaseUrl}/api/insertform`,
-        //         headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
-        //         // params: guestbookVo, //get방식 파라미터로 값이 전달
-        //         data: this.productVo, //put, post, delete 방식 자동으로 JSON으로 변환 전달
-        //         responseType: 'json' //수신타입
-        //     }).then(response => {
-        //         console.log(response.data.apiData); //수신데이타
-
-
-        //     }).catch(error => {
-        //         console.log(error);
-        //     });
-
-        // }
-
-
-
 
 
     },
