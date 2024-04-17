@@ -56,18 +56,18 @@
                 <div class="foodBox">
                     <h3>삼뚜기몰에서 만나요</h3>
 
-                    <div v-for="(productVo,i) in productList" v-bind:key="i">
-                        <router-link to="" >
+                    <div v-for="(productVo, i) in productList" v-bind:key="i">
+                        <router-link to="">
                             <div class="imgButBox">
                                 <img v-bind:src="`${this.$store.state.apiBaseUrl}/upload/${productVo.saveName}`">
                                 <button type="button" class="cart"></button>
                             </div>
                             <p class="foodEx">{{ productVo.detail }}</p>
                             <p class="foodName">{{ productVo.productName }}</p>
-                            <p class="foodPrice">{{ productVo.price }}<span>원</span></p>
+                            <p class="foodPrice">{{ numberWithCommas(productVo.price) }}<span>원</span></p>
                             <div class="attribute">
-                                <span class="storageCold">냉장&냉동</span>
-                                <img src="@/assets/images/main/icon_new.png">
+                                <span class="storageCold" v-if="productVo.storage==1">냉동&보관</span>
+                                <span class="storageWarm" v-if="productVo.storage==2">실온</span>
                             </div>
                         </router-link>
                     </div>
@@ -84,120 +84,45 @@
             <div class="foodBoxGroup2">
                 <div class="foodBox">
                     <h3>이런상품 어때요?</h3>
-                    <router-link to="">
-                        <div class="imgButBox">
-                            <img class="food" src="@/assets/images/main/옛날잡채.png">
-                            <button type="button" class="cart"></button>
-                        </div>
-                        <p class="foodName">옛날잡채 용기 76G</p>
-                        <p class="foodPrice">1,780<span>원</span></p>
-                        <div class="attribute">
-                            <span class="storageWarm">실온</span>
-                            <img src="@/assets/images/main/Best.png">
-                        </div>
-                    </router-link>
+                    <div v-for="(productVo, i) in productList" v-bind:key="i">
+                        <router-link to="">
+                            <div class="imgButBox">
+                                <img class="food" src="@/assets/images/main/옛날잡채.png">
+                                <button type="button" class="cart"></button>
+                            </div>
+                            <p class="foodName">{{ productVo.productName }}</p>
+                            <p class="foodPrice">{{ numberWithCommas(productVo.price) }}<span>원</span></p>
+                            <div class="attribute">
+                                <span class="storageCold" v-if="productVo.storage==1">냉동&보관</span>
+                                <span class="storageWarm" v-if="productVo.storage==2">실온</span>
+                                <img v-if="productVo.best==1" src="@/assets/images/main/Best.png">
+                            </div>
+                        </router-link>
+                    </div>
                 </div>
-                <div class="foodBox">
-                    <router-link to="">
-                        <div class="imgButBox">
-                            <img class="food" src="@/assets/images/main/옛날잡채.png">
-                            <button type="button" class="cart"></button>
-                        </div>
-                        <p class="foodName">옛날잡채 용기 76G</p>
-                        <p class="foodPrice">1,780<span>원</span></p>
-                        <div class="attribute">
-                            <span class="storageWarm">실온</span>
-                        </div>
-                    </router-link>
-                </div>
-                <div class="foodBox">
-                    <router-link to="">
-                        <div class="imgButBox">
-                            <img class="food" src="@/assets/images/main/옛날잡채.png">
-                            <button type="button" class="cart"></button>
-                        </div>
-                        <p class="foodName">옛날잡채 용기 76G</p>
-                        <p class="foodPrice">1,780<span>원</span></p>
-                        <div class="attribute">
-                            <span class="storageWarm">실온</span>
-                        </div>
-                    </router-link>
-                </div>
-                <div class="foodBox">
-                    <router-link to="">
-                        <div class="imgButBox">
-                            <img class="food" src="@/assets/images/main/옛날잡채.png">
-                            <button type="button" class="cart"></button>
-                        </div>
-                        <p class="foodName">옛날잡채 용기 76G</p>
-                        <p class="foodPrice">1,780<span>원</span></p>
-                        <div class="attribute">
-                            <span class="storageWarm">실온</span>
-                        </div>
-                    </router-link>
-                </div>
+
 
             </div>
 
             <div class="foodBoxGroup3">
                 <div class="foodBox">
                     <h3>원쁠원으로 만나요</h3>
-                    <router-link to="">
-                        <div class="imgButBox">
-                            <img class="food" src="@/assets/images/main/양송이컵스프.png">
-                            <button type="button" class="cart"></button>
-                        </div>
-                        <p class="foodName">[원쁠원]양송이컵스프 27G+양송이컵스프 27G 1+1</p>
-                        <p class="foodPrice"><span class="saleNum">19%
-                            </span>2,080<span>원</span><del>3,080<span>원</span></del></p>
-                        <div class="attribute">
-                            <span class="storageWarm">실온</span>
-                            <img src="@/assets/images/main/icon_new.png">
-                        </div>
-                    </router-link>
+                    <div>
+                        <router-link to="">
+                            <div class="imgButBox">
+                                <img class="food" src="@/assets/images/main/양송이컵스프.png">
+                                <button type="button" class="cart"></button>
+                            </div>
+                            <p class="foodName">[원쁠원]양송이컵스프 27G+양송이컵스프 27G 1+1</p>
+                            <p class="foodPrice"><span class="saleNum">19%
+                                </span>2,080<span>원</span><del>3,080<span>원</span></del></p>
+                            <div class="attribute">
+                                <span class="storageWarm">실온</span>
+                            </div>
+                        </router-link>
+                    </div>
                 </div>
-                <div class="foodBox">
-                    <router-link to="">
-                        <div class="imgButBox">
-                            <img class="food" src="@/assets/images/main/양송이컵스프.png">
-                            <button type="button" class="cart"></button>
-                        </div>
-                        <p class="foodName">[원쁠원]양송이컵스프 27G+양송이컵스프 27G 1+1</p>
-                        <p class="foodPrice"><span class="saleNum">19%
-                            </span>2,080<span>원</span><del>3,080<span>원</span></del></p>
-                        <div class="attribute">
-                            <span class="storageWarm">실온</span>
-                        </div>
-                    </router-link>
-                </div>
-                <div class="foodBox">
-                    <router-link to="">
-                        <div class="imgButBox">
-                            <img class="food" src="@/assets/images/main/양송이컵스프.png">
-                            <button type="button" class="cart"></button>
-                        </div>
-                        <p class="foodName">[원쁠원]양송이컵스프 27G+양송이컵스프 27G 1+1</p>
-                        <p class="foodPrice"><span class="saleNum">19%
-                            </span>2,080<span>원</span><del>3,080<span>원</span></del></p>
-                        <div class="attribute">
-                            <span class="storageWarm">실온</span>
-                        </div>
-                    </router-link>
-                </div>
-                <div class="foodBox">
-                    <router-link to="">
-                        <div class="imgButBox">
-                            <img class="food" src="@/assets/images/main/양송이컵스프.png">
-                            <button type="button" class="cart"></button>
-                        </div>
-                        <p class="foodName">[원쁠원]양송이컵스프 27G+양송이컵스프 27G 1+1</p>
-                        <p class="foodPrice"><span class="saleNum">19%
-                            </span>2,080<span>원</span><del>3,080<span>원</span></del></p>
-                        <div class="attribute">
-                            <span class="storageWarm">실온</span>
-                        </div>
-                    </router-link>
-                </div>
+
             </div>
 
 
@@ -234,10 +159,13 @@ export default defineComponent({
     data() {
         return {
             slides: [slide01, slide02, slide03, slide04],
-            productList:[]
+            productList: [],
         };
     },
     methods: {
+        numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        },
         getsamttugiList() {
             console.log("데이터가져오기");
 
@@ -249,7 +177,7 @@ export default defineComponent({
             }).then(response => {
                 console.log(response); //수신데이타
                 this.productList = response.data.apiData;
-                }).catch(error => {
+            }).catch(error => {
                 console.log(error);
             });
 
