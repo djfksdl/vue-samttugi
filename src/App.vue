@@ -1,5 +1,5 @@
 <template>
-  <router-view/>
+  <router-view  v-bind:key="$route.fullPath"/>
 </template>
 <script>
 import "@/assets/css/index.css"

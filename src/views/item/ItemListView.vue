@@ -19,8 +19,8 @@
                         <!-- 탭메뉴 -->
                         <ul class="ItemTapMenu">
                             <li><router-link to="">전체</router-link></li>
-                            <li v-for="(sCategory, i) in scList" v-bind:key="i" v-on:click="changeItem(i)" >
-                                <router-link to="">{{sCategory.scName  }}</router-link>
+                            <li v-for="(sCategory, i) in scList" v-bind:key="i" v-on:click="getItemBySc(i)" >
+                                <router-link to="">{{sCategory.scName }}</router-link>
                             </li>
                         </ul>
                         <!-- 상품리스트나열 -->
@@ -70,41 +70,18 @@ export default {
     },
     data() {
         return {
-            itemList:[],
             scList:[],
-            iList:[]
+            itemList:[],
+            // iList:[]
+            
         };
     },
     methods: {
-        // 대분류별 아이템 리스트 받아오기 - 디폴트 화면
-        getItemList(no){
-            console.log("대분류별 아이템 리스");
+        //대분류별 소분류 메뉴리스트가져오기
+        getScList(no){
+            console.log("소분류 메뉴가져오기");
             no= this.$route.params.no;
             // console.log(no);
-
-            axios({
-                method: 'get', // put, post, delete 
-                url: `${this.$store.state.apiBaseUrl}/api/itemlist`,
-                headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
-                params: {no:no}, //get방식 파라미터로 값이 전달
-                responseType: 'json' //수신타입
-            }).then(response => {
-                // console.log(response.data.apiData); //수신데이타
-                this.itemList = response.data.apiData;
-
-                
-            }).catch(error => {
-                console.log(error);
-            });
-
-        },
-
-        //소분류별 아이템리스트 받아오기- 탭메뉴 클릭시
-        getScList(no){
-            console.log("소분류별");
-            no= this.$route.params.no;
-            console.log(no);
-
             axios({
                 method: 'get', // put, post, delete 
                 url: `${this.$store.state.apiBaseUrl}/api/sclist`,
@@ -122,18 +99,48 @@ export default {
             });
 
         },
-        changeItem(i){
-            console.log(i);
+        // 대분류별 메뉴받아오기 
+        // getItemList(no){
+        //     console.log("소분류별 메뉴받아오기 ");
+        //     // console.log(no);
+
+        //     axios({
+        //         method: 'get', // put, post, delete 
+        //         url: `${this.$store.state.apiBaseUrl}/api/scbyMc`,
+        //         headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
+        //         params: {no:no}, //get방식 파라미터로 값이 전달
+        //         responseType: 'json' //수신타입
+        //     }).then(response => {
+        //         // console.log(response.data.apiData); //수신데이타
+        //         this.itemList = response.data.apiData;
+
+                
+        //     }).catch(error => {
+        //         console.log(error);
+        //     });
+
+        // },
+
+        //소분류별 아이템 리스트 불러오기
+        getItemBySc(i){
+            const no= this.$route.params.no;
+            console.log("소분류카테고리 번호:"+i);
+            console.log("대분류 번호:"+ no);
+
+            const NoVo = {
+                scNo:i,
+                mcNo:no
+            }
             axios({
                 method: 'get', // put, post, delete 
                 url: `${this.$store.state.apiBaseUrl}/api/iListByscNo`,
                 headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
-                params: {i:i}, //get방식 파라미터로 값이 전달
+                params: NoVo, //get방식 파라미터로 값이 전달
                 // data: guestbookVo, //put, post, delete 방식 자동으로 JSON으로 변환 전달
                 responseType: 'json' //수신타입
             }).then(response => {
                 console.log(response.data.apiData); //수신데이타
-                this.iList = response.data.apiData;
+                this.itemList = response.data.apiData;
 
 
                 
@@ -141,38 +148,13 @@ export default {
                 console.log(error);
             });
         },
-        // handleCategoryClick(categoryNo) {
-        //     // 여기에 카테고리 클릭 시 실행될 로직 추가
-        //     console.log("카테고리 클릭됨:", categoryNo);
-        //     // 이제 해당 카테고리에 대한 작업을 수행할 수 있습니다.
-        //     axios({
-        //         method: 'get', // put, post, delete 
-        //         url: `${this.$store.state.apiBaseUrl}/api/iListByscNo`,
-        //         headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
-        //         params: {categoryNo:categoryNo}, //get방식 파라미터로 값이 전달
-        //         // data: guestbookVo, //put, post, delete 방식 자동으로 JSON으로 변환 전달
-        //         responseType: 'json' //수신타입
-        //     }).then(response => {
-        //         console.log(response.data.apiData); //수신데이타
-        //         this.iList = response.data.apiData;
 
 
-                
-        //     }).catch(error => {
-        //         console.log(error);
-        //     });
-            
-        // }
-
-    },
-    beforeUpdated(){
-        this.getScList();
-        this.getItemList()
-       // this.getItemList();
     },
     created(){
         this.getScList();
-        this.getItemList()
+        this.getItemBySc();
+        // this.getItemList()
         // this.handleCategoryClick(this.$route.params.no);// 페이지 로드 시 해당 카테고리에 대한 상품 불러오기
     },
     // watch: {

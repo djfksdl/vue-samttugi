@@ -29,7 +29,7 @@
                 </div>
                 <!-- 헤더 하단 -->
                 <ul class="headerBottom" >
-                    <li v-for="(categoryVo, i) in categoryList" v-bind:key="i"><router-link v-bind:to="`/itemlist/${categoryVo.mcNo}`" >{{ categoryVo.mcName }}</router-link></li>
+                    <li v-for="(categoryVo, i) in categoryList" v-bind:key="i"><router-link  v-bind:to="`/itemlist/${categoryVo.mcNo}`" >{{ categoryVo.mcName }}</router-link></li>
                 </ul>
             </div>
         </header>
