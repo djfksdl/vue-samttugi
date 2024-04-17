@@ -53,7 +53,7 @@
                                         <span>수량선택</span>
                                         <div class="InputWrapper">
                                             <button type="button" class="minusBtn" v-on:click="minusBtn()">-</button>
-                                            <input type="text" class="countInput" v-model="cCount">
+                                            <input type="text" class="countInput" v-model="goCartVo.cCount">
                                             <button type="button" class="plusBtn" v-on:click="plusBtn()">+</button>
 
                                         </div>
@@ -70,8 +70,8 @@
                                     </div>
                                     <!-- 버튼 -->
                                     <div class="ItemAcocuntTextBottomBtn">
-                                        <router-link to="/cart" >장바구니</router-link>
-                                        <router-link to="/order">바로구매</router-link>
+                                        <router-link to="" v-on:click="goCart()" >장바구니</router-link>
+                                        <router-link to="">바로구매</router-link>
                                     </div>
                                 </div>
                             </div>
@@ -98,9 +98,12 @@ export default {
     },
     data() {
         return {
-            no: this.$route.params.no,
             itemInfo:[],
-            cCount:1
+            goCartVo:{
+                cCount:1,
+                productNo: this.$route.params.no,
+                userNo: this.$store.state.authUser.userNo
+            }
         };
     },
     methods: {
@@ -112,7 +115,7 @@ export default {
                 method: 'get', // put, post, delete 
                 url: `${this.$store.state.apiBaseUrl}/api/itemInfoBypNo`,
                 headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
-                params: {no:this.no}, //get방식 파라미터로 값이 전달
+                params: {no:this.goCartVo.productNo}, //get방식 파라미터로 값이 전달
                 // data: guestbookVo, //put, post, delete 방식 자동으로 JSON으로 변환 전달
                 responseType: 'json' //수신타입
             }).then(response => {
@@ -124,19 +127,39 @@ export default {
                 console.log(error);
             });
         },
+         //장바구니 버튼 눌렀을때 
+         goCart(){
+            console.log("장바구니로 고")
+            console.log(this.goCartVo)
+            axios({
+                method: 'post', // put, post, delete 
+                url: `${this.$store.state.apiBaseUrl}/api/goCart`,
+                headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
+                data: this.goCartVo , //put, post, delete 방식 자동으로 JSON으로 변환 전달
+                responseType: 'json' //수신타입
+            }).then(response => {
+                console.log(response.data.apiData); //수신데이타
+                console.log("장바구니 넣기 성공")
+
+                
+            }).catch(error => {
+                console.log(error);
+            });
+        },
 
         //수량 플러스버튼
         plusBtn(){
             console.log("더하기")
-            this.cCount++
+            this.goCartVo.cCount++
         },
         //수량 마이너스버튼
         minusBtn(){
             console.log("빼기")
-            if(this.cCount>1){
-                this.cCount--
+            if(this.goCartVo.cCount>1){
+                this.goCartVo.cCount--
             }
         },
+       
         
     },
     created(){
