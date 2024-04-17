@@ -18,8 +18,8 @@
                     <div class="ItemListSection">
                         <!-- 탭메뉴 -->
                         <ul class="ItemTapMenu">
-                            <li><router-link to="">전체</router-link></li>
-                            <li v-for="(sCategory, i) in scList" v-bind:key="i" v-on:click="getItemBySc(i)" >
+                            <li v-on:click="getItemAll(no)"><router-link to="">전체</router-link></li>
+                            <li v-for="(sCategory, i) in scList" v-bind:key="i" v-on:click="getItemBySc(sCategory.scNo)" >
                                 <router-link to="">{{sCategory.scName }}</router-link>
                             </li>
                         </ul>
@@ -99,27 +99,31 @@ export default {
             });
 
         },
-        // 대분류별 메뉴받아오기 
-        // getItemList(no){
-        //     console.log("소분류별 메뉴받아오기 ");
-        //     // console.log(no);
 
-        //     axios({
-        //         method: 'get', // put, post, delete 
-        //         url: `${this.$store.state.apiBaseUrl}/api/scbyMc`,
-        //         headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
-        //         params: {no:no}, //get방식 파라미터로 값이 전달
-        //         responseType: 'json' //수신타입
-        //     }).then(response => {
-        //         // console.log(response.data.apiData); //수신데이타
-        //         this.itemList = response.data.apiData;
+        //전체 아이템 리스트 불러오기
+        getItemAll(no){
+            console.log("전체 눌렀을때 아이템리스트!!")
+            no= this.$route.params.no;
+            // console.log(no);
+
+            axios({
+                method: 'get', // put, post, delete 
+                url: `${this.$store.state.apiBaseUrl}/api/iListAll`,
+                headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
+                params: {no:no}, //get방식 파라미터로 값이 전달
+                responseType: 'json' //수신타입
+            }).then(response => {
+                console.log(response.data.apiData); //수신데이타
+                this.itemList = response.data.apiData;
+
 
                 
-        //     }).catch(error => {
-        //         console.log(error);
-        //     });
+            }).catch(error => {
+                console.log(error);
+            });
 
-        // },
+            
+        },
 
         //소분류별 아이템 리스트 불러오기
         getItemBySc(i){
@@ -136,7 +140,6 @@ export default {
                 url: `${this.$store.state.apiBaseUrl}/api/iListByscNo`,
                 headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
                 params: NoVo, //get방식 파라미터로 값이 전달
-                // data: guestbookVo, //put, post, delete 방식 자동으로 JSON으로 변환 전달
                 responseType: 'json' //수신타입
             }).then(response => {
                 console.log(response.data.apiData); //수신데이타
@@ -152,20 +155,10 @@ export default {
 
     },
     created(){
+        const no = this.$route.params.no;
         this.getScList();
-        this.getItemBySc();
-        // this.getItemList()
-        // this.handleCategoryClick(this.$route.params.no);// 페이지 로드 시 해당 카테고리에 대한 상품 불러오기
+        this.getItemAll(no);
     },
-    // watch: {
-    //     $route(to) {
-    //         // 라우트 변경 시 해당 카테고리에 대한 상품 불러오기
-    //         this.handleCategoryClick(to.params.no);
-    //     }
-    // },
-    // props: {
-    //     categoryNo: Number // 헤더에서 전달된 카테고리 번호
-    // }
 };
 </script>
 <style></style>

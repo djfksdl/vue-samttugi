@@ -32,6 +32,8 @@ export default {
   methods: {
    
   },
-  created() { }
+  created() { 
+    
+  }
 };
 </script>
