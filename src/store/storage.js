@@ -11,6 +11,7 @@ export default createStore({
         };
     },
     mutations: {
+        //
         setAuthUser(state, payload) {
             state.authUser = payload;
         },
