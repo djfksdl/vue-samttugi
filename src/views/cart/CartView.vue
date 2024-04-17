@@ -31,20 +31,20 @@
                     <p class="seldelBtn">선택삭제</p>
                 </div>
 
-                <div class="productBox">
+                <div class="productBox" v-bind:key="i" v-for="(dbcartVo, i) in cList">
                     <input checked="checked" type="checkbox" name="" id="">
                     <img src="" alt="">
-                    <p>진비빔면 용기 132G</p>
-                    <div class="PnMBtn">
-                        <span class="minus" v-on:click="pNM">-</span>
-                        <span class="p-num">{{ this.pNum }}</span>
-                        <span class="plus" v-on:click="pNP">+</span>
+                    <p>{{ dbcartVo.productName }}</p>
+                    <div class="PnMBtn" v-on:click="calculate">
+                        <span class="minus" v-on:click="dbcartVo.cCount -= 1">-</span>
+                        <span class="p-num">{{ dbcartVo.cCount }}</span>
+                        <span class="plus" v-on:click="dbcartVo.cCount += 1">+</span>
                     </div>
-                    <b class="p-charge">00원</b>
-                    <p class="p-delBtn">X</p>
+                    <b class="p-charge">{{ dbcartVo.price * dbcartVo.cCount }}</b>
+                    <p class="p-delBtn" v-on:click="cartDelete(dbcartVo.productNo)">X</p>
                 </div>
+                <div class="order-charge">주문금액 <span>{{ this.oderPrice }}</span>원</div>
 
-                <div class="order-charge">주문금액 00원</div>
 
             </div><!-- //aSide -->
 
@@ -97,21 +97,17 @@ export default {
     data() {
         return {
             cList: [],
-            pNum: "1",
+            cartVo: {
+                saveName: "",
+                productName: "",
+                cCount: "",
+                price: ""
+            },
+            oderPrice: "",
         };
     },
     methods: {
         // 장바구니 상품 수량 + -
-        pNP() {
-            if (this.pNum > 0) {
-                this.pNum++;
-            }
-        },
-        pNM() {
-            if (this.pNum > 1) {
-                this.pNum--;
-            }
-        },
         getCartList() {
             console.log("장바구니 불러오기");
 
@@ -125,15 +121,47 @@ export default {
             }).then(response => {
                 console.log(response); //수신데이타
 
-                this.cList = response.data;
+                this.cList = response.data.apiData;
+                console.log(this.cList);
+
+                this.calculate();
 
             }).catch(error => {
                 console.log(error);
             });
         },
+        calculate() {
+            let oderPrice = 0;
+            for (let i = 0; i < this.cList.length; i++) {
+                oderPrice += this.cList[i].price;
+            }
+            this.oderPrice = oderPrice;
+        },
+        cartDelete(productNo){
+            console.log("장바구니 상품 삭제");
 
+            console.log(productNo);
+
+            axios({
+                method: 'delete', // put, post, delete
+                url: 'http://localhost:9009/api/cart/delete',
+                headers: { "Content-Type": "application/json" }, //전송타입
+                //params: guestbookVo, //get방식 파라미터로 값이 전달
+                data: {productNo: productNo}, //put, post, delete 방식 자동으로 JSON으로 변환 전달
+                responseType: 'json' //수신타입
+            }).then(response => {
+                console.log(response); //수신데이타
+
+                this.getCartList();
+
+            }).catch(error => {
+                console.log(error);
+            });
+        },
     },
-    created() { }
+    created() {
+        this.getCartList();
+    }
 };
 </script>
 <style></style>
