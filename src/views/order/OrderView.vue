@@ -21,15 +21,15 @@
                     <div class="sub-title">
                         <div>
                             <span>주문상품</span>
-                            <span class="op-count">2</span>
+                            <span class="op-count"></span>
                         </div>
                     </div>
     
-                    <div class="productBox">
+                    <div class="productBox" v-bind:key="i" v-for="(dbcartVo, i) in orderList">
                         <img src="" alt="">
-                        <p>진비빔면 용기 132G</p>
-                        <p class="p-count">0개</p>
-                        <b class="p-charge">0,000원</b>
+                        <p class="pName">{{ dbcartVo.productName }}</p>
+                        <p class="p-count">{{ dbcartVo.cCount }}개</p>
+                        <b class="p-charge">{{ (dbcartVo.price * dbcartVo.cCount).toLocaleString('ko-KR') }}</b>
                     </div>
                 </div>
     
@@ -46,9 +46,9 @@
                             <p>이메일</p>
                         </div>
                         <div>
-                            <p>이연수</p>
-                            <p>010-1234-1234</p>
-                            <p>1234@naver.com</p>
+                            <p>{{userInfo.userName}}</p>
+                            <p>{{userInfo.hp}}</p>
+                            <p>{{userInfo.email}}</p>
                         </div>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
                             <p>배송 요청사항</p>
                         </div>
                         <div>
-                            <p>등록된 기본배송지가 없습니다.배송지를 추가해주세요.</p>
+                            <p>{{userInfo.address}}</p>
                             <select name="" id="">
                                 <option value="">배송 요청사항</option>
                                 <option value="">부재시 경비실에 맡겨주세요.</option>
@@ -92,9 +92,9 @@
     
                         <div class="pay-icon">
                             <div class="pay-select credit" v-on:click="btnActive">신용카드</div>
-                            <div class="pay-select kakao" v-on:click="btnActive"></div>
-                            <div class="pay-select naver" v-on:click="btnActive"></div>
-                            <div class="pay-select payco" v-on:click="btnActive"></div>
+                            <div class="pay-select kakao" v-on:click="btnActive">kakao</div>
+                            <div class="pay-select naver" v-on:click="btnActive">naver</div>
+                            <div class="pay-select payco" v-on:click="btnActive">payco</div>
                             <div class="pay-select acount" v-on:click="btnActive">가상계좌</div>
                             <div class="pay-select live" v-on:click="btnActive">실시간계좌이체</div>
                         </div>
@@ -127,7 +127,7 @@
                     <li>· 주문 취소 시 결제하신 수단으로만 환불됩니다.</li>
                 </ul>
     
-                <button class="orderBtn" type="submit">3,000원 주문하기</button>
+                <button class="orderBtn" type="submit">{{ (this.orderPrice+3000).toLocaleString('ko-KR') }}원 주문하기</button>
     
             </div><!-- //aSide -->
     
@@ -136,7 +136,7 @@
                     <h2>상품금액</h2>
                     <div>
                         <p>총 상품금액</p>
-                        <p><b>00</b>원</p>
+                        <p><b>{{ this.orderPrice.toLocaleString('ko-KR') }}</b>원</p>
                     </div>
                     <div>
                         <p>총 배송비</p>
@@ -144,7 +144,7 @@
                     </div>
                     <div class="final-charge">
                         <b>최종 결제금액</b>
-                        <b>3,000원</b>
+                        <b>{{ (this.orderPrice+3000).toLocaleString('ko-KR') }}원</b>
                     </div>
                     <div class="delivery-text">
                         <ul>
@@ -156,7 +156,7 @@
                     </div>
                 </div><!-- //b-top -->
     
-                <button class="orderBtn" type="submit">3,000원 주문하기</button>
+                <button class="orderBtn" type="submit">{{ (this.orderPrice+3000).toLocaleString('ko-KR') }}원 주문하기</button>
     
             </div><!-- //bSid -->
         </div><!-- //inner -->
@@ -172,6 +172,8 @@ import '@/assets/css/order/order.css'
 import AppHeader from '@/components/AppHeader.vue'
 import AppFooter from '@/components/AppFooter.vue'
 
+import axios from 'axios';
+
 export default {
     name: "OrderView",
     components: {
@@ -179,7 +181,16 @@ export default {
         AppFooter
     },
     data() {
-        return {};
+        return {
+            orderList: [],
+            userInfo: {
+                userName: "",
+                hp: "",
+                email: "",
+                address: ""
+            },
+            orderPrice: "",
+        };
     },
     methods: {
         btnActive(event) {
@@ -210,8 +221,60 @@ export default {
                 }
             }
         },
+        getOrderList() {
+            console.log("주문상품 불러오기");
+
+            axios({
+                method: 'get', // put, post, delete
+                url: 'http://localhost:9009/api/order/list',
+                headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
+                params: {no: this.$store.state.authUser.userNo}, //get방식 파라미터로 값이 전달
+                //data: cList, //put, post, delete 방식 자동으로 JSON으로 변환 전달
+                responseType: 'json' //수신타입
+            }).then(response => {
+                console.log(response); //수신데이타
+                console.log(this.$store.state.authUser.userNo);
+                this.orderList = response.data.apiData;
+
+                this.calculate();
+
+            }).catch(error => {
+                console.log(error);
+            });
+        },
+        getUserInfo(){
+            console.log("유저정보 가져오기");
+
+            axios({
+                method: 'get', // put, post, delete
+                url: 'http://localhost:9009/api/order/userinfo',
+                headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
+                params: {no: this.$store.state.authUser.userNo}, //get방식 파라미터로 값이 전달
+                //data: cList, //put, post, delete 방식 자동으로 JSON으로 변환 전달
+                responseType: 'json' //수신타입
+            }).then(response => {
+                console.log(response); //수신데이타
+                console.log(this.$store.state.authUser.userNo);
+                this.userInfo = response.data.apiData;
+                console.log(this.userInfo);
+
+            }).catch(error => {
+                console.log(error);
+            });
+        },
+        calculate() {
+            let orderPrice = 0;
+            for (let i = 0; i < this.orderList.length; i++) {
+                orderPrice += (this.orderList[i].price*this.orderList[i].cCount);
+            }
+            this.orderPrice = orderPrice;
+        },
     },
-    created(){}
+    created(){
+        this.getOrderList();
+        this.getUserInfo();
+        
+    }
 };
 </script>
 <style></style>

@@ -34,16 +34,16 @@
                 <div class="productBox" v-bind:key="i" v-for="(dbcartVo, i) in cList">
                     <input checked="checked" type="checkbox" name="" id="">
                     <img src="" alt="">
-                    <p>{{ dbcartVo.productName }}</p>
+                    <p class="pName">{{ dbcartVo.productName }}</p>
                     <div class="PnMBtn" v-on:click="cCountUpdate(dbcartVo.productNo, dbcartVo.cCount)">
                         <span class="minus" v-on:click="dbcartVo.cCount -= 1">-</span>
-                        <span class="p-num">{{ dbcartVo.cCount }}</span>
+                        <span class="p-count">{{ dbcartVo.cCount }}</span>
                         <span class="plus" v-on:click="dbcartVo.cCount += 1">+</span>
                     </div>
-                    <b class="p-charge">{{ dbcartVo.price * dbcartVo.cCount }}</b>
+                    <b class="p-charge">{{ (dbcartVo.price * dbcartVo.cCount).toLocaleString('ko-KR') }}</b>
                     <p class="p-delBtn" v-on:click="cartDelete(dbcartVo.productNo)">X</p>
                 </div>
-                <div class="order-charge">주문금액 <span>{{ this.oderPrice }}</span>원</div>
+                <div class="order-charge">주문금액 <span>{{ this.oderPrice.toLocaleString('ko-KR') }}</span>원</div>
 
 
             </div><!-- //aSide -->
@@ -53,7 +53,7 @@
                     <h2>상품금액</h2>
                     <div>
                         <p>총 상품금액</p>
-                        <p><b>{{ this.oderPrice }}</b>원</p>
+                        <p><b>{{ this.oderPrice.toLocaleString('ko-KR') }}</b>원</p>
                     </div>
                     <div>
                         <p>총 배송비</p>
@@ -61,7 +61,7 @@
                     </div>
                     <div class="final-charge">
                         <b>결제예상금액</b>
-                        <b>{{ this.oderPrice + 3000 }}원</b>
+                        <b>{{ (this.oderPrice + 3000).toLocaleString('ko-KR') }}원</b>
                     </div>
                     <div class="delivery-text">
                         <ul>
@@ -72,7 +72,7 @@
                         </ul>
                     </div>
                 </div>
-                <button v-on:click="goToOrderForm" class="orderBtn" type="submit">{{ this.oderPrice + 3000 }}원
+                <button v-on:click="goToOrderForm" class="orderBtn" type="submit">{{ (this.oderPrice + 3000).toLocaleString('ko-KR') }}원
                     주문하기</button>
             </div><!-- //bSid -->
         </div><!-- //inner -->
