@@ -76,6 +76,7 @@ export default {
 
                     console.log(authUser);
                     console.log(token);
+                    console.log(authUser.userName);
 
                     this.$router.push("/loginsuccess");
                 } else {
