@@ -66,11 +66,11 @@
                         </div>
                         <div>
                             <p>{{userInfo.address}}</p>
-                            <select name="" id="">
-                                <option value="">배송 요청사항</option>
-                                <option value="">부재시 경비실에 맡겨주세요.</option>
-                                <option value="">택배보관함에 보관해주세요.</option>
-                                <option value="">부재시 문 앞에 놔주세요.</option>
+                            <select name="request" id="">
+                                <option value="default">배송 요청사항</option>
+                                <option value="absent">부재시 경비실에 맡겨주세요.</option>
+                                <option value="storage">택배보관함에 보관해주세요.</option>
+                                <option value="door">부재시 문 앞에 놔주세요.</option>
                             </select>
                         </div>
                     </div>
@@ -127,7 +127,7 @@
                     <li>· 주문 취소 시 결제하신 수단으로만 환불됩니다.</li>
                 </ul>
     
-                <button class="orderBtn" type="submit">{{ (this.orderPrice+3000).toLocaleString('ko-KR') }}원 주문하기</button>
+                <button class="orderBtn" type="submit"  v-on:click="goToSuccess">{{ (this.orderPrice+3000).toLocaleString('ko-KR') }}원 주문하기</button>
     
             </div><!-- //aSide -->
     
@@ -156,7 +156,7 @@
                     </div>
                 </div><!-- //b-top -->
     
-                <button class="orderBtn" type="submit">{{ (this.orderPrice+3000).toLocaleString('ko-KR') }}원 주문하기</button>
+                <button class="orderBtn" type="submit" v-on:click="goToSuccess">{{ (this.orderPrice+3000).toLocaleString('ko-KR') }}원 주문하기</button>
     
             </div><!-- //bSid -->
         </div><!-- //inner -->
@@ -190,22 +190,43 @@ export default {
                 address: ""
             },
             orderPrice: "",
+            payment: "",
         };
     },
     methods: {
         btnActive(event) {
 
             console.log(event.target);
+            let credit = document.querySelector('.credit');
+            let kakao = document.querySelector('.kakao');
+            let naver = document.querySelector('.naver');
+            let payco =  document.querySelector('.payco');
+            let account = document.querySelector('.acount');
+            let live = document.querySelector('.live');
 
-            document.querySelector('.credit').style.border = '1px solid #dfdede';
-            document.querySelector('.credit').style.color = '#2c2c2c';
-            document.querySelector('.kakao').style.border = '1px solid #dfdede';
-            document.querySelector('.naver').style.border = '1px solid #dfdede';
-            document.querySelector('.payco').style.border = '1px solid #dfdede';
-            document.querySelector('.acount').style.border = '1px solid #dfdede';
-            document.querySelector('.acount').style.color = '#2c2c2c';
-            document.querySelector('.live').style.border = '1px solid #dfdede';
-            document.querySelector('.live').style.color = '#2c2c2c';
+            if(event.target == credit) {
+                this.payment = "신용카드";
+            } else if (event.target == kakao) {
+                this.payment = "카카오페이";
+            } else if(event.target == naver) {
+                this.payment = "네이버페이";
+            } else if(event.target == payco) {
+                this.payment = "페이코";
+            } else if(event.target == account) {
+                this.payment = "가상계좌";
+            } else if(event.target == live) {
+                this.payment = "실시간계좌이체";
+            }
+
+            credit.style.border = '1px solid #dfdede';
+            credit.style.color = '#2c2c2c';
+            kakao.style.border = '1px solid #dfdede';
+            naver.style.border = '1px solid #dfdede';
+            payco.style.border = '1px solid #dfdede';
+            account.style.border = '1px solid #dfdede';
+            account.style.color = '#2c2c2c';
+            live.style.border = '1px solid #dfdede';
+            live.style.color = '#2c2c2c';
 
             event.target.style.border = "1px solid #e0123e";
             event.target.style.color = "#e0123e";
@@ -269,6 +290,9 @@ export default {
             }
             this.orderPrice = orderPrice;
         },
+        goToSuccess() {
+            this.$router.push("/order/success");
+        }
     },
     created(){
         this.getOrderList();
