@@ -78,6 +78,7 @@ export default {
     methods: {
         // 대분류별 아이템 리스트 받아오기 - 디폴트 화면
         getItemList(no){
+            console.log("대분류별 아이템 리스");
             no= this.$route.params.no;
             // console.log(no);
 
@@ -100,6 +101,7 @@ export default {
 
         //소분류별 아이템리스트 받아오기- 탭메뉴 클릭시
         getScList(no){
+            console.log("소분류별");
             no= this.$route.params.no;
             console.log(no);
 
@@ -163,9 +165,14 @@ export default {
         // }
 
     },
-    created(){
-        this.getItemList();
+    beforeUpdated(){
         this.getScList();
+        this.getItemList()
+       // this.getItemList();
+    },
+    created(){
+        this.getScList();
+        this.getItemList()
         // this.handleCategoryClick(this.$route.params.no);// 페이지 로드 시 해당 카테고리에 대한 상품 불러오기
     },
     // watch: {
