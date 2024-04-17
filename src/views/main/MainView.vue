@@ -68,6 +68,7 @@
                             <div class="attribute">
                                 <span class="storageCold" v-if="productVo.storage==1">냉동&보관</span>
                                 <span class="storageWarm" v-if="productVo.storage==2">실온</span>
+                                <img v-if="productVo.best==1" src="@/assets/images/main/Best.png">
                             </div>
                         </router-link>
                     </div>

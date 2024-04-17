@@ -11,11 +11,10 @@
                     <div class="headerTopBtnBox">
                         <ul class="headerMenu">
                             <li><router-link to="/insertform">상품추가</router-link></li>
-                            <li><router-link to="">매출현황</router-link></li>
                         </ul>
-                        <router-link to="">
-                            <img src="@/assets/images/icon_login.svg">
-                            <p>로그인</p>
+                        <router-link to="/">
+                            <img src="@/assets/images/tohome.png">
+                            <p>관리자 나가기</p>
                         </router-link>
                         <!--<router-link to="">
                             <img src="@/assets/images/home.png">
@@ -23,7 +22,6 @@
                         </router-link>-->
                     </div>
                 </div>
-                <!-- 헤더 하단 -->
 
             </div>
         </header>
@@ -34,9 +32,12 @@ export default {
     name: "AppHeader",
     components: {},
     data() {
-        return {};
+        return {
+            categoryList:[]
+        };
     },
-    methods: {},
+    methods: {
+    },
     created() { }
 };
 </script>

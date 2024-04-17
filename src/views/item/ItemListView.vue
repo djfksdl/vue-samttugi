@@ -26,7 +26,7 @@
                         <!-- 상품리스트나열 -->
                         <div class="ItemContentBoxes" >
                             <div class="ItemContentBox" v-for="(ItemVo,i) in itemList" v-bind:key="i">
-                                <router-link to="/itemaccount">
+                                <router-link v-bind:to="`/itemaccount/${ItemVo.productNo}`">
                                     <!-- 상품 이미지 -->
                                     <div class="ItemContentImg">
                                         <!-- <img src="@/assets/images/JinRamenSpicy.jpg"> -->

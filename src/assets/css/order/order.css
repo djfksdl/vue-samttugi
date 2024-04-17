@@ -114,12 +114,15 @@
 }
 .kakao {
     background: url('../../images/kakaopay.jpg') no-repeat center / 65px 25px;
+    text-indent: -9999px;
 }
 .naver {
     background: url('../../images/naverpay.png') no-repeat center / 65px 25px;
+    text-indent: -9999px;
 }
 .payco {
     background: url('../../images/payco.jpg') no-repeat center / 280px 80px;
+    text-indent: -9999px;
 }
 .payment-select b {
     font-size: 13px;

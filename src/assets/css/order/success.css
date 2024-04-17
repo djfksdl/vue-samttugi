@@ -1,0 +1,17 @@
+.successBox {
+    width: 1400px;
+    height: 400px;
+    text-align: center;
+    margin: 0 auto;
+    padding: 50px 0 0;
+}
+.successBox p b {
+    font-size: 20px;
+    color: #e0123e;
+}
+.successBox h1 {
+    margin: 50px 0 100px;
+}
+.orderBtn {
+    border-radius: 15px;
+}

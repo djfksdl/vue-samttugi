@@ -7,6 +7,7 @@ import LoginFormView from '@/views/user/LoginFormView.vue'
 import LoginScsView from '@/views/user/LoginScsView.vue'
 import ModifyFormView from '@/views/mypage/ModifyFormView.vue'
 import OrderView from '@/views/order/OrderView.vue'
+import OrderSuccessView from '@/views/order/OrderSuccessView.vue'
 import CartView from '@/views/cart/CartView.vue'
 import MainView from '@/views/main/MainView.vue'
 import ManagerMainView from '@/views/manager/ManagerMainView.vue'
@@ -32,7 +33,7 @@ const routes = [
     component: ItemListView
   },
   {
-    path: '/itemaccount',
+    path: '/itemaccount/:no',
     name: 'ItemAccount',
     component: ItemAccountView
   },
@@ -70,6 +71,11 @@ const routes = [
     path: '/order',
     name: 'OrderView',
     component: OrderView
+  },
+  {
+    path: '/order/success',
+    name: 'OrderSuccessView',
+    component: OrderSuccessView
   },
 
 ]
