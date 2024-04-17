@@ -28,7 +28,7 @@
                         <span>전체선택</span>
                     </div>
 
-                    <p class="seldelBtn">선택삭제</p>
+                    <p class="seldelBtn"></p>
                 </div>
 
                 <div class="productBox" v-bind:key="i" v-for="(dbcartVo, i) in cList">
@@ -116,12 +116,12 @@ export default {
                 method: 'get', // put, post, delete
                 url: 'http://localhost:9009/api/cart/list',
                 headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
-                //params: guestbookVo, //get방식 파라미터로 값이 전달
+                params: {no: this.$store.state.authUser.userNo}, //get방식 파라미터로 값이 전달
                 //data: cList, //put, post, delete 방식 자동으로 JSON으로 변환 전달
                 responseType: 'json' //수신타입
             }).then(response => {
                 console.log(response); //수신데이타
-
+                console.log(this.$store.state.authUser.userNo);
                 this.cList = response.data.apiData;
                 console.log(this.cList);
 
@@ -182,6 +182,9 @@ export default {
                 console.log(error);
             });
 
+        },
+        goToOrderForm() {
+            this.$router.push("/order");
         },
     },
     created() {
