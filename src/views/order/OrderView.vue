@@ -203,13 +203,20 @@ export default {
                 address: ""
             },
             orderPrice: "",
-            payment: "",
             orderVo:{
-                request: "",
+                payment: "",
+                request: ""
+            },
+            orderListVo: {
+                orderNo: "",
+                productNo: "",
+                oCount: "",
+                oPrice: ""
             }
         };
     },
     methods: {
+        // 결제 방법 체크
         btnActive(event) {
 
             console.log(event.target);
@@ -221,18 +228,20 @@ export default {
             let live = document.querySelector('.live');
 
             if(event.target == credit) {
-                this.payment = "신용카드";
+                this.orderVo.payment = "신용카드";
             } else if (event.target == kakao) {
-                this.payment = "카카오페이";
+                this.orderVo.payment = "카카오페이";
             } else if(event.target == naver) {
-                this.payment = "네이버페이";
+                this.orderVo.payment = "네이버페이";
             } else if(event.target == payco) {
-                this.payment = "페이코";
+                this.orderVo.payment = "페이코";
             } else if(event.target == account) {
-                this.payment = "가상계좌";
+                this.orderVo.payment = "가상계좌";
             } else if(event.target == live) {
-                this.payment = "실시간계좌이체";
+                this.orderVo.payment = "실시간계좌이체";
             }
+
+            console.log(this.orderVo.payment);
 
             credit.style.border = '1px solid #dfdede';
             credit.style.color = '#2c2c2c';
@@ -247,6 +256,7 @@ export default {
             event.target.style.border = "1px solid #e0123e";
             event.target.style.color = "#e0123e";
         },
+        // 전체동의
         allAgree() {
             if(document.querySelector('#all-agree').checked == true) {
                 for(let i=0; i<3; i++) {
@@ -258,6 +268,7 @@ export default {
                 }
             }
         },
+        // 동의사항 체크하면 전체동의도 같이 체크
         rAllAgree(){
             let payAgree = document.querySelector('#pay-agree');
             let useAgree = document.querySelector('#use-agree');
@@ -269,6 +280,7 @@ export default {
                 document.querySelector('#all-agree').checked = false;
             }
         },
+        // 주문상품 데이터 불러오기
         getOrderList() {
             console.log("주문상품 불러오기");
 
@@ -290,6 +302,7 @@ export default {
                 console.log(error);
             });
         },
+        // 주문자정보 가져오기
         getUserInfo(){
             console.log("유저정보 가져오기");
 
@@ -310,6 +323,7 @@ export default {
                 console.log(error);
             });
         },
+        // 결제금액 계산
         calculate() {
             let orderPrice = 0;
             for (let i = 0; i < this.orderList.length; i++) {
@@ -317,20 +331,28 @@ export default {
             }
             this.orderPrice = orderPrice;
         },
+        // 주문하기
         goToSuccess() {
             
             let payAgree = document.querySelector('#pay-agree');
             let useAgree = document.querySelector('#use-agree');
             let privateAgree = document.querySelector('#private-agree');
             
+            // 동의사항 체크 확인
             if(payAgree.checked == false || useAgree.checked == false || privateAgree.checked == false) {
                 alert("필수 동의사항을 체크해 주세요.");
 
             } else {
-                this.$router.push("/order/success");
+                // 서버 통신 작성
+                console.log(this.orderVo);
+
+                //orderVo를 axios --> orders db에 저장
                 
+                //orderListVo를 axios --> orderList db에 저장
+
+                // 주문 성공 화면으로 이동
+                // this.$router.push("/order/success");
             }
-            
         }
     },
     created(){
