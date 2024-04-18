@@ -1,21 +1,23 @@
-
 .advImgBox {
     display: flex;
     justify-content: space-between;
 }
+
 .mbModifytxt {
     color: #333;
     font-size: 35px;
     margin-bottom: 50px;
     border-bottom: 1px solid #202020;
     padding-bottom: 20px;
-   
+
 }
+
 #fixid {
     margin-left: 15px;
 }
 
 .id-group,
+.eform-blank,
 .form-blank {
     display: flex;
     align-items: center;
@@ -24,6 +26,7 @@
 }
 
 .id-group label,
+.eform-blank label,
 .form-blank label {
     width: 120px;
     height: 26px;
@@ -40,6 +43,36 @@
     border: 1px solid #ccc;
     border-radius: 5px;
 
+}
+
+.eform-blank input {
+    width: 180px;
+    height: 40px;
+    padding: 5px;
+    margin-left: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+}
+
+.eform-blank select.domainbox {
+    width: 110px;
+    height: 40px;
+    box-sizing: border-box;
+    margin-left: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    color: #383838;
+    background-color: #ffffff;
+}
+
+option {
+    font-size: 16px;
+}
+
+#domain-list option {
+    font-size: 14px;
+    background-color: #ffffff;
 }
 
 .postal {
@@ -72,6 +105,7 @@
 .mdfBtn:hover {
     background-color: #c00;
 }
+
 .advImg {
     width: 500px;
     height: 500px;

@@ -37,24 +37,32 @@
                             <input type="password" id="password" v-model="usersVo.password" required>
                         </div>
                         <div class="form-blank">
-                            <label for="confirmPassword">비밀번호 확인*</label>
-                            <input type="password" id="confirmPassword" v-model="usersVo.password" required>
+                            <label for="hp">휴대폰 번호*</label>
+                            <input type="hp" id="hp" v-model="usersVo.hp" required>
                         </div>
-                        <div class="form-blank">
+                        <div class="eform-blank">
                             <label for="email">이메일*</label>
-                            <input type="email" id="email" v-model="usersVo.email" required>
+                            <input type="text" id="email" v-model="mfemailName" required>
+                            <select class="domainbox" id="domain-list" v-model="mfDomain">
+                                <option value="@naver.com">naver.com</option>
+                                <option value="@gmail.com">gmail.com</option>
+                                <option value="@hanmail.net">hanmail.net</option>
+                                <option value="@nate.com">nate.com</option>
+                                <option value="@kakao.com">kakao.com</option>
+                                <option value="@msn.com">msn.com</option>
+                            </select>
                         </div>
                         <div class="form-blank">
                             <label class="address" for="address">주소</label>
                             <textarea class="addressbox" v-model="usersVo.address"></textarea>
                             <button type="button" class="postal" v-on:click="postalCode">주소검색</button>
                         </div>
-                    
+
                         <button type="submit" class="mdfBtn" v-on:click="updateInfo">회원정보수정</button>
                     </form>
                     <img class="advImg" src="@/assets/images/goodsbanner.png" alt="굿즈홍보배너">
 
-                    
+
                 </div>
             </div>
 
@@ -80,9 +88,12 @@ export default {
     },
     data() {
         return {
-            usersVo:{
-                id:'',
+            mfemailName: '',
+            mfDomain: '',
+            usersVo: {
+                id: '',
                 password: '',
+                hp: '',
                 email: '',
                 address: ''
             }
@@ -106,17 +117,61 @@ export default {
                 responseType: 'json' //수신타입
             }).then(response => {
                 console.log(response.data.apiData); //수신데이타
-                
+
                 this.usersVo = response.data.apiData;
+                this.mfemailName = response.data.apiData.email.split('@')[0];
+                this.mfDomain = '@'+response.data.apiData.email.split('@')[1];
+
 
             }).catch(error => {
                 console.log(error);
             });
 
         },
+        modifyMember() {
+            console.log("수정연결");
+            console.log(this.usersVo);
+            this.usersVo.email = this.mfemailName + this.mfDomain;
+            //서버로 전송
+            axios({
+                method: 'put', // put, post, delete  //불러오는것은 GET //저장은 POST
+                url: 'http://localhost:9009/api/user/modify', //''따옴표 문법도 중요
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8"
+                    , "Authorization": "Bearer " + this.$store.state.token
+                },
+                //params: guestbookVo, 
+                data: this.usersVo, //put, post, delete 방식 자동으로 JSON으로 변환 전달 @RequestBody
+
+                responseType: 'json' //수신타입
+            }).then(response => {
+                console.log(response); //수신데이타
+                console.log(response.data.apiData)
+
+                if (response.data.result == "success") {
+                    console.log("result: success");
+                    let name = response.data.apiData.name;
+
+                    //vuex의 이름을 변경
+                    this.$store.commit("setAuthName", name);
+
+                    //메인페이지로 이동
+                    this.$router.push("/");
+                    alert("수정이 완료되었습니다");
+                } else {
+                    console.log(response.data.message);
+                    this.$store.commit("setAuthUser", null);
+                    this.$store.commit("setToken", null);
+                }
+
+
+            }).catch(error => {
+                console.log(error);
+            });
+        },
     },
     created() {
         this.modifyform();
-     }
+    }
 };
 </script>

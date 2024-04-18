@@ -1,12 +1,10 @@
-
-
 .signupForm {
     width: 1400px;
     margin: 0 auto;
     padding: 20px;
 }
 
-.signupForm h2, 
+.signupForm h2,
 .signupForm h3 {
     color: #333;
 }
@@ -40,6 +38,14 @@
     border-radius: 5px;
 }
 
+.signupForm .eform-field input {
+    width: 180px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-left: 45px;
+}
+
 .signupForm .form-field button {
     width: 110px;
     margin-left: 10px;
@@ -50,9 +56,30 @@
     cursor: pointer;
 }
 
-.radioGender{
+select.domainbox {
+    width: 110px;
+    height: 28px;
+    box-sizing: border-box;
+    margin-left: 10px;
+    border-radius: 5px;
+    border: 1px solid #d9d6d6;
+    color: #383838;
+    background-color: #ffffff;
+}
+
+option {
+    font-size: 16px;
+}
+
+#domain-list option {
+    font-size: 14px;
+    background-color: #ffffff;
+}
+
+.radioGender {
     margin-bottom: 12px;
 }
+
 .form-field input[type="radio"] {
     display: inline-block;
     margin-right: 20px;
@@ -61,6 +88,7 @@
 .form-field button:hover {
     background-color: #e0e0e0;
 }
+
 .radioGender #gender {
     margin-right: 65px;
 }

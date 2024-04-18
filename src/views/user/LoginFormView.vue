@@ -23,9 +23,17 @@
                 <label for="phone">휴대폰번호*</label>
                 <input type="tel" id="phone" v-model="usersVo.hp" required>
             </div>
-            <div class="form-field">
+            <div class="eform-field">
                 <label for="email">이메일*</label>
-                <input type="email" id="email" v-model="usersVo.email" required>
+                <input type="text" id="email" v-model="emailName">
+                <select class="domainbox" id="domain-list" v-model="domain">
+                    <option value="@naver.com">@naver.com</option>
+                    <option value="@gmail.com">@gmail.com</option>
+                    <option value="@hanmail.net">@hanmail.net</option>
+                    <option value="@nate.com">@nate.com</option>
+                    <option value="@kakao.com">@kakao.com</option>
+                    <option value="@msn.com">@msn.com</option>
+                </select>
             </div>
 
             <h3>선택정보</h3>
@@ -38,11 +46,11 @@
             <div class="form-field">
                 <label class="address" for="address">주소</label>
                 <textarea class="addressbox" v-model="usersVo.address"></textarea>
-                <button type="button"  v-on:click="postalCode">우편번호</button>
+                <button type="button" v-on:click="postalCode">우편번호</button>
             </div>
             <div class="form-field">
                 <label for="birthdate">생년월일</label>
-                <input type="date" id="birthdate" v-model="usersVo.birthdate">
+                <input type="date" id="birthdate" v-model="usersVo.birth">
             </div>
 
 
@@ -67,7 +75,9 @@ export default {
     },
     data() {
         return {
-            usersVo:{
+            emailName: "",// 이메일 주소 앞 부분
+            domain:"",// 선택된 도메인
+            usersVo: {
                 id: "",
                 password: "",
                 userName: "",
@@ -75,13 +85,13 @@ export default {
                 email: "",
                 gender: "",
                 address: "",
-                birthdate: ""
+                birth: ""
 
             },
             check: 0,
             isDuplicated: false,
             isNotDuplicated: false
-        
+
         };
     },
     methods: {
@@ -119,31 +129,33 @@ export default {
             }
         },
         signup() {
-            console.log(this.usersVo)
-                axios({
-                    method: 'post', // put, post, delete 
-                    url: 'http://localhost:9009/api/user/join',
-                    headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
-                    //params: usersVo, //get방식 파라미터로 값이 전달
-                    data: this.usersVo, //put, post, delete 방식 자동으로 JSON으로 변환 전달
-                    responseType: 'json' //수신타입
-                }).then(response => {
-                    console.log(response.data); //수신데이타
+            console.log(this.usersVo);
+            this.usersVo.email = this.emailName + this.domain;
+            axios({
+                method: 'post', // put, post, delete 
+                url: 'http://localhost:9009/api/user/join',
+                headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
+                //params: usersVo, //get방식 파라미터로 값이 전달
+                data: this.usersVo, //put, post, delete 방식 자동으로 JSON으로 변환 전달
+                responseType: 'json' //수신타입
+            }).then(response => {
+                console.log(response.data); //수신데이타
 
-                    if (response.data == 1) {
-                        alert("축하합니다. 회원가입에 성공하셨습니다.");
-                        console.log("-----------------------------------");
-                        console.log(this.usersVo.userName);
-                        this.$router.push({ path: '/loginsuccess', query: { name: this.usersVo.userName } });
-                        console.log("-----------------------------------");
-                    } else {
-                        alert("회원가입에 실패하였습니다.");
-                    }
+                if (response.data == 1) {
+                    alert("축하합니다. 회원가입에 성공하셨습니다.");
+                    console.log("-----------------------------------");
+                    console.log(this.usersVo.userName);
+                    console.log(this.usersVo.email)
+                    this.$router.push({ path: '/loginsuccess', query: { name: this.usersVo.userName } });
+                    console.log("-----------------------------------");
+                } else {
+                    alert("회원가입에 실패하였습니다.");
+                }
 
 
-                }).catch(error => {
-                    console.log(error);
-                });
+            }).catch(error => {
+                console.log(error);
+            });
 
         }
     },
