@@ -66,11 +66,11 @@
                         </div>
                         <div>
                             <p>{{userInfo.address}}</p>
-                            <select name="request" id="">
-                                <option value="default">배송 요청사항</option>
-                                <option value="absent">부재시 경비실에 맡겨주세요.</option>
-                                <option value="storage">택배보관함에 보관해주세요.</option>
-                                <option value="door">부재시 문 앞에 놔주세요.</option>
+                            <select v-model="orderVo.request" name="request" id="">
+                                <option disabled>배송 요청사항</option>
+                                <option>부재시 경비실에 맡겨주세요.</option>
+                                <option>택배보관함에 보관해주세요.</option>
+                                <option>부재시 문 앞에 놔주세요.</option>
                             </select>
                         </div>
                     </div>
@@ -127,25 +127,39 @@
                     <li>· 주문 취소 시 결제하신 수단으로만 환불됩니다.</li>
                 </ul>
     
-                <button class="orderBtn" type="submit"  v-on:click="goToSuccess">{{ (this.orderPrice+3000).toLocaleString('ko-KR') }}원 주문하기</button>
+                <button v-if="this.orderPrice < 30000" class="orderBtn" type="submit"  v-on:click="goToSuccess">{{ (this.orderPrice+3000).toLocaleString('ko-KR') }}원 주문하기</button>
+                <button v-else class="orderBtn" type="submit"  v-on:click="goToSuccess">{{ this.orderPrice.toLocaleString('ko-KR') }}원 주문하기</button>
     
             </div><!-- //aSide -->
     
             <div class="bSide">
                 <div class="b-top">
                     <h2>상품금액</h2>
-                    <div>
+                    <div class="totalPrice">
                         <p>총 상품금액</p>
                         <p><b>{{ this.orderPrice.toLocaleString('ko-KR') }}</b>원</p>
                     </div>
-                    <div>
-                        <p>총 배송비</p>
-                        <p><b>3,000</b>원</p>
+                    <div class="ifBox" v-if="this.orderPrice < 30000">
+                        <div>
+                            <p>총 배송비</p>
+                            <p><b>3,000</b>원</p>
+                        </div>
+                        <div class="final-charge">
+                            <b>최종 결제금액</b>
+                            <b>{{ (this.orderPrice+3000).toLocaleString('ko-KR') }}원</b>
+                        </div>
                     </div>
-                    <div class="final-charge">
-                        <b>최종 결제금액</b>
-                        <b>{{ (this.orderPrice+3000).toLocaleString('ko-KR') }}원</b>
+                    <div class="ifBox" v-else>
+                        <div>
+                            <p>총 배송비</p>
+                            <p><b>0</b>원</p>
+                        </div>
+                        <div class="final-charge">
+                            <b>최종 결제금액</b>
+                            <b>{{ this.orderPrice.toLocaleString('ko-KR') }}원</b>
+                        </div>
                     </div>
+
                     <div class="delivery-text">
                         <ul>
                             <li>· 무료배송 혜택 상품 및 배송 유형별 30,000원 이상 구매 시 <br> 무료배송입니다.</li>
@@ -156,7 +170,8 @@
                     </div>
                 </div><!-- //b-top -->
     
-                <button class="orderBtn" type="submit" v-on:click="goToSuccess">{{ (this.orderPrice+3000).toLocaleString('ko-KR') }}원 주문하기</button>
+                <button v-if="this.orderPrice < 30000" class="orderBtn" type="submit" v-on:click="goToSuccess">{{ (this.orderPrice+3000).toLocaleString('ko-KR') }}원 주문하기</button>
+                <button v-else class="orderBtn" type="submit" v-on:click="goToSuccess">{{ this.orderPrice.toLocaleString('ko-KR') }}원 주문하기</button>
     
             </div><!-- //bSid -->
         </div><!-- //inner -->
@@ -191,6 +206,9 @@ export default {
             },
             orderPrice: "",
             payment: "",
+            orderVo:{
+                request: "",
+            }
         };
     },
     methods: {

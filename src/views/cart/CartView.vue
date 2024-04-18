@@ -51,17 +51,29 @@
             <div class="bSide">
                 <div class="b-top">
                     <h2>상품금액</h2>
-                    <div>
+                    <div class="totalPrice">
                         <p>총 상품금액</p>
                         <p><b>{{ this.oderPrice.toLocaleString('ko-KR') }}</b>원</p>
                     </div>
-                    <div>
-                        <p>총 배송비</p>
-                        <p><b>3,000</b>원</p>
+                    <div class="ifBox" v-if="this.oderPrice < 30000">
+                        <div>
+                            <p>총 배송비</p>
+                            <p><b>3,000</b>원</p>
+                        </div>
+                        <div class="final-charge">
+                            <b>결제예상금액</b>
+                            <b>{{ (this.oderPrice + 3000).toLocaleString('ko-KR') }}원</b>
+                        </div>
                     </div>
-                    <div class="final-charge">
-                        <b>결제예상금액</b>
-                        <b>{{ (this.oderPrice + 3000).toLocaleString('ko-KR') }}원</b>
+                    <div class="ifBox" v-else>
+                        <div>
+                            <p>총 배송비</p>
+                            <p><b>0</b>원</p>
+                        </div>
+                        <div class="final-charge">
+                            <b>결제예상금액</b>
+                            <b>{{ this.oderPrice.toLocaleString('ko-KR') }}원</b>
+                        </div>
                     </div>
                     <div class="delivery-text">
                         <ul>
@@ -72,8 +84,10 @@
                         </ul>
                     </div>
                 </div>
-                <button v-on:click="goToOrderForm" class="orderBtn" type="submit">{{ (this.oderPrice + 3000).toLocaleString('ko-KR') }}원
+                <button v-if="this.oderPrice < 30000" v-on:click="goToOrderForm" class="orderBtn" type="submit">{{ (this.oderPrice + 3000).toLocaleString('ko-KR') }}원
                     주문하기</button>
+                <button v-else v-on:click="goToOrderForm" class="orderBtn" type="submit">{{ this.oderPrice.toLocaleString('ko-KR') }}원
+                주문하기</button>
             </div><!-- //bSid -->
         </div><!-- //inner -->
 

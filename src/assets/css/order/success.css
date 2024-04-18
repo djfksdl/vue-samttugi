@@ -12,6 +12,6 @@
 .successBox h1 {
     margin: 50px 0 100px;
 }
-.orderBtn {
+.successBox .orderBtn {
     border-radius: 15px;
 }
