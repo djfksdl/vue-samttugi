@@ -70,8 +70,8 @@
                                     </div>
                                     <!-- 버튼 -->
                                     <div class="ItemAcocuntTextBottomBtn">
-                                        <router-link to="/cart" v-on:click="goCart()" >장바구니</router-link>
-                                        <router-link to="/order" v-on:click="goCart()">바로구매</router-link>
+                                        <router-link to="" v-on:click="modalOpen" >장바구니</router-link>
+                                        <router-link to="" v-on:click="goOrder()">바로구매</router-link>
                                     </div>
                                 </div>
                             </div>
@@ -87,13 +87,28 @@
         </div>
         <!-- ======== 모달창 ======== -->
         <div class="ItemAccountModal" v-bind:class="{'modal-on': isMaodal}">
-            <div class="ItemAccountModal-content">
-                <div>
-                    <p>선택하신 상품을 결제하시겠습니까?</p>
-                    <buttom>계속 쇼핑하기</buttom>
-                    <buttom>결제하기</buttom>
+            <!-- 로그인했을때 -->
+            <div class="ItemAccountModal-content" v-if="this.$store.state.authUser !== null">
+                <div class="closeModal" v-on:click="modalClose">x</div>
+                <div class="ItemModalText">
+                    <p>장바구니로 이동하시겠습니까?</p>
+                </div>
+                <div class="ItemModalBtnBox">
+                    <router-link to="/itemlist/1">계속 쇼핑하기</router-link>
+                    <button v-on:click="goCart()">장바구니로 이동</button>
                 </div>
             </div>
+            <!-- 로그인 안했을때 -->
+            <div class="ItemAccountModal-content" v-if="this.$store.state.authUser == null">
+                <div class="ItemModalText">
+                    <p>로그인이 필요한 서비스입니다.</p>
+                </div>
+                <div class="ItemModalBtnBox">
+                    <router-link to="/login">로그인 페이지 이동</router-link>
+                    <button v-on:click="modalClose" >취소</button>
+                </div>
+            </div>
+        
 
         </div>
     </div>
@@ -115,7 +130,7 @@ export default {
             goCartVo:{
                 cCount:1,
                 productNo: this.$route.params.no,
-                userNo: this.$store.state.authUser.userNo
+                userNo: null
             }
         };
     },
@@ -142,8 +157,7 @@ export default {
         },
          //장바구니 버튼 눌렀을때 -> 모달창에서 구매하기 버튼 눌렀을때!
          goCart(){
-            console.log("장바구니로 고")
-            console.log(this.goCartVo)
+            this.goCartVo.userNo= this.$store.state.authUser.userNo
             axios({
                 method: 'post', // put, post, delete 
                 url: `${this.$store.state.apiBaseUrl}/api/goCart`,
@@ -154,17 +168,45 @@ export default {
                 console.log(response.data.apiData); //수신데이타
                 console.log("장바구니 넣기 성공")
 
+                this.$router.push("/cart")
                 
             }).catch(error => {
                 console.log(error);
             });
+        },
+        //바로구매 버튼 눌렀을때 -> 모달창에서 구매하기 버튼 눌렀을때!
+        goOrder(){
+            console.log("구매페이지로 고")
+            if(this.$store.state.authUser == null){
+                this.modalOpen()
+                
+            }else{
+                this.goCartVo.userNo= this.$store.state.authUser.userNo
+                axios({
+                    method: 'post', // put, post, delete 
+                    url: `${this.$store.state.apiBaseUrl}/api/goCart`,
+                    headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
+                    data: this.goCartVo , //put, post, delete 방식 자동으로 JSON으로 변환 전달
+                    responseType: 'json' //수신타입
+                }).then(response => {
+                    console.log(response.data.apiData); //수신데이타
+                    console.log("장바구니 넣기 성공")
+
+                    this.$router.push("/order")
+                    
+                }).catch(error => {
+                    console.log(error);
+                });
+            }
         },
         //장바구니 버튼 눌렀을때 모달창 띄우기
         modalOpen(){
             // this.isMaodal= true
             document.querySelector('.ItemAccountModal').style.display = "block"
         },
-
+        modalClose(){
+            document.querySelector('.ItemAccountModal').style.display = "none"
+        },
         //수량 플러스버튼
         plusBtn(){
             console.log("더하기")
