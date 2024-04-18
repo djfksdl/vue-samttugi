@@ -70,8 +70,8 @@
                                     </div>
                                     <!-- 버튼 -->
                                     <div class="ItemAcocuntTextBottomBtn">
-                                        <router-link to="" v-on:click="goCart()" >장바구니</router-link>
-                                        <router-link to="">바로구매</router-link>
+                                        <router-link to="/cart" v-on:click="goCart()" >장바구니</router-link>
+                                        <router-link to="/order" v-on:click="goCart()">바로구매</router-link>
                                     </div>
                                 </div>
                             </div>

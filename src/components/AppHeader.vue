@@ -21,7 +21,11 @@
                             <img src="@/assets/images/icon_login.svg">
                             <p >로그아웃</p>
                         </router-link>
-                        <router-link to="/mypage">
+                        <router-link to="/mypage" v-if="this.$store.state.authUser !== null">
+                            <img src="@/assets/images/icon_my.svg">
+                            <p>마이페이지</p>
+                        </router-link>
+                        <router-link to="/" v-else v-on:click="showLoginAlert">
                             <img src="@/assets/images/icon_my.svg">
                             <p>마이페이지</p>
                         </router-link>
