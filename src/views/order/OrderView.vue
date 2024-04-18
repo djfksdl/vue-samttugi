@@ -109,15 +109,15 @@
                         <label class="all-select" for="all-agree">전체동의</label>
                     </div>
                     <div>
-                        <input type="checkbox" name="checkBox" id="pay-agree">
+                        <input v-on:click="rAllAgree" type="checkbox" name="checkBox" id="pay-agree">
                         <label for="pay-agree"><b>(필수) </b>위 내용을 확인하였으며 결제에 동의합니다.</label>
                     </div>
                     <div>
-                        <input type="checkbox" name="checkBox" id="use-agree">
+                        <input v-on:click="rAllAgree" type="checkbox" name="checkBox" id="use-agree">
                         <label for="use-agree"><b>(필수) </b>이용약관 동의</label>
                     </div>
                     <div>
-                        <input type="checkbox" name="checkBox" id="private-agree">
+                        <input v-on:click="rAllAgree" type="checkbox" name="checkBox" id="private-agree">
                         <label for="private-agree"><b>(필수) </b>개인정보 수집, 이용에 관한 동의</label>
                     </div>
                 </div>
@@ -163,9 +163,7 @@
                     <div class="delivery-text">
                         <ul>
                             <li>· 무료배송 혜택 상품 및 배송 유형별 30,000원 이상 구매 시 <br> 무료배송입니다.</li>
-                            <li>· 배송 유형 간 교차 합계 금액은 무료배송에 적용되지 않습니다. <br>
-                                 (상온 배송+저온 배송 합계 30,000원 무료배송불가)    
-                            </li>
+                            <li>· 배송 유형 간 교차 합계 금액은 무료배송에 적용되지 않습니다.</li>
                         </ul>
                     </div>
                 </div><!-- //b-top -->
@@ -260,6 +258,17 @@ export default {
                 }
             }
         },
+        rAllAgree(){
+            let payAgree = document.querySelector('#pay-agree');
+            let useAgree = document.querySelector('#use-agree');
+            let privateAgree = document.querySelector('#private-agree');
+
+            if(payAgree.checked == true && useAgree.checked == true && privateAgree.checked == true) {
+                document.querySelector('#all-agree').checked = true;
+            } else {
+                document.querySelector('#all-agree').checked = false;
+            }
+        },
         getOrderList() {
             console.log("주문상품 불러오기");
 
@@ -309,7 +318,19 @@ export default {
             this.orderPrice = orderPrice;
         },
         goToSuccess() {
-            this.$router.push("/order/success");
+            
+            let payAgree = document.querySelector('#pay-agree');
+            let useAgree = document.querySelector('#use-agree');
+            let privateAgree = document.querySelector('#private-agree');
+            
+            if(payAgree.checked == false || useAgree.checked == false || privateAgree.checked == false) {
+                alert("필수 동의사항을 체크해 주세요.");
+
+            } else {
+                this.$router.push("/order/success");
+                
+            }
+            
         }
     },
     created(){
