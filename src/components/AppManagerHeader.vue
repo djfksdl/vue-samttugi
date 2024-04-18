@@ -13,7 +13,7 @@
                             <li><router-link to="/insertform">상품추가</router-link></li>
                         </ul>
                         <router-link to="/">
-                            <img src="@/assets/images/tohome.png">
+                            <img src="@/assets/images/tohome.png"  v-on:click="logout">
                             <p>관리자 나가기</p>
                         </router-link>
                         <!--<router-link to="">
@@ -33,10 +33,19 @@ export default {
     components: {},
     data() {
         return {
-            categoryList:[]
+            categoryList: []
         };
     },
     methods: {
+
+        logout() {
+            console.log("로그아웃");
+            this.$store.commit("setAuthUser", null);
+            this.$store.commit("setToken", null);
+
+            this.$router.push("/");
+
+        },
     },
     created() { }
 };

@@ -192,16 +192,17 @@ del {
 
 .managerInsert .foodPhotoFile {
     width: 300px;
-    height: 350px;
+    height: 300px;
     background: url(../../images/thumb_ing.gif);
     background-repeat: no-repeat;
-    background-position: 10px;
     margin-bottom: 20px;
+    border: 1px solid #888888;
+}
+.managerInsert .foodPhotoFile img{
+    object-fit: cover;
+    width: 300px;
 }
 
-.managerInsert .foodPhotoFile img{
-    width: 312px;
-}
 
 
 .fileGroup {
@@ -213,7 +214,6 @@ del {
 /* form */
 .managerInsert2{
     border-top: 1px solid #888888;
-    border-bottom: 1px solid #888888;
     padding-top: 40px;
     padding-bottom: 150px;
 }
@@ -312,8 +312,8 @@ del {
 /* 추가 */
 .managerInsert button{
     float: right;
+    margin-top: 30px;
     margin-right: 390px;
-    margin-top: -60px;
     width: 110px;
     background-color: #d3233a;
     border: none;
