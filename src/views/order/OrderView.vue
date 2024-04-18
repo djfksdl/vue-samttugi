@@ -365,10 +365,8 @@ export default {
                 }).then(response => {
                     console.log(response); //수신데이타
 
-                    //cart에서 정보 삭제
-
                     // 주문 성공 화면으로 이동
-                    // this.$router.push("/order/success");
+                    this.$router.push("/order/success");
                 }).catch(error => {
                     console.log(error);
                 });
