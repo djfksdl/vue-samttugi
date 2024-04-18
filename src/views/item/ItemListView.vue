@@ -10,17 +10,18 @@
                     <!-- 경로 -->
                     <div class="channelSrc">
                         <router-link to="/">홈</router-link>
-                        <router-link to="">라면/컵누들/곤누들</router-link>
+                        <router-link to="">{{ this.mcName }}</router-link>
                     </div>
                     <!-- 타이틀 -->
-                    <h2>라면/컵누들/곤누들</h2>
+                    <!-- <h2>{{categoryList[this.$route.params.no].mcName}}</h2> -->
+                    <h2>{{ this.mcName }}</h2>
                     <!-- 상품리스트 -->
                     <div class="ItemListSection">
                         <!-- 탭메뉴 -->
                         <ul class="ItemTapMenu">
                             <li v-on:click="getItemAll(no)"><router-link to="">전체</router-link></li>
                             <li v-for="(sCategory, i) in scList" v-bind:key="i" v-on:click="getItemBySc(sCategory.scNo)" >
-                                <router-link to="">{{sCategory.scName }}</router-link>
+                                <router-link to="">{{ sCategory.scName }}</router-link>
                             </li>
                         </ul>
                         <!-- 상품리스트나열 -->
@@ -35,10 +36,11 @@
                                     <!-- 상품 텍스트 -->
                                     <div class="ItemContentText">
                                         <p>{{ ItemVo.productName }}</p>
-                                        <p class="ItemPrice"><span>{{ ItemVo.price }}</span>원</p>
+                                        <p class="ItemPrice"><span>{{ ItemVo.price.toLocaleString() }}</span>원</p>
                                         <div class="ItemStorageMethod">
-                                            <span>{{ ItemVo.storage }}</span>
-                                            <span>{{ ItemVo.best }}</span>
+                                            <span v-if="ItemVo.storage == 1">냉동&보관</span>
+                                            <span v-if="ItemVo.storage == 2">실온</span>
+                                            <span><img v-if="ItemVo.best == 1">Best</span>
                                         </div>
                                     </div>
                                 </router-link>
@@ -73,12 +75,15 @@ export default {
             scList:[],
             itemList:[],
             // iList:[]
+            mcName:""
             
         };
     },
     methods: {
+
         //대분류별 소분류 메뉴리스트가져오기
         getScList(no){
+            
             console.log("소분류 메뉴가져오기");
             no= this.$route.params.no;
             // console.log(no);
@@ -90,9 +95,11 @@ export default {
                 // data: guestbookVo, //put, post, delete 방식 자동으로 JSON으로 변환 전달
                 responseType: 'json' //수신타입
             }).then(response => {
-                console.log(response.data.apiData); //수신데이타
-                this.scList = response.data.apiData;
+                console.log("ㅁㅁㅁ",response.data.apiData); //수신데이타
+                this.scList = response.data.apiData.scList;
+                this.mcName = response.data.apiData.mcName;
 
+                console.log(this.scList);
                 
             }).catch(error => {
                 console.log(error);
@@ -113,7 +120,7 @@ export default {
                 params: {no:no}, //get방식 파라미터로 값이 전달
                 responseType: 'json' //수신타입
             }).then(response => {
-                console.log(response.data.apiData); //수신데이타
+                // console.log(response.data.apiData); //수신데이타
                 this.itemList = response.data.apiData;
 
 
@@ -142,7 +149,7 @@ export default {
                 params: NoVo, //get방식 파라미터로 값이 전달
                 responseType: 'json' //수신타입
             }).then(response => {
-                console.log(response.data.apiData); //수신데이타
+                //console.log(response.data.apiData); //수신데이타
                 this.itemList = response.data.apiData;
 
 

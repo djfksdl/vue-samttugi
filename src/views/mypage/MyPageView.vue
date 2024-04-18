@@ -30,51 +30,24 @@
                         <div class="orderCheckBox">
                             <h1>주문/조회</h1>
                             <label for="date">
-                                <input type="date" id="" max="2024-12-30" min="2024-01-01" value="2024-03-19">
+                                <input type="date" id="" max="2024-12-30" min="2024-01-01"  v-model="selectedDate" v-on:change="dateChange()">
                             </label>
                         </div>
                         <!-- 날짜별 주문목록 -->
                         <div class="orderListByDate">
 
-                            <div class="orderByDate" > 
-                                <p class="orderDay">2024-04-17</p>
-                                <div class="ordercomplete">
-                                    <img src="@/assets/images/logo.png" class="orderCompleteImg">
+                            <div class="orderByDate" v-for="(orderedVo,i) in orderedList" v-bind:key="i"> 
+                                <p class="orderDay">{{orderedVo.payDay}}</p>
+                                <div class="ordercomplete" >
+                                    <img v-bind:src="`http://localhost:9009/upload/${orderedVo.saveName}`" class="orderCompleteImg">
                                     <div class="buy">
-                                        <p>구매확정 - 4/17(수)</p>
-                                        <p>가격 0,000원</p>
-                                        <p>제품명</p>
+                                        <p><strong>상품명:</strong>{{ orderedVo.productName }}</p>
+                                        <p><strong>가격:</strong> {{ orderedVo.oPrice.toLocaleString() }}원</p>
+                                        <p><strong>결제방법:</strong>{{ orderedVo.payment }} </p>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="orderByDate" > 
-                                <p class="orderDay">2024-04-18</p>
-                                <div class="ordercomplete">
-                                    <img src="@/assets/images/logo.png" class="orderCompleteImg">
-                                    <div class="orderCompleteInfo">
-                                        <p>구매확정 - 4/17(수)</p>
-                                        <p>가격 0,000원</p>
-                                        <p>제품명</p>
-                                    </div>
-                                </div>
-                                <div class="ordercomplete">
-                                    <img src="@/assets/images/logo.png" class="orderCompleteImg">
-                                    <div class="buy">
-                                        <p>구매확정 - 4/17(수)</p>
-                                        <p>가격 0,000원</p>
-                                        <p>제품명</p>
-                                    </div>
-                                </div>
-                                <div class="ordercomplete">
-                                    <img src="@/assets/images/logo.png" class="orderCompleteImg">
-                                    <div class="buy">
-                                        <p>구매확정 - 4/17(수)</p>
-                                        <p>가격 0,000원</p>
-                                        <p>제품명</p>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         
                         
@@ -103,7 +76,8 @@ export default {
     data() {
         return {
             no: this.$store.state.authUser.userNo,
-            orderedList:[]
+            orderedList:[],
+            selectedDate: new Date().toISOString().substring(0, 10),
         };
     },
     methods: {
@@ -126,7 +100,31 @@ export default {
             });
             
 
-        }
+        },
+        dateChange() {
+            
+            console.log("날짜변경");
+            console.log(this.selectedDate);
+            
+            axios({
+                method: 'post',  //put,post,delete
+                url: `${this.$store.state.apiBaseUrl}/api/findByDate`,
+                headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
+                params: { selectedDate: this.selectedDate}, //get방식 파라미터로 값이 전달
+                // data: attentionVo, //put, post, delete 방식 자동으로 JSON으로 변환 전달
+
+                responseType: 'json' //수신타입
+            }).then(response => {
+                console.log(response.data); //수신데이타
+                console.log(response.data.apiData); //수신데이타
+                this.orderedList = response.data.apiData;
+
+            }).catch(error => {
+                console.log(error);
+            });
+
+
+        },
     },
     created(){
         this.getOrderedList();
