@@ -246,6 +246,7 @@ export default defineComponent({
                 console.log(error);
             });
 
+            
         },
         getsamttugiList3() {
             console.log("데이터가져오기");

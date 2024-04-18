@@ -13,6 +13,7 @@
                         <router-link to="" v-for="(categoryVo, i) in categoryList" v-bind:key="i"
                             @click="handleClick(categoryVo.mcNo)"> {{ categoryVo.mcName }}</router-link>
                     </div>
+                    
                     <div class="title02">
                         <p>전체<span>&nbsp; {{ productList.length }}</span>개
                         </p>
