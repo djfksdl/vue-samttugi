@@ -159,6 +159,7 @@ export default {
 
         }
     },
+    
     created() { }
 };
 </script>

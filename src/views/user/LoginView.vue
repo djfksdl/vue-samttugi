@@ -78,11 +78,22 @@ export default {
                     console.log(token);
                     console.log(authUser.userName);
 
+                    //관리자/유저
+                    if (authUser.id === "admin" && authUser.password === "admin") {
+                    alert("관리자페이지로 이동합니다.");
+                    // 관리자 페이지로 이동하는 코드 작성
+                    this.$router.push("/manager");
+                    } else {
+                    // 일반 사용자일 경우 홈페이지로 이동
                     this.$router.push("/");
+                    }
+
+                
                 } else {
                     console.log(response.data.message);
                     alert("아이디 패스워드를 확인하세요.");
                 }
+               
 
             }).catch(error => {
                 console.log(error);
