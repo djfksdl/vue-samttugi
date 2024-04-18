@@ -39,7 +39,8 @@
                             <div class="orderByDate" v-for="(orderedVo,i) in orderedList" v-bind:key="i"> 
                                 <p class="orderDay">{{orderedVo.payDay}}</p>
                                 <div class="ordercomplete" >
-                                    <img v-bind:src="`http://localhost:9009/upload/${orderedVo.saveName}`" class="orderCompleteImg">
+                                    <!-- <img v-bind:src="`http://localhost:9009/upload/${orderedVo.saveName}`" class="orderCompleteImg"> -->
+                                    <img v-bind:src="`http://localhost:9009/upload/${this.$route.query.saveName}`" class="orderCompleteImg">
                                     <div class="buy">
                                         <p><strong>상품명:</strong>{{ orderedVo.productName }}</p>
                                         <p><strong>가격:</strong> {{ orderedVo.oPrice.toLocaleString() }}원</p>

@@ -31,7 +31,8 @@
                                     <!-- 상품 이미지 -->
                                     <div class="ItemContentImg">
                                         <!-- <img src="@/assets/images/JinRamenSpicy.jpg"> -->
-                                        <img v-bind:src="`http://localhost:9009/upload/${ItemVo.saveName}`">
+                                        <!-- <img v-bind:src="`http://localhost:9009/upload/${ItemVo.saveName}`"> -->
+                                        <img v-bind:src="`http://localhost:9009/upload/${this.$route.query.saveName}`">
                                     </div>
                                     <!-- 상품 텍스트 -->
                                     <div class="ItemContentText">

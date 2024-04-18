@@ -22,7 +22,8 @@
                 <div class="foodListGroup">
                     <div class="foodList" v-for="(productVo, i) in productList" v-bind:key="i">
                         <div class="foodImg">
-                            <img v-bind:src="`${this.$store.state.apiBaseUrl}/upload/${productVo.saveName}`">
+                            <!-- <img v-bind:src="`${this.$store.state.apiBaseUrl}/upload/${productVo.saveName}`"> -->
+                            <img v-bind:src="`${this.$store.state.apiBaseUrl}/upload/${this.$route.query.saveName}`">
                         </div>
                         <div class="foodExplan">
                             <p class="foodName2">{{ productVo.productName }}</p>

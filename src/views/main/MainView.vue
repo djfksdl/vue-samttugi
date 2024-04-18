@@ -63,8 +63,8 @@
                                 <router-link to="">
                                     <div class="foodBoxUnder">
                                         <div class="imgButBox">
-                                            <img
-                                                :src="`${this.$store.state.apiBaseUrl}/upload/${productVo.saveName}`" />
+                                            <!-- <img :src="`${this.$store.state.apiBaseUrl}/upload/${productVo.saveName}`" /> -->
+                                            <img :src="`${this.$store.state.apiBaseUrl}/upload/${this.$route.query.saveName}`" />
                                             <button type="button" class="cart"></button>
                                         </div>
                                         <p class="foodEx">{{ productVo.detail }}</p>
@@ -102,8 +102,8 @@
                                 <router-link to="">
                                     <div class="foodBoxUnder">
                                         <div class="imgButBox">
-                                            <img
-                                                :src="`${this.$store.state.apiBaseUrl}/upload/${productVo.saveName}`" />
+                                            <!-- <img :src="`${this.$store.state.apiBaseUrl}/upload/${productVo.saveName}`" /> -->
+                                            <img :src="`${this.$store.state.apiBaseUrl}/upload/${this.$route.query.saveName}`" />
                                             <button type="button" class="cart"></button>
                                         </div>
                                         <p class="foodEx">{{ productVo.detail }}</p>
@@ -136,8 +136,8 @@
                                 <router-link to="">
                                     <div class="foodBoxUnder">
                                         <div class="imgButBox">
-                                            <img
-                                                :src="`${this.$store.state.apiBaseUrl}/upload/${productVo.saveName}`" />
+                                            <!-- <img :src="`${this.$store.state.apiBaseUrl}/upload/${productVo.saveName}`" /> -->
+                                            <img :src="`${this.$store.state.apiBaseUrl}/upload/${this.$route.query.saveName}`" />
                                             <button type="button" class="cart"></button>
                                         </div>
                                         <p class="foodEx">{{ productVo.detail }}</p>
