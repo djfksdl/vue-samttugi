@@ -280,4 +280,8 @@ export default defineComponent({
     color: white;
     opacity: 0.9;
 }
+.carousel__slide{
+    align-items: start;
+}
+
 </style>
