@@ -94,7 +94,7 @@
                     <p>장바구니로 이동하시겠습니까?</p>
                 </div>
                 <div class="ItemModalBtnBox">
-                    <router-link to="/itemlist/1">계속 쇼핑하기</router-link>
+                    <router-link to="" v-on:click="goCartTo()">계속 쇼핑하기</router-link>
                     <button v-on:click="goCart()">장바구니로 이동</button>
                 </div>
             </div>
@@ -155,7 +155,7 @@ export default {
                 console.log(error);
             });
         },
-         //장바구니 버튼 눌렀을때 -> 모달창에서 구매하기 버튼 눌렀을때!
+        //장바구니 버튼 눌렀을때 -> 모달창에서 구매하기 버튼 눌렀을때!
          goCart(){
             this.goCartVo.userNo= this.$store.state.authUser.userNo
             axios({
@@ -169,6 +169,25 @@ export default {
                 console.log("장바구니 넣기 성공")
 
                 this.$router.push("/cart")
+                
+            }).catch(error => {
+                console.log(error);
+            });
+        },
+        //장바구니 버튼 눌렀을때 -> 모달창에서 계속 쇼핑하기 버튼 눌렀을때!
+        goCartTo(){
+            this.goCartVo.userNo= this.$store.state.authUser.userNo
+            axios({
+                method: 'post', // put, post, delete 
+                url: `${this.$store.state.apiBaseUrl}/api/goCart`,
+                headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
+                data: this.goCartVo , //put, post, delete 방식 자동으로 JSON으로 변환 전달
+                responseType: 'json' //수신타입
+            }).then(response => {
+                console.log(response.data.apiData); //수신데이타
+                console.log("장바구니 넣고 쇼핑가자")
+
+                this.$router.push("/itemlist/1")
                 
             }).catch(error => {
                 console.log(error);
