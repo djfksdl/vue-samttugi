@@ -26,7 +26,7 @@
                                 <!-- 텍스트-Top -->
                                 <div class="ItemAcocuntTextTop">
                                     <p>{{ itemInfo.productName }}</p>
-                                    <p>{{itemInfo.price}}<span></span>원</p>
+                                    <p v-if="itemInfo && itemInfo.price">{{itemInfo.price.toLocaleString()}}<span></span>원</p>
                                 </div>
                                 <!-- 텍스트-Mid -->
                                 <ul class="ItemAcocuntTextMid">
@@ -41,7 +41,7 @@
                                     <li>
                                         <span>배송료&<br>보관방법</span>
                                         <p>
-                                            <span>3000</span>원
+                                            <span>3,000</span>원
                                             <span v-if="this.itemInfo.storage ==1">냉동&냉장</span>
                                             <span v-if="this.itemInfo.storage ==2">실온</span>
                                             <br>
@@ -64,7 +64,7 @@
                                     <!-- 총금액 -->
                                     <div class="ItemAcocuntTextBottomPrice">
                                         <p>총금액
-                                            <strong>3580</strong>
+                                            <strong>{{ (itemInfo.price * goCartVo.cCount).toLocaleString() }}</strong>
                                             <span>원</span>
                                         </p>
                                     </div>
