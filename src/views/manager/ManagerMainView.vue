@@ -8,12 +8,13 @@
                 </div>
                 <h3>전체상품</h3>
                 <div class="managerTitle">
-                    <div class="title01" >
-                        <router-link to="">전체</router-link>
-                        <router-link to="" v-for="(categoryVo, i) in categoryList" v-bind:key="i"  @click="handleClick(categoryVo.mcNo)"> {{ categoryVo.mcName }}</router-link>
+                    <div class="title01">
+                        <router-link to="" @click="handleAllClick">전체</router-link>
+                        <router-link to="" v-for="(categoryVo, i) in categoryList" v-bind:key="i"
+                            @click="handleClick(categoryVo.mcNo)"> {{ categoryVo.mcName }}</router-link>
                     </div>
                     <div class="title02">
-                        <p>전체<span>{{productList.length}}</span>개
+                        <p>전체<span>{{ productList.length }}</span>개
                         </p>
                     </div>
                 </div>
@@ -25,8 +26,8 @@
                         <div class="foodExplan">
                             <p class="foodName2">{{ productVo.productName }}</p>
                             <p class="foodEx2">{{ productVo.detail }}</p>
-                            <p class="foodPrice">{{ numberWithCommas(productVo.price) }}<span>원</span></p>
-                            <div class="attribute">
+                            <p class="foodPrice2">{{ numberWithCommas(productVo.price) }}<span>원</span></p>
+                            <div class="attribute2">
                                 <span class="storageCold" v-if="productVo.storage == 1">냉동&보관</span>
                                 <span class="storageWarm" v-if="productVo.storage == 2">실온</span>
                                 <img v-if="productVo.best == 1" src="@/assets/images/main/Best.png">
@@ -56,12 +57,15 @@ export default {
     data() {
         return {
             categoryList: [],
-            productList:[],
+            productList: [],
         };
     },
     methods: {
         numberWithCommas(x) {
             return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        },
+        handleAllClick() {
+            this.getsamttugiList();
         },
         getManagerCategory() {
             console.log("카테고리 메뉴 가져오기");
@@ -94,20 +98,20 @@ export default {
             });
 
         },
-        handleClick(i){
-            console.log("대분류 번호"+i);
+        handleClick(i) {
+            console.log("대분류 번호" + i);
             axios({
                 method: 'get', // put, post, delete 
                 url: `${this.$store.state.apiBaseUrl}/api/getCategoryList`,
                 headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
-                params: {mcNo:i}, //get방식 파라미터로 값이 전달
+                params: { mcNo: i }, //get방식 파라미터로 값이 전달
                 // data: guestbookVo, //put, post, delete 방식 자동으로 JSON으로 변환 전달
                 responseType: 'json' //수신타입
             }).then(response => {
                 console.log(response.data.apiData); //수신데이타
                 this.productList = response.data.apiData;
 
-                
+
             }).catch(error => {
                 console.log(error);
             });

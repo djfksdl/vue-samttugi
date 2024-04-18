@@ -134,16 +134,22 @@
     margin-right: 5px;
 }
 
-.storageWarm {
-    border: 1px solid #f2afaf;
-    color: #d3233a;
-    font-size: 12px;
-    padding: 1px 6px 1px 6px;
-
-    border-radius: 4px;
-    margin-right: 5px;
-    margin-bottom: 60px;
+.foodPrice2 {
+    text-align: left;
+    margin-left: 10px;
+    font-size: 26px;
+    color: #1D1D1B;
+    font-weight: bold;
+    margin-bottom: 15px;
 }
+ 
+.attribute2{
+    display: flex;
+}
+.attribute2 .storageWarm{
+    margin-left: -2px;
+}
+
 
 .saleNum {
     color: #d3233a;

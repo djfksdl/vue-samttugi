@@ -67,8 +67,7 @@
                                     <p>보관방법</p>
                                 </div>
                                 <div><label for="downzero"><span class="storageCold">냉장&냉동</span></label><input
-                                        type="radio" name="storage" id="downzero" value="1"
-                                        v-model="productVo.storage">
+                                        type="radio" name="storage" id="downzero" value="1" v-model="productVo.storage">
                                     <label for="upzero"><span class="storageWarm">실온</span> </label><input type="radio"
                                         name="storage" id="upzero" value="2" v-model="productVo.storage">
                                 </div>
@@ -136,11 +135,12 @@ export default {
         handleBigCategoryChange(event) {
             this.selectedCategory = event.target.value;
 
-            const selectedIndex = event.target.selectedIndex;
+            const selectedIndex = event.target.selectedIndex - 1;
             // 선택된 대분류의 mcNo
-            this.productVo.mcNo = (this.bigCategoryList[selectedIndex].mcNo) - 1;
+            this.productVo.mcNo = (this.bigCategoryList[selectedIndex].mcNo);
 
             this.getMiniCategory();
+
             console.log(this.selectedCategory);
             console.log(this.productVo.mcNo);
 
@@ -150,8 +150,8 @@ export default {
             if (this.productVo) {
                 this.selectedCategory = event.target.value;
 
-                const selectedIndex = event.target.selectedIndex;
-                this.productVo.scNo = (this.miniCategoryList[selectedIndex].scNo) - 1;
+                const selectedIndex = event.target.selectedIndex - 1;
+                this.productVo.scNo = (this.miniCategoryList[selectedIndex].scNo);
 
                 console.log(this.selectedCategory);
                 console.log(this.productVo.scNo);
@@ -191,6 +191,7 @@ export default {
             }).then(response => {
                 console.log(response); //수신데이타
                 this.miniCategoryList = response.data.apiData;
+                this.productVo.scNo = this.miniCategoryList
             }).catch(error => {
                 console.log(error);
             });
@@ -216,7 +217,7 @@ export default {
                 reader.readAsDataURL(file);
             }
 
-            this.file = event.target.value;
+            this.file = event.target.files[0];
 
             this.productVo.saveName = this.previewImage;
         },
@@ -230,9 +231,7 @@ export default {
 
             //서버전송용 전용 박스
             let formData = new FormData();
-            formData.append("file", this.file);
-            //formData.append("productVo", this.productVo);
-/*
+
             formData.append("file", this.file);
             formData.append("productName", this.productVo.productName);
             formData.append("scNo", this.productVo.scNo);
@@ -240,7 +239,6 @@ export default {
             formData.append("price", this.productVo.price)
             formData.append("storage", this.productVo.storage);
             formData.append("best", this.productVo.best);
-*/
 
             axios({
                 method: 'post', // put, post, delete 
@@ -253,10 +251,7 @@ export default {
                 console.log(response); //수신데이타
                 console.log(response.data.apiData);
 
-                //this.$router.push('/manager/');
-
-
-
+                this.$router.push('/manager');
 
             }).catch(error => {
                 console.log(error);

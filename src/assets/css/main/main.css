@@ -166,10 +166,6 @@
 }
 
 
-/* 이런상품 어때요? */
-.foodBoxGroup2 {
-    border-bottom: 1px solid #eee;
-}
 
 
 /* 실온 */
@@ -186,7 +182,6 @@
 .foodBoxGroup3 {
     margin-top: 100px;
     margin-bottom: 150px;
-    border-bottom: 1px solid #eee;
 }
 
 
