@@ -13,7 +13,7 @@
                             <div class="foodPhotoFile">
                                 <img :src="previewImage">
                             </div>
-                            <input type="file" name="photo" id="profile" style="width: auto;"
+                            <input type="file" name="file" id="profile" style="width: auto;"
                                 @change="handleImagePreview">
                         </div>
 
@@ -67,10 +67,10 @@
                                     <p>보관방법</p>
                                 </div>
                                 <div><label for="downzero"><span class="storageCold">냉장&냉동</span></label><input
-                                        type="radio" name="storeage" id="downzero"  value="1"
-                                        v-model="productVo.storeage">
+                                        type="radio" name="storage" id="downzero" value="1"
+                                        v-model="productVo.storage">
                                     <label for="upzero"><span class="storageWarm">실온</span> </label><input type="radio"
-                                        name="storeage" id="upzero" value="2" v-model="productVo.storeage">
+                                        name="storage" id="upzero" value="2" v-model="productVo.storage">
                                 </div>
                             </div>
 
@@ -78,10 +78,10 @@
                             <div class="Best">
                                 <span class="bestChoice"><label>best선택</label></span>
                                 <div><span><label for="o"><img src="../../assets/images/main/Best.png"></label>
-                                        <input type="radio" name="best" id="o" v-model.number="productVo.best"
-                                            ></span>
+                                        <input type="radio" name="best" id="o" v-model="productVo.best"
+                                            value="1"></span>
                                     <span><label for="x">선택안함 </label><input type="radio" name="best" id="x"
-                                           v-model="productVo.best" ></span>
+                                            v-model="productVo.best" value="2"></span>
                                 </div>
                             </div>
 
@@ -90,8 +90,6 @@
                         </div>
                     </div>
 
-                </form>
-                <form v-on:submit.prevent="uploadFile" enctype="multipart/form-data">
                     <button type="submit">추가</button>
                 </form>
             </div>
@@ -122,11 +120,11 @@ export default {
                 scNo: '',
                 productName: '',
                 price: '',
-                storeage: '',
+                storage: '',
                 detail: '',
                 best: '',
             },
-            photo: '',
+            file: '',
             previewImage: '',
 
         };
@@ -149,13 +147,17 @@ export default {
         },
         // 소분류
         handleMiniCategoryChange(event) {
-            this.selectedCategory = event.target.value;
+            if (this.productVo) {
+                this.selectedCategory = event.target.value;
 
-            const selectedIndex = event.target.selectedIndex;
-            this.productVo.scNo = (this.miniCategoryList[selectedIndex].scNo) - 1;
+                const selectedIndex = event.target.selectedIndex;
+                this.productVo.scNo = (this.miniCategoryList[selectedIndex].scNo) - 1;
 
-            console.log(this.selectedCategory);
-            console.log(this.productVo.scNo);
+                console.log(this.selectedCategory);
+                console.log(this.productVo.scNo);
+            } else {
+                console.error('productVo is undefined');
+            }
         },
 
         // 대분류카테고리
@@ -198,8 +200,8 @@ export default {
         handleImagePreview(event) {
 
             // 선택한 파일
-            const photo = event.target.files[0];
-
+            const file = event.target.files[0];
+            console.log(file);
             // FileReader 객체를 사용하여 이미지를 읽음
             const reader = new FileReader();
 
@@ -210,39 +212,40 @@ export default {
             };
 
             // 파일을 읽음
-            if (photo) {
-                reader.readAsDataURL(photo);
+            if (file) {
+                reader.readAsDataURL(file);
             }
 
-            this.photo = event.target.value;
+            this.file = event.target.value;
 
-            this.productVo.saveName=this.previewImage;
+            this.productVo.saveName = this.previewImage;
         },
 
 
         // 등록
-
         uploadFile() {
             console.log("파일업로드");
             console.log(this.productVo);
+            console.log(this.file);
 
             //서버전송용 전용 박스
             let formData = new FormData();
-
-            formData.append("file", this.photo); 
+            formData.append("file", this.file);
+            //formData.append("productVo", this.productVo);
+/*
+            formData.append("file", this.file);
             formData.append("productName", this.productVo.productName);
             formData.append("scNo", this.productVo.scNo);
-            formData.append("mcNo",this.productVo.mcNo);
-            formData.append("detail",this.productVo.detail);
-            formData.append("price",this.productVo.price)
-            formData.append("storeage",this.productVo.storeage);
-            formData.append("best",this.productVo.best);
-
+            formData.append("detail", this.productVo.detail);
+            formData.append("price", this.productVo.price)
+            formData.append("storage", this.productVo.storage);
+            formData.append("best", this.productVo.best);
+*/
 
             axios({
                 method: 'post', // put, post, delete 
                 url: `${this.$store.state.apiBaseUrl}/api/insert`,
-                headers: { "Content-Type": "multipart/form-data" }, 
+                headers: { "Content-Type": "multipart/form-data" },
                 // params: guestbookVo, //get방식 파라미터로 값이 전달
                 data: formData, //put, post, delete 방식 자동으로 JSON으로 변환 전달
                 responseType: 'json' //수신타입
@@ -250,8 +253,10 @@ export default {
                 console.log(response); //수신데이타
                 console.log(response.data.apiData);
 
+                //this.$router.push('/manager/');
 
-                
+
+
 
             }).catch(error => {
                 console.log(error);
