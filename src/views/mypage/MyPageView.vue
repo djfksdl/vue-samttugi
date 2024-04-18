@@ -89,6 +89,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import "@/assets/css/mypage/MyPageOrder.css"
 import AppHeader from '@/components/AppHeader.vue'
 import AppFooter from '@/components/AppFooter.vue'
@@ -100,10 +101,36 @@ export default {
         AppFooter
     },
     data() {
-        return {};
+        return {
+            no: this.$store.state.authUser.userNo,
+            orderedList:[]
+        };
     },
-    methods: {},
-    created(){}
+    methods: {
+        getOrderedList(){
+            console.log("주문/조회 첫화면")
+            axios({
+                method: 'get', // put, post, delete 
+                url: `${this.$store.state.apiBaseUrl}/api/orderedListByUserNo`,
+                headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
+                params: {no:this.no}, //get방식 파라미터로 값이 전달
+                // data: guestbookVo, //put, post, delete 방식 자동으로 JSON으로 변환 전달
+                responseType: 'json' //수신타입
+            }).then(response => {
+                console.log(response.data.apiData); //수신데이타
+                this.orderedList = response.data.apiData;
+
+                
+            }).catch(error => {
+                console.log(error);
+            });
+            
+
+        }
+    },
+    created(){
+        this.getOrderedList();
+    }
 };
 </script>
 <style></style>
