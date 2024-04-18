@@ -14,7 +14,7 @@
                             @click="handleClick(categoryVo.mcNo)"> {{ categoryVo.mcName }}</router-link>
                     </div>
                     <div class="title02">
-                        <p>전체<span>{{ productList.length }}</span>개
+                        <p>전체<span>&nbsp; {{ productList.length }}</span>개
                         </p>
                     </div>
                 </div>
