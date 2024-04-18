@@ -18,18 +18,13 @@
     margin-bottom: 135px;
 }
 
-.carousel__item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
-.carousel__slide {
+.wrapper .carousel__slide {
     padding: auto auto;
 }
 
-.carousel__prev,
-.carousel__next {
+.wrapper .carousel__prev,
+.wrapper .carousel__next {
     box-sizing: content-box;
 }
 
@@ -81,8 +76,7 @@
 }
 
 .foodBox {
-    width: 300px;
-    margin-right: 50px;
+    width: 100%;
 }
 
 
@@ -90,18 +84,13 @@
 .foodBox h3 {
     font-size: 32px;
     margin-bottom: 40px;
-    display: inline-block;
 }
 
-.foodBoxUnder {
-    display: flex;
-    border: 1px solid black;
-}
 
 
 
 .foodBox .imgButBox img {
-    width: 270px;
+    width: 300px;
     margin-bottom: 10px;
     cursor: pointer;
 }
@@ -112,33 +101,15 @@
 }
 
 
-/* 이건 사진 넣으면 지워도됨 */
-.foodBox .food {
-    width: 270px;
-    margin-bottom: 10px;
-    cursor: pointer;
-    display: block;
-}
-
-/* 요것두 */
-.foodBox .food img:hover {
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
-}
-
-.foodBox .imgButBox {
-    display: flex;
-}
-
+/*
 .foodBox .cart {
     width: 40px;
     height: 40px;
     background: url(../../images/main/icon_cart.svg);
     cursor: pointer;
     border: none;
-    margin-top: 210px;
-    margin-left: -35px;
 }
+*/
 
 
 .foodBox .foodEx {
@@ -147,22 +118,29 @@
     color: #1D1D1B;
     font-weight: bold;
     width: 200px;
+    text-align: left;
+    margin-left: 20px;
 }
 
 .foodBox .foodName {
+    text-align: left;
+    margin-left: 20px;
     padding-bottom: 10px;
     color: #888888;
 }
 
 .foodBox .foodPrice {
+    text-align: left;
+    margin-left: 10px;
     font-size: 26px;
     color: #1D1D1B;
     font-weight: bold;
     margin-bottom: 15px;
+    margin-left: 20px;
 }
 
-.attribute {
-    display: flex;
+.foodBoxGroup .storageCold, .storageWarm {
+   margin-left: 20px;
 }
 
 /* 냉장&냉동 */
@@ -199,7 +177,6 @@
     color: #d3233a;
     font-size: 12px;
     padding: 1px 6px 1px 6px;
-
     border-radius: 4px;
     margin-right: 5px;
     margin-bottom: 60px;
@@ -212,10 +189,12 @@
     border-bottom: 1px solid #eee;
 }
 
+
 .attribute img {
     width: 34px;
     height: 20px;
 }
+
 
 .foodBoxGroup3 .saleNum {
     color: #d3233a;

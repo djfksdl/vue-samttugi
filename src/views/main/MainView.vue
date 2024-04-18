@@ -6,17 +6,19 @@
             </div>
             <AppHeader />
             <div class="wrapper">
-                <Carousel :autoplay="2600" :wrap-around="true">
-                    <Slide v-for="slide in slides" :key="slide">
-                        <div class="carousel__item">
-                            <img class="slideImg" :src="slide" />
-                        </div>
-                    </Slide>
-                    <template #addons>
-                        <Navigation />
-                        <Pagination />
-                    </template>
-                </Carousel>
+                <div class="slider01">
+                    <Carousel :autoplay="2600" :wrap-around="true">
+                        <Slide v-for="slide in slides" :key="slide">
+                            <div class="carousel__item">
+                                <img class="slideImg" :src="slide" />
+                            </div>
+                        </Slide>
+                        <template #addons>
+                            <Navigation />
+                            <Pagination />
+                        </template>
+                    </Carousel>
+                </div>
             </div>
             <div class="eventGroup">
                 <router-link to="">
@@ -54,26 +56,33 @@
             </div>
             <div class="foodBoxGroup">
                 <div class="foodBox">
-                    <h3>삼뚜기몰에서 만나요</h3>
-
-                    <div v-for="(productVo, i) in productList" v-bind:key="i" class="foodBoxUnder">
-                        <router-link to="">
-                            <div class="foodBoxUnder2">
-                                <div class="imgButBox">
-                                    <img v-bind:src="`${this.$store.state.apiBaseUrl}/upload/${productVo.saveName}`">
-                                    <button type="button" class="cart"></button>
-                                </div>
-                                <p class="foodEx">{{ productVo.detail }}</p>
-                                <p class="foodName">{{ productVo.productName }}</p>
-                                <p class="foodPrice">{{ numberWithCommas(productVo.price) }}<span>원</span></p>
-                                <div class="attribute">
-                                    <span class="storageCold" v-if="productVo.storage == 1">냉동&보관</span>
-                                    <span class="storageWarm" v-if="productVo.storage == 2">실온</span>
-                                    <img v-if="productVo.best == 1" src="@/assets/images/main/Best.png">
-                                </div>
+                    <h3>삼뚜기에서 만나요</h3>
+                    <Carousel v-bind="settings" :breakpoints="breakpoints">
+                        <Slide v-for="(productVo, i) in productList" :key="i" >
+                            <div class="carousel__item">
+                                <router-link to="">
+                                    <div class="foodBoxUnder">
+                                        <div class="imgButBox">
+                                            <img
+                                                :src="`${this.$store.state.apiBaseUrl}/upload/${productVo.saveName}`" />
+                                            <button type="button" class="cart"></button>
+                                        </div>
+                                        <p class="foodEx">{{ productVo.detail }}</p>
+                                        <p class="foodName">{{ productVo.productName }}</p>
+                                        <p class="foodPrice">{{ numberWithCommas(productVo.price) }}<span>원</span></p>
+                                        <div class="attribute">
+                                            <span class="storageCold" v-if="productVo.storage == 1">냉동&보관</span>
+                                            <span class="storageWarm" v-if="productVo.storage == 2">실온</span>
+                                            <img v-if="productVo.best == 1" src="@/assets/images/main/Best.png" />
+                                        </div>
+                                    </div>
+                                </router-link>
                             </div>
-                        </router-link>
-                    </div>
+                        </Slide>
+                        <template #addons>
+                            <Navigation />
+                        </template>
+                    </Carousel>
                 </div>
 
             </div>
@@ -87,21 +96,32 @@
             <div class="foodBoxGroup2">
                 <div class="foodBox">
                     <h3>이런상품 어때요?</h3>
-                    <div v-for="(productVo, i) in productList" v-bind:key="i">
-                        <router-link to="">
-                            <div class="imgButBox">
-                                <img class="food" src="@/assets/images/main/옛날잡채.png">
-                                <button type="button" class="cart"></button>
+                    <Carousel v-bind="settings" :breakpoints="breakpoints">
+                        <Slide v-for="(productVo, i) in productList2" :key="i">
+                            <div class="carousel__item">
+                                <router-link to="">
+                                    <div class="foodBoxUnder">
+                                        <div class="imgButBox">
+                                            <img
+                                                :src="`${this.$store.state.apiBaseUrl}/upload/${productVo.saveName}`" />
+                                            <button type="button" class="cart"></button>
+                                        </div>
+                                        <p class="foodEx">{{ productVo.detail }}</p>
+                                        <p class="foodName">{{ productVo.productName }}</p>
+                                        <p class="foodPrice">{{ numberWithCommas(productVo.price) }}<span>원</span></p>
+                                        <div class="attribute">
+                                            <span class="storageCold" v-if="productVo.storage == 1">냉동&보관</span>
+                                            <span class="storageWarm" v-if="productVo.storage == 2">실온</span>
+                                            <img v-if="productVo.best == 1" src="@/assets/images/main/Best.png" />
+                                        </div>
+                                    </div>
+                                </router-link>
                             </div>
-                            <p class="foodName">{{ productVo.productName }}</p>
-                            <p class="foodPrice">{{ numberWithCommas(productVo.price) }}<span>원</span></p>
-                            <div class="attribute">
-                                <span class="storageCold" v-if="productVo.storage == 1">냉동&보관</span>
-                                <span class="storageWarm" v-if="productVo.storage == 2">실온</span>
-                                <img v-if="productVo.best == 1" src="@/assets/images/main/Best.png">
-                            </div>
-                        </router-link>
-                    </div>
+                        </Slide>
+                        <template #addons>
+                            <Navigation />
+                        </template>
+                    </Carousel>
                 </div>
 
 
@@ -110,20 +130,32 @@
             <div class="foodBoxGroup3">
                 <div class="foodBox">
                     <h3>원쁠원으로 만나요</h3>
-                    <div>
-                        <router-link to="">
-                            <div class="imgButBox">
-                                <img class="food" src="@/assets/images/main/양송이컵스프.png">
-                                <button type="button" class="cart"></button>
+                    <Carousel v-bind="settings" :breakpoints="breakpoints">
+                        <Slide v-for="(productVo, i) in productList3" :key="i">
+                            <div class="carousel__item">
+                                <router-link to="">
+                                    <div class="foodBoxUnder">
+                                        <div class="imgButBox">
+                                            <img
+                                                :src="`${this.$store.state.apiBaseUrl}/upload/${productVo.saveName}`" />
+                                            <button type="button" class="cart"></button>
+                                        </div>
+                                        <p class="foodEx">{{ productVo.detail }}</p>
+                                        <p class="foodName">{{ productVo.productName }}</p>
+                                        <p class="foodPrice">{{ numberWithCommas(productVo.price) }}<span>원</span></p>
+                                        <div class="attribute">
+                                            <span class="storageCold" v-if="productVo.storage == 1">냉동&보관</span>
+                                            <span class="storageWarm" v-if="productVo.storage == 2">실온</span>
+                                            <img v-if="productVo.best == 1" src="@/assets/images/main/Best.png" />
+                                        </div>
+                                    </div>
+                                </router-link>
                             </div>
-                            <p class="foodName">[원쁠원]양송이컵스프 27G+양송이컵스프 27G 1+1</p>
-                            <p class="foodPrice"><span class="saleNum">19%
-                                </span>2,080<span>원</span><del>3,080<span>원</span></del></p>
-                            <div class="attribute">
-                                <span class="storageWarm">실온</span>
-                            </div>
-                        </router-link>
-                    </div>
+                        </Slide>
+                        <template #addons>
+                            <Navigation />
+                        </template>
+                    </Carousel>
                 </div>
 
             </div>
@@ -164,6 +196,18 @@ export default defineComponent({
         return {
             slides: [slide01, slide02, slide03, slide04],
             productList: [],
+            productList2: [],
+            productList3: [],
+            settings: {
+                itemsToShow: 2,
+                snapAlign: 'center',
+            },
+            breakpoints: {
+                1024: {
+                    itemsToShow: 4,
+                    snapAlign: 'start',
+                },
+            },
         };
     },
     methods: {
@@ -185,18 +229,54 @@ export default defineComponent({
                 console.log(error);
             });
 
+
+        },
+        getsamttugiList2() {
+            console.log("데이터가져오기");
+
+            axios({
+                method: 'get', // put, post, delete 
+                url: `${this.$store.state.apiBaseUrl}/api/samttugiList2`,
+                headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
+                responseType: 'json' //수신타입
+            }).then(response => {
+                console.log(response); //수신데이타
+                this.productList2 = response.data.apiData;
+            }).catch(error => {
+                console.log(error);
+            });
+
+        },
+        getsamttugiList3() {
+            console.log("데이터가져오기");
+
+            axios({
+                method: 'get', // put, post, delete 
+                url: `${this.$store.state.apiBaseUrl}/api/samttugiList3`,
+                headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
+                responseType: 'json' //수신타입
+            }).then(response => {
+                console.log(response); //수신데이타
+                this.productList3 = response.data.apiData;
+            }).catch(error => {
+                console.log(error);
+            });
+
         }
 
     },
     created() {
         this.getsamttugiList();
+        this.getsamttugiList2();
+        this.getsamttugiList3();
+
     }
 });
 </script>
 
 <style>
-.carousel__prev,
-.carousel__next {
+.slider01 .carousel__prev,
+.slider01 .carousel__next {
     color: white;
     opacity: 0.9;
 }
