@@ -19,7 +19,7 @@
                         <!-- 상품내용 - 왼쪽 -->
                         <div class="ItemAccountLeft">
                             <!-- <img v-bind:src="`http://localhost:9009/upload/${itemInfo.saveName}`"> -->
-                            <img v-bind:src="`http://localhost:9009/upload/${this.$route.query.saveName}`">
+                            <img v-bind:src="`${this.$store.state.apiBaseUrl}/upload/${this.$route.query.saveName}`">
                         </div>
                         <!-- 상품내용 - 오른쪽 -->
                         <div class="ItemAccountRight">

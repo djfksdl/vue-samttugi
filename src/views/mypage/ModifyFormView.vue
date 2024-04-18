@@ -106,7 +106,7 @@ export default {
             //서버로 전송
             axios({
                 method: 'get', // put, post, delete  //불러오는것은 GET //저장은 POST
-                url: 'http://localhost:9009/api/user/modify', //''따옴표 문법도 중요
+                url: `${this.$store.state.apiBaseUrl}/api/user/modify`, //''따옴표 문법도 중요
                 headers: {
                     "Content-Type": "application/json; charset=utf-8"
                     , "Authorization": "Bearer " + this.$store.state.token
@@ -135,7 +135,7 @@ export default {
             //서버로 전송
             axios({
                 method: 'put', // put, post, delete  //불러오는것은 GET //저장은 POST
-                url: 'http://localhost:9009/api/user/modify', //''따옴표 문법도 중요
+                url: `${this.$store.state.apiBaseUrl}/api/user/modify`, //''따옴표 문법도 중요
                 headers: {
                     "Content-Type": "application/json; charset=utf-8"
                     , "Authorization": "Bearer " + this.$store.state.token

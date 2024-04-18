@@ -53,7 +53,7 @@ export default {
             console.log(this.usersVo);
             axios({
                 method: 'post', // put, post, delete
-                url: 'http://localhost:9009/api/user/login',
+                url: `${this.$store.state.apiBaseUrl}/api/user/login`,
                 headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
                 //params: usersVo, //get방식 파라미터로 값이 전달
                 data: this.usersVo, //put, post, delete 방식 자동으로 JSON으로 변환 전달

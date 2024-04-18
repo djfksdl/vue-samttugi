@@ -104,7 +104,7 @@ export default {
                 console.log(this.usersVo);
                 axios({
                     method: 'post', // put, post, delete
-                    url: 'http://localhost:9009/api/user/idcheck',
+                    url: `${this.$store.state.apiBaseUrl}/api/user/idcheck`,
                     headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
                     //params: userVo, //get방식 파라미터로 값이 전달
                     data: this.usersVo, //put, post, delete 방식 자동으로 JSON으로 변환 전달
@@ -133,7 +133,7 @@ export default {
             this.usersVo.email = this.emailName + this.domain;
             axios({
                 method: 'post', // put, post, delete 
-                url: 'http://localhost:9009/api/user/join',
+                url: `${this.$store.state.apiBaseUrl}/api/user/join`,
                 headers: { "Content-Type": "application/json; charset=utf-8" }, //전송타입
                 //params: usersVo, //get방식 파라미터로 값이 전달
                 data: this.usersVo, //put, post, delete 방식 자동으로 JSON으로 변환 전달
