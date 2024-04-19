@@ -26,7 +26,7 @@
                     </div>
 
                     <div class="productBox" v-bind:key="i" v-for="(dbcartVo, i) in orderList">
-                        <img src="" alt="">
+                        <img v-bind:src="`${this.$store.state.apiBaseUrl}/upload/${dbcartVo.saveName}`">
                         <p class="pName">{{ dbcartVo.productName }}</p>
                         <p class="p-count">{{ dbcartVo.cCount }}개</p>
                         <b class="p-charge">{{ (dbcartVo.price * dbcartVo.cCount).toLocaleString('ko-KR') }}</b>

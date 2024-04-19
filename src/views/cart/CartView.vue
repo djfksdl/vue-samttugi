@@ -33,7 +33,7 @@
 
                 <div class="productBox" v-bind:key="i" v-for="(dbcartVo, i) in cList">
                     <input checked="checked" type="checkbox" name="" id="">
-                    <img src="" alt="">
+                    <img  v-bind:src="`${this.$store.state.apiBaseUrl}/upload/${dbcartVo.saveName}`">
                     <p class="pName">{{ dbcartVo.productName }}</p>
                     <div class="PnMBtn" v-on:click="cCountUpdate(dbcartVo.productNo, dbcartVo.cCount)">
                         <span class="minus" v-on:click="dbcartVo.cCount -= 1">-</span>
