@@ -126,6 +126,7 @@ export default {
             },
             file: '',
             previewImage: '',
+            saveName:""
 
         };
     },
@@ -249,10 +250,17 @@ export default {
                 data: formData, //put, post, delete 방식 자동으로 JSON으로 변환 전달
                 responseType: 'json' //수신타입
             }).then(response => {
-                console.log(response); //수신데이타
-                console.log(response.data.apiData);
+                // console.log(response); //수신데이타
+                // console.log(response.data.apiData);
 
-                this.$router.push('/manager');
+                if (response.data.result == "success") {
+                    this.saveName = response.data.apiData;
+                    this.$router.push({ path: '/manager', query: { saveName: response.data.apiData } })
+
+                } else {
+                    alert("알수없는 오류");
+                }
+
 
             }).catch(error => {
                 console.log(error);
