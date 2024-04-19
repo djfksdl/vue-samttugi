@@ -1,6 +1,6 @@
 .successBox {
     width: 1400px;
-    height: 400px;
+    height: 550px;
     text-align: center;
     margin: 0 auto;
     padding: 50px 0 0;
@@ -10,8 +10,15 @@
     color: #e0123e;
 }
 .successBox h1 {
-    margin: 50px 0 100px;
+    margin: 50px 0 0px;
+}
+.successBox h2 {
+    margin-bottom: 20px;
 }
 .successBox .orderBtn {
     border-radius: 15px;
+}
+.del {
+    width: 300px;
+    height: 230px;
 }
