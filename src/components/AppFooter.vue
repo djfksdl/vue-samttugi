@@ -42,10 +42,10 @@
                             토/일/공휴일 휴무
                         </p>
                         <div class="footerBtnBox">
-                            <router-link to=""><img src="@/assets/images/icon_insta.png"></router-link>
-                            <router-link to=""><img src="@/assets/images/icon_blog.png"></router-link>
-                            <router-link to=""><img src="@/assets/images/icon_kakao.png"></router-link>
-                            <router-link to=""><img src="@/assets/images/icon_youtube.png"></router-link>
+                            <router-link to="https://www.instagram.com/ottogi_daily/"><img src="@/assets/images/icon_insta.png"></router-link>
+                            <router-link to="https://blog.naver.com/ottogitoday1"><img src="@/assets/images/icon_blog.png"></router-link>
+                            <router-link to="https://pf.kakao.com/_paQtC"><img src="@/assets/images/icon_kakao.png"></router-link>
+                            <router-link to="https://www.youtube.com/user/Ottogimkt"><img src="@/assets/images/icon_youtube.png"></router-link>
                         </div>
                     </div>
                 </div>

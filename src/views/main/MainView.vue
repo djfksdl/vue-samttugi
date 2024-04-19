@@ -21,23 +21,23 @@
                 </div>
             </div>
             <div class="eventGroup">
-                <router-link to="">
+                <router-link to="https://www.ottogimall.co.kr/front/promo/event/273">
                     <img src="@/assets/images/main/1710116887801A9TTr.png">
                     <p>뚜밀리818</p>
                 </router-link>
-                <router-link to="">
+                <router-link to="https://www.ottogimall.co.kr/front/product/brand/20?ptype=0&psort=pop&pageSize=80&listBtn=0">
                     <img src="@/assets/images/main/1707798798805365xl.png">
                     <p>맛있는 콘텐츠</p>
                 </router-link>
-                <router-link to="">
+                <router-link to="https://www.ottogimall.co.kr/front/promo/event/137">
                     <img src="@/assets/images/main/oneplus.png">
                     <p>원쁠원</p>
                 </router-link>
-                <router-link to="">
+                <router-link to="https://www.ottogimall.co.kr/front/promo/event/236">
                     <img src="@/assets/images/main/1704939117452DH842.png">
                     <p>99마켓</p>
                 </router-link>
-                <router-link to="">
+                <router-link to="https://www.ottogimall.co.kr/front/product/brand">
                     <img src="@/assets/images/main/1702343761667faagd.png">
                     <p>브랜드관</p>
                 </router-link>
