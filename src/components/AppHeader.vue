@@ -41,7 +41,10 @@
                 </div>
                 <!-- 헤더 하단 -->
                 <ul class="headerBottom" >
-                    <li v-for="(categoryVo, i) in categoryList" v-bind:key="i"><router-link  v-bind:to="`/itemlist/${categoryVo.mcNo}`" >{{ categoryVo.mcName }}</router-link></li>
+                    <li  v-for="(categoryVo, i) in categoryList" v-bind:key="i">
+                        <router-link v-if="(i+1) ==this.menuNo" style="color: #d3233a" v-bind:to="`/itemlist/${categoryVo.mcNo}`" >{{ categoryVo.mcName }}</router-link>
+                        <router-link v-else v-bind:to="`/itemlist/${categoryVo.mcNo}`" >{{ categoryVo.mcName }}</router-link>
+                    </li>
                 </ul>
             </div>
         </header>
@@ -53,6 +56,7 @@ export default {
     
     name: "AppHeader",
     components: {},
+    props: ["menuNo"],
     data() {
         return {
             categoryList:[]

@@ -2,7 +2,7 @@
     <div>
         <div class="wrap">
             <!-- 헤더 -->
-            <AppHeader/>
+            <AppHeader v-bind:menuNo="this.$route.params.no" />
 
             <!-- 내용 -->
             <div class="ItemListContainer">
